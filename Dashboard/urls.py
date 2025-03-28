@@ -3,6 +3,8 @@ from django.shortcuts import redirect
 from django.contrib.auth import views as auth_views
 from .views import signup_view, login_view, logout_view, CustomPasswordResetView, CustomPasswordResetConfirmView
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 def redirect_to_login(request):
     return redirect('login')
@@ -20,3 +22,6 @@ urlpatterns = [
     path("reset/done/", auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_complete.html"), name="password_reset_complete"),
     path('dashboard/', views.dashboard, name='dashboard')
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
