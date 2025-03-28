@@ -9,7 +9,7 @@ connectDB();
 const app = express();
 
 const corsOption = {
-    origin: `http://localhost:5173`, //frontend port
+    origin:`http://localhost:5173`, //frontend port
     credentials: true,
 };
 app.use(cors(corsOption));
