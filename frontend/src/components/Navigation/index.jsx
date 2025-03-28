@@ -6,7 +6,7 @@ const Navigation = () => {
   const filteredBtnList = BtnList.slice(0, 8); // Ensure only 8 buttons
   const angleIncrement = 360 / filteredBtnList.length;
 
-  const [radiusX, setRadiusX] = useState(window.innerWidth * 0.45); // Keeping original oval size
+  const [radiusX, setRadiusX] = useState(window.innerWidth * 0.45);
   const [radiusY, setRadiusY] = useState(window.innerHeight * 0.5);
   const [angles, setAngles] = useState(filteredBtnList.map((_, i) => i * angleIncrement));
 
@@ -20,11 +20,12 @@ const Navigation = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Smooth circular motion along the oval path
+  // Ensure smooth rotation effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setAngles((prevAngles) => prevAngles.map(angle => (angle + 0.5) % 360));
-    }, 50);
+      setAngles((prevAngles) => prevAngles.map(angle => (angle + 0.5) % 360)); // Slower movement
+    }, 50); // Adjusted interval for smoother motion
+
     return () => clearInterval(interval);
   }, []);
 
@@ -44,6 +45,14 @@ const Navigation = () => {
                 transform: `translate(${x}px, ${y}px)`,
                 width: "80px",
                 height: "80px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                if (btn.newTab) {
+                  window.open(btn.link, "_blank");
+                } else {
+                  window.location.href = btn.link;
+                }
               }}
             >
               <img
