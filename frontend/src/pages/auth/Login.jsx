@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/Inputs/Input.jsx';
 import { Link } from 'react-router-dom';
 import { validateEmail } from '../../utils/helper.js';
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,23 +14,42 @@ export const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     if (!validateEmail(email)) {
       setError("Please enter a valid email address");
       return;
     }
-
+  
     if (!password) {
       setError("Please enter the password");
       return;
     }
-
+  
     setError("");
-
-    // Mock login logic (API call can be added here)
-    setTimeout(() => {
-      navigate('/dashboard'); // Redirect after login (update route as needed)
-    }, 1000);
+  
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: "include", // Ensures cookies (JWT) are stored in the browser
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        localStorage.setItem("token", data.token); // Store token for future API calls
+        toast.success("Login successful!");
+        navigate("/home"); // Redirect user on successful login
+      } else {
+        setError(data.message || "Invalid email or password");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Something went wrong. Please try again.");
+    }
   };
 
   return (

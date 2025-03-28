@@ -2,63 +2,57 @@ import { User } from "../modules/User.js";
 import bcrypt from 'bcrypt';
 import { generateToken } from "../utils/generateToken.js";
 
-export const RegisterUser = async(req,res) => {
+export const RegisterUser = async (req, res) => {
     try {
-        const {username, email, password} = req.body;
-        let user = await User.findOne({email:email})
-        if(user) return res.status(201).json({message: "You have already have account"});
-    
-        bcrypt.genSalt(10, (err,salt) => {
-            bcrypt.hash(password, salt, async(err,hash)=>{
-                if(err) return res.status(401).json({message: err.message});
-                else {
-                    let user = await User.create({
-                        email,
-                        password: hash,
-                        username
-                    })
-    
-                    let token = generateToken(user);
-                    res.cookie("token", token)
-                    res.status(201).json({
-                        success: true,
-                        message: "User Created Successfully"
-                    })
-                }
-            })
-        })
-        
+      const { fullName, username, email, password } = req.body;
+      let user = await User.findOne({ email });
+      if (user) return res.status(400).json({ message: "You already have an account" });
+  
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(password, salt);
+  
+      user = await User.create({
+        fullName, // Store full name
+        username,
+        email,
+        password: hash,
+      });
+  
+      let token = generateToken(user);
+      res.cookie("token", token, { httpOnly: true });
+  
+      res.status(201).json({
+        success: true,
+        message: "User Registered Successfully",
+        token,
+      });
     } catch (error) {
-        console.log("Error in register User", error);
-        res.status(400).json({
-            success: false,
-            message: "Failed to register"
-        })
+      console.error("Error in RegisterUser:", error);
+      res.status(500).json({ message: "Signup failed. Please try again." });
     }
+  };
+  
 
-    
-}
-
-export const LoginUser = async (req,res) => {
-    const {email ,password}=req.body;
-    let user=await  User.findOne({email:email});
-    if(!user) return res.send("Email or Password incorrect");
-    bcrypt.compare(password,user.password,function(err,result){
-        if(result){
-            let token= generateToken(user);
-            console.log(token);
-            res.cookie("token",token);
-            const email = user.email;
-            res.status(201).json({
-                success: true,
-                message: "User login Successfully",
-                token,
-            })
-                 
-        }
-        else{
-            return res.send("Email or Password incorrect");
-          }
-    })
-}
-
+export const LoginUser = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      let user = await User.findOne({ email });
+      if (!user) return res.status(400).json({ message: "Invalid email or password" });
+  
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) return res.status(400).json({ message: "Invalid email or password" });
+  
+      let token = generateToken(user);
+      res.cookie("token", token, { httpOnly: true });
+  
+      res.status(200).json({
+        success: true,
+        message: "User logged in successfully",
+        token,
+      });
+    } catch (error) {
+      console.error("Error in login User", error);
+      res.status(500).json({ message: "Something went wrong" });
+    }
+  };
+  

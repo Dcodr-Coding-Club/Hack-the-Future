@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../../components/layouts/AuthLayout';
 import { Input } from '../../components/Inputs/Input';
 import { Link } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 export const Signup = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -16,18 +17,36 @@ export const Signup = () => {
   // Handle signup form submit
   const handleSignUp = async (e) => {
     e.preventDefault();
-
+  
     if (!fullName || !username || !email || !password) {
       setError("All fields are required!");
       return;
     }
-
+  
     setError("");
-    
-    // Mock signup logic (API call can be added here)
-    setTimeout(() => {
-      navigate('/login');  // Redirect to login after signup
-    }, 1000);
+  
+    try {
+      const response = await fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fullName, username, email, password }),
+        credentials: "include", // To include cookies
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        toast.success("Signup successful! Please log in.");
+        navigate("/login"); // Redirect after successful signup
+      } else {
+        setError(data.message || "Signup failed. Try again.");
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      setError("Something went wrong. Please try again.");
+    }
   };
 
   return (
