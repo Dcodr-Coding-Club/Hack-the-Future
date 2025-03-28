@@ -42,7 +42,7 @@ export const Login = () => {
       if (response.ok) {
         localStorage.setItem("token", data.token); // Store token for future API calls
         toast.success("Login successful!");
-        navigate("/home"); // Redirect user on successful login
+        navigate("/dashboard"); // Redirect user on successful login
       } else {
         setError(data.message || "Invalid email or password");
       }
