@@ -6,51 +6,37 @@ import {
 import { experiences, skills } from "../constants";
 
 import "react-vertical-timeline-component/style.min.css";
+import { Footer } from "../components";
 
 const About = () => {
   return (
     <section className='max-container'>
       <h1 className='head-text'>
-        Hello, I'm{" "}
+        Hello, {" "}
         <span className='blue-gradient_text font-semibold drop-shadow'>
           {" "}
-          Adrian
+          StarStreamer
         </span>{" "}
         👋
       </h1>
 
       <div className='mt-5 flex flex-col gap-3 text-slate-500'>
         <p>
-          Software Engineer based in Croatia, specializing in technical
-          education through hands-on learning and building applications.
+        Are you ready for a super fun adventure?{" "} 🌟
+Here, we will learn new things, play cool games, and explore exciting worlds—all in a way that’s fun and easy to understand!
         </p>
       </div>
 
-      <div className='py-10 flex flex-col'>
-        <h3 className='subhead-text'>My Skills</h3>
-
-        <div className='mt-16 flex flex-wrap gap-12'>
-          {skills.map((skill) => (
-            <div className='block-container w-20 h-20' key={skill.name}>
-              <div className='btn-back rounded-xl' />
-              <div className='btn-front rounded-xl flex justify-center items-center'>
-                <img
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className='w-1/2 h-1/2 object-contain'
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       <div className='py-16'>
-        <h3 className='subhead-text'>Work Experience.</h3>
+        <h3 className='subhead-text'>Learning Adventure Roadmap{" "} 🌟</h3>
         <div className='mt-5 flex flex-col gap-3 text-slate-500'>
           <p>
-            I've worked with all sorts of companies, leveling up my skills and
-            teaming up with smart people. Here's the rundown:
+          Are you ready for a super fun journey? 🚀 Imagine going on an adventure where you can learn new things, play exciting games, and earn cool rewards! 🌟
+          <br></br>
+          <br></br>
+          Follow this magical learning path to become a Super Learner! 🏆✨
+    
           </p>
         </div>
 
@@ -105,8 +91,28 @@ const About = () => {
         </div>
       </div>
 
+      <div className='py-10 flex flex-col'>
+  <h3 className='subhead-text'>Our courses {" "} ✨</h3>
+
+  <div className='mt-16 grid grid-cols-2 gap-12'> {/* Grid layout with two columns */}
+    {skills.map((skill) => (
+      <div className='block-container w-64 h-64' key={skill.name}> {/* Large boxes */}
+        <div className='btn-back rounded-xl' />
+        <div className='btn-front rounded-xl flex justify-center items-center'>
+          <img
+            src={skill.imageUrl}
+            alt={skill.name}
+            className='w-5/6 h-5/6 object-contain' // Adjusted image size
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
       <hr className='border-slate-200' />
 
+      <Footer />
     </section>
   );
 };

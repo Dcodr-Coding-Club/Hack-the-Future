@@ -46,120 +46,64 @@ export const skills = [
         imageUrl: github,
         name: "GitHub",
         type: "Version Control",
-    },
-    {
-        imageUrl: html,
-        name: "HTML",
-        type: "Frontend",
-    },
-    {
-        imageUrl: javascript,
-        name: "JavaScript",
-        type: "Frontend",
-    },
-    {
-        imageUrl: mongodb,
-        name: "MongoDB",
-        type: "Database",
-    },
-    {
-        imageUrl: motion,
-        name: "Motion",
-        type: "Animation",
-    },
-    {
-        imageUrl: mui,
-        name: "Material-UI",
-        type: "Frontend",
-    },
-    {
-        imageUrl: nextjs,
-        name: "Next.js",
-        type: "Frontend",
-    },
-    {
-        imageUrl: nodejs,
-        name: "Node.js",
-        type: "Backend",
-    },
-    {
-        imageUrl: react,
-        name: "React",
-        type: "Frontend",
-    },
-    {
-        imageUrl: redux,
-        name: "Redux",
-        type: "State Management",
-    },
-    {
-        imageUrl: sass,
-        name: "Sass",
-        type: "Frontend",
-    },
-    {
-        imageUrl: tailwindcss,
-        name: "Tailwind CSS",
-        type: "Frontend",
-    },
-    {
-        imageUrl: typescript,
-        name: "TypeScript",
-        type: "Frontend",
     }
 ];
 
 export const experiences = [
     {
-        title: "React.js Developer",
-        company_name: "Starbucks",
+        title: "Welcome Aboard!",
+        company_name: "Step 1:",
         icon: starbucks,
         iconBg: "#accbe1",
-        date: "March 2020 - April 2021",
+        date: " ",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Get introduced to your learning journey with a fun welcome video featuring sign language. 🎥👋",
+
+            "Learn how to navigate the course and what exciting topics await you.",
+
+            "Choose your learning path based on what excites you the most!",
         ],
     },
     {
-        title: "React Native Developer",
-        company_name: "Tesla",
+        title: "Learn & Explore! 🔍",
+        company_name: "step 2:",
         icon: tesla,
         iconBg: "#fbc3bc",
-        date: "Jan 2021 - Feb 2022",
+        date: " ",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Watch interactive videos and sign language lessons to understand key topics.",
+
+            "Explore subjects like Math, Science, Art, and Storytelling through engaging visuals and examples.",
+            
+            "Participate in guided activities to reinforce learning in a fun way.",
         ],
     },
     {
-        title: "Web Developer",
-        company_name: "Shopify",
+        title: "Practice & Play! 🎮",
+        company_name: "Step 3:",
         icon: shopify,
         iconBg: "#b7e4c7",
-        date: "Jan 2022 - Jan 2023",
+        date: " ",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+            "Engage with interactive quizzes, puzzles, and mini-games to test your knowledge.",
+
+        "Work on hands-on projects and creative exercises to apply what you’ve learned.",
+
+        "Track your progress with a personalized learning dashboard.",
         ],
     },
     {
-        title: "Full stack Developer",
-        company_name: "Meta",
+        title: "Super Learner Status! 🚀",
+        company_name: "Step 4:",
         icon: meta,
         iconBg: "#a2d2ff",
-        date: "Jan 2023 - Present",
+        date: " ",
         points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
+           "Successfully complete your learning path and unlock special certificates & rewards.",
+
+            "Continue exploring advanced topics and take on new learning adventures.",
+            
+            "Celebrate your journey and share your achievements with friends and family! 🎊",
         ],
     },
 ];
