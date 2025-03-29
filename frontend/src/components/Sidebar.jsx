@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaUpload } from "react-icons/fa";
 
-export const Sidebar = ({ roomId, setCode, code, language }) => {
+export const Sidebar = ({ roomId, setCode, handleCodeChange, code, language }) => {
   const [files, setFiles] = useState([
     "4_Mar_RegulaFalsi.c",
     "4_Mar_RegulaFalsi.exe",
@@ -36,6 +36,7 @@ export const Sidebar = ({ roomId, setCode, code, language }) => {
     reader.onload = (e) => {
       console.log("File content:", e.target.result);
       setCode(e.target.result);
+      handleCodeChange(e.target.result);
       setFiles((prevFiles) =>
         prevFiles.includes(file.name) ? prevFiles : [...prevFiles, file.name]
       );

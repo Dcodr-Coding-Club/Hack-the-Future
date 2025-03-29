@@ -15,5 +15,8 @@ export const initSocket = (server) => {
             io.emit("receivedmessage", { message: data.message }); 
         });
 
+        socket.on("codeUpdate",(data)=>{
+            io.emit("changeCode", data);
+        })
     });
 };

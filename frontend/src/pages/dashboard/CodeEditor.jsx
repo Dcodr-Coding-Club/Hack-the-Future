@@ -11,11 +11,13 @@ export const CodeEditor = () => {
   const { roomId } = useParams();
   const [code, setCode] = useState("// Write your code here...");
   const [language, setLanguage] = useState("javascript");
-  const [messages, setMessages] = useState([]); 
+  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
   const handleCodeChange = (newCode) => {
-    setCode(newCode);
+    // setCode(newCode);
+    // console.log(newCode);
+    socket.emit("codeUpdate",newCode);
   };
 
   const handleSendButton = () => {
@@ -30,6 +32,10 @@ export const CodeEditor = () => {
       setMessages((prev) => [...prev, newMessage]); // ✅ Store entire object
     });
 
+    socket.on("changeCode", (newC) => {
+      setCode(newC);
+    })
+
     return () => {
       socket.off("receivedmessage");
     };
@@ -38,19 +44,19 @@ export const CodeEditor = () => {
   return (
     <div className="flex h-screen bg-[#0D021F]">
       {/* Sidebar */}
-      <Sidebar roomId={roomId} setCode={setCode} code={code} language={language} />
+      <Sidebar roomId={roomId} setCode={setCode} handleCodeChange={handleCodeChange} code={code} language={language} />
 
       {/* Code Editor + Chat Box Section */}
       <div className="flex flex-col flex-1">
         <div className="flex flex-1">
           <WriteCode code={code} setCode={handleCodeChange} language={language} setLanguage={setLanguage} />
-          
+
           {/* Chat Box */}
           <div className="w-80 border-l border-[#4A00E0] bg-[#1E1E2F] p-4 flex flex-col">
             <h2 className="text-lg text-white font-semibold">💬 ChatBox</h2>
             <div className="flex-1 overflow-y-auto bg-[#0D021F] rounded-lg mt-2 p-2">
               {messages.map((msg, index) => (
-                <div key={index} className="text-white text-sm p-1">{msg.message}</div> 
+                <div key={index} className="text-white text-sm p-1">{msg.message}</div>
                 // ✅ Extract `message` to avoid React error
               ))}
             </div>
