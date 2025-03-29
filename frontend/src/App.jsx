@@ -5,6 +5,7 @@ import { Navbar } from "./components";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 
+
 import { About, Contact, Home, Projects, Profile , Aboutus } from "./pages"; // Import Profile Page
 
 
@@ -25,6 +26,7 @@ const MainContent = () => {
 
       <Navbar />
       <Routes>
+      
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<Home />} />
