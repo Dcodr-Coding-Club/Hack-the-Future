@@ -1,3 +1,6 @@
+**Team Name - Upay
+Team Members: Aishna Bhatia, Aesha Ladani, Priyanka Lotiya, Urvashi Ladva, Yashvi Khatri**
+
 **Sign Language Learning Platform**
 
 **Overview**
