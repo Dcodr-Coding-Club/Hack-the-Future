@@ -90,26 +90,6 @@ Here, we will learn new things, play cool games, and explore exciting worlds—a
           </VerticalTimeline>
         </div>
       </div>
-
-      <div className='py-10 flex flex-col'>
-  <h3 className='subhead-text'>Our courses {" "} ✨</h3>
-
-  <div className='mt-16 grid grid-cols-2 gap-12'> {/* Grid layout with two columns */}
-    {skills.map((skill) => (
-      <div className='block-container w-64 h-64' key={skill.name}> {/* Large boxes */}
-        <div className='btn-back rounded-xl' />
-        <div className='btn-front rounded-xl flex justify-center items-center'>
-          <img
-            src={skill.imageUrl}
-            alt={skill.name}
-            className='w-5/6 h-5/6 object-contain' // Adjusted image size
-          />
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
-
       <hr className='border-slate-200' />
 
       <Footer />

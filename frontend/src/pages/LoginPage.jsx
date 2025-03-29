@@ -47,7 +47,7 @@ function LoginPage() {
         height: "100vh",
         width: "100vw",
       }}
-      className="flex items-center justify-center font-[Sans]"
+      className="flex items-center justify-center font-[Inter]"
     >
       <motion.div
         initial={{ opacity: 0, y: -50 }}

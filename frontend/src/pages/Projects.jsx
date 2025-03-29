@@ -9,6 +9,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
+import { projects } from "../constants";
+import { arrow } from "../assets/icons";
 
 const videoData = [
   {
@@ -61,7 +64,6 @@ const Projects = () => {
             Explore!
           </span>{" "}
         </h1>
-        <br></br>
         <br></br>
 
         <p className="text-slate-500 text-lg mb-8">
@@ -146,11 +148,70 @@ const Projects = () => {
             </motion.div>
           </motion.div>
         )}
-
-        <hr className="border-slate-200 mt-10" />
-        <Footer />
       </section>
+
+      <section className='px-2 py-2 min-h-screen flex flex-col justify-center items-center'>
+  <h1 className='head-text text-center'>
+    Learning{" "}
+    <span className='blue-gradient_text drop-shadow font-semibold'>
+      Hub!
+    </span>
+  </h1>
+  <br />
+
+  <p className='text-slate-500 mt-2 leading-relaxed text-center max-w-4xl mx-auto'>
+    Welcome to your go-to space for insightful study materials, engaging blogs, and valuable resources designed to support your learning journey. Whether you're just starting out or looking to expand your knowledge, you'll find everything you need right here!
+    <br />
+    From interactive lessons and expert tips to fun activities and real-life applications, our blog is here to make learning exciting and accessible. Stay curious, explore new topics, and never stop learning!
+    <br />
+    🚀 Start exploring now! ✨
+  </p>
+
+  <div className='grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-5xl mt-10'>
+    {projects.map((project) => (
+      <div
+        className='w-full flex flex-col items-center bg-white p-6 rounded-2xl shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg'
+        key={project.name}
+      >
+        {/* Increased image size */}
+        <div className='w-40 h-flex justify-center items-center'>
+          <img
+            src={project.iconUrl}
+            alt={project.name}
+            className='w-full h-full object-contain rounded-xl'
+          />
+        </div>
+
+        {/* Reduced gap between image and name */}
+        <div className='mt-3 flex flex-col text-center'>
+          <h4 className='text-2xl font-poppins font-semibold'>
+            {project.name}
+          </h4>
+          <p className='mt-2 text-slate-500'>{project.description}</p>
+          <div className='mt-4 flex items-center justify-center gap-2 font-poppins'>
+            <Link
+              to={project.link}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='font-semibold text-blue-600'
+            >
+              Live Link
+            </Link>
+            <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <hr className='border-slate-200 w-full max-w-5xl mt-10' />
+</section>
+
+
+
+    <Footer />
     </Container>
+
   );
 };
 
