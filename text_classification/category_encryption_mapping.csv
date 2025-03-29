@@ -1,0 +1,10 @@
+Category,Suggested Encryption Algorithm,Vulnerability Considerations
+POLITICS,AES-256,"Targeted attacks, espionage"
+WELLNESS,AES-GCM,Medical data breaches
+HEALTHY LIVING,AES-256,Privacy leaks
+BUSINESS,RSA-4096,Financial fraud
+WORLD NEWS,AES-128,"Data integrity, spoofing"
+MEDIA,RSA-2048,"Piracy, data leakage"
+SCIENCE,ECC-256,Intellectual property theft
+TECH,SHA-3 + ECC,"Cyber threats, hacking"
+MONEY,AES-256 + HMAC,Banking data theft
