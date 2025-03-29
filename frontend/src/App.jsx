@@ -3,11 +3,8 @@ import Navigation from "./components/Navigation";
 import { Navbar } from "./components";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-
-
 import { About, Contact, Home, Projects, Profile , Aboutus } from "./pages"; // Import Profile Page
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage"
+
 
 
 const App = () => {
