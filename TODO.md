@@ -8,7 +8,7 @@
 - [ ] Progress Page  
 
 ## Backend
-- [ ] Linking Express with Python  
+- [x] Linking Express with Python  
 - [ ] Site navigation  
 - [ ] Database integration  
 - [ ] API services  
