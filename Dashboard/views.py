@@ -50,3 +50,37 @@ class CustomPasswordResetView(PasswordResetView):
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "password_reset_confirm.html"
     success_url = reverse_lazy("password_reset_complete")
+
+from django.shortcuts import render
+
+
+
+def numbers(request):
+    return render(request, 'course/numbers.html')
+
+def common_greetings(request):
+    return render(request, 'course/common_greetings.html')
+
+def basic_questions(request):
+    return render(request, 'course/basic_questions.html')
+
+def everyday_vocabulary(request):
+    return render(request, 'course/everyday_vocabulary.html')
+
+def sentence_structure(request):
+    return render(request, 'course/sentence_structure.html')
+
+def expressing_feelings(request):
+    return render(request, 'course/expressing_feelings.html')
+
+def advanced_grammar(request):
+    return render(request, 'course/advanced_grammar.html')
+
+def signing_speed(request):
+    return render(request, 'course/signing_speed.html')
+
+def storytelling(request):
+    return render(request, 'course/storytelling.html')
+
+def alphabets(request):
+    return render(request, 'Alphabets.html')
