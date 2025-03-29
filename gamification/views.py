@@ -33,6 +33,23 @@ from django.http import JsonResponse
 from .models import Leaderboard
 from django.views.decorators.csrf import csrf_exempt
 import json
+# @csrf_exempt
+# def save_score(request):
+#     if request.method == "POST":
+#         try:
+#             data = json.loads(request.body)
+#             username = data.get("username", "Guest")
+#             score = data.get("score")
+
+#             if username and score is not None:
+#                 Leaderboard.objects.create(username=username, score=score)
+#                 return JsonResponse({"message": "Score saved successfully"}, status=201)
+#             else:
+#                 return JsonResponse({"error": "Invalid data"}, status=400)
+#         except Exception as e:
+#             return JsonResponse({"error": str(e)}, status=500)
+
+#     return JsonResponse({"error": "Invalid request"}, status=400)
 @csrf_exempt
 def save_score(request):
     if request.method == "POST":
@@ -40,9 +57,10 @@ def save_score(request):
             data = json.loads(request.body)
             username = data.get("username", "Guest")
             score = data.get("score")
+            game_type = data.get("game_type", "quiz")  # Default to 'quiz' if not provided
 
-            if username and score is not None:
-                Leaderboard.objects.create(username=username, score=score)
+            if username and score is not None and game_type in ['quiz', 'word_match']:
+                Leaderboard.objects.create(username=username, score=score, game_type=game_type)
                 return JsonResponse({"message": "Score saved successfully"}, status=201)
             else:
                 return JsonResponse({"error": "Invalid data"}, status=400)
@@ -52,9 +70,14 @@ def save_score(request):
     return JsonResponse({"error": "Invalid request"}, status=400)
 
 def get_leaderboard(request):
-    scores = Leaderboard.objects.order_by('-score', 'date')
+    game_type = request.GET.get("game_type", "quiz")  # Default to 'quiz'
+    scores = Leaderboard.objects.filter(game_type=game_type).order_by('-score', 'date')
     data = [{"username": entry.username, "score": entry.score} for entry in scores]
     return JsonResponse({"leaderboard": data})
+# def get_leaderboard(request):
+#     scores = Leaderboard.objects.order_by('-score', 'date')
+#     data = [{"username": entry.username, "score": entry.score} for entry in scores]
+#     return JsonResponse({"leaderboard": data})
 
 from django.shortcuts import render
 from .models import Leaderboard
@@ -62,3 +85,12 @@ from .models import Leaderboard
 def leaderboard(request):
     scores = Leaderboard.objects.order_by('-score')  # Order by highest score
     return render(request, 'leaderboard.html', {'scores': scores})
+
+
+
+from django.shortcuts import render
+from .models import WordMatchQuestion
+
+def word_match_game(request):
+    questions = WordMatchQuestion.objects.all()  # Fetch questions from DB
+    return render(request, "gamification/word_match.html", {"questions": questions})

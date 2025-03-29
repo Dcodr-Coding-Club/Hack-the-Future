@@ -26,11 +26,33 @@ class Quiz(models.Model):
         return f"{self.level} - {self.question}"
 
 
+# class Leaderboard(models.Model):
+#     username = models.CharField(max_length=50)
+#     score = models.IntegerField()
+#     date = models.DateTimeField(auto_now_add=True)
+
+#     def __str__(self):
+#         return f"{self.username} - {self.score}"
+
+
+from django.db import models
 class Leaderboard(models.Model):
+    GAME_CHOICES = [
+        ('quiz', 'Quiz'),
+        ('word_match', 'Word Match'),
+    ]
+
     username = models.CharField(max_length=50)
     score = models.IntegerField()
+    game_type = models.CharField(max_length=20, choices=GAME_CHOICES, default='quiz')  # New field
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.username} - {self.score}"
+        return f"{self.username} - {self.score} ({self.game_type})"
 
+class WordMatchQuestion(models.Model):
+    word = models.CharField(max_length=255)  # The word to match
+    image = models.ImageField(upload_to="word_match/")  # Sign language image
+
+    def __str__(self):
+        return self.word
