@@ -31,8 +31,8 @@ export const BtnList = [
     newTab: true,
   },
   {
-    label: "Resume",
-    link: "/contact",
+    label: "Aboutus",
+    link: "/Aboutus",
     image: resume,
     newTab: true,
   },
