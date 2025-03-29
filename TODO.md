@@ -3,8 +3,7 @@
 ## Frontend
 - [x] Log in & Sign-up Page  
 - [ ] Each course page  
-- [ ] Each quiz page  
-- [ ] Mini Games page  
+- [ ] Each quiz/game page  
 - [ ] Progress Page  
 
 ## Backend
