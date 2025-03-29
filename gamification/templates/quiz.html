@@ -160,9 +160,15 @@
                 document.getElementById("feedback").innerText = "✅ Correct!";
                 score += 1;
             } else {
-                button.style.backgroundColor = "red";
-                document.getElementById("feedback").innerText = "❌ Wrong!";
+        button.style.backgroundColor = "red";
+        document.getElementById("feedback").innerText = `❌ Wrong! The correct answer is: ${correctAnswer}`;
+        // Highlight the correct answer
+        allOptions.forEach(btn => {
+            if (btn.innerText === correctAnswer) {
+                btn.style.backgroundColor = "green";
             }
+        });
+    }
 
             document.getElementById("score").innerText = "Score: " + score;
             document.querySelector(".next-btn").style.display = "block";
