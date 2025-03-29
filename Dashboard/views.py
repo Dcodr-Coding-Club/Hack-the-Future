@@ -7,8 +7,7 @@ from .models import CustomUser
 
 
 def dashboard(request):
-    return render(request, "dashboard.html")
-
+    return render(request, "dashboard.html", {"quiz_url": "/gamification/quiz/"})
 # Signup View
 def signup_view(request):
     if request.method == "POST":

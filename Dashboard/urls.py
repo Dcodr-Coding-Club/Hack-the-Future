@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views  
 from django.shortcuts import render
-
+from gamification.views import get_quiz
 def redirect_to_login(request):
     return redirect('login')
 
@@ -38,6 +38,7 @@ urlpatterns = [
     path('advanced_grammar/', views.advanced_grammar, name='advanced_grammar'),
     path('signing_speed/', views.signing_speed, name='signing_speed'),
     path('storytelling/', views.storytelling, name='storytelling'),
+    path("quiz/",get_quiz,name="quiz"),
 ]
 
 if settings.DEBUG:
