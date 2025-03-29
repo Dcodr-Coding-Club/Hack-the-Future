@@ -15,3 +15,9 @@
 ## Other
 - [ ] Creating the courses  
 - [ ] Creating the games  
+
+## Games
+- [ ] Letter to sign match the column
+- [ ] duolingo style letters to sign and sign to letters
+- [ ] MCQ
+- [ ] normal reading writing and maths operations
