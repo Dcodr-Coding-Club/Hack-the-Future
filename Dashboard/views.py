@@ -56,7 +56,7 @@ from django.shortcuts import render
 
 
 def numbers(request):
-    return render(request, 'course/numbers.html')
+    return render(request, 'numbers.html')
 
 def common_greetings(request):
     return render(request, 'course/common_greetings.html')
