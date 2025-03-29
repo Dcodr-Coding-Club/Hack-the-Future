@@ -7,6 +7,7 @@ urlpatterns = [
     path('save_score/', save_score, name='save_score'),
     path('get_leaderboard/', views.get_leaderboard, name='get_leaderboard'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
-    path('quiz/', views.quiz, name='quiz'),  
+    path('quiz/', views.quiz, name='quiz'), 
+    path("word-match/", views.word_match_game, name="word_match"), 
 ]
 
