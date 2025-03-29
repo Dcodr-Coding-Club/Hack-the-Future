@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const serverURL = "http://localhost:5000";
 
-export default function Game() {
+export default function RandomWords() {
   const [correctWord, setCorrectWord] = useState("");
   const [shuffledLetters, setShuffledLetters] = useState([]);
   const [userSelection, setUserSelection] = useState([]);

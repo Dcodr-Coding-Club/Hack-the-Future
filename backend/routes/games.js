@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const fs = require('fs');
+const wordList = require("../JSON/words.json");  // Adjust path accordingly
 
-
-
-const words = ["apple", "banana", "grape", "cherry"];
 
 function getRandomWord() {
+  const words = wordList.words;
   return words[Math.floor(Math.random() * words.length)];
 }
+
 
 // ✅ Route to get a random word
 router.get("/random-word", (req, res) => {
