@@ -32,7 +32,7 @@ const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
 
 // Load questions from JSON
 const loadQuestions = () => {
-  const data = JSON.parse(fs.readFileSync("questions.json", "utf8"));
+  const data = JSON.parse(fs.readFileSync("JSON/questions.json", "utf8"));
   const question = data.questions[0];
 
   const selectedLeft = shuffleArray([...question.left]).slice(0, 3);
