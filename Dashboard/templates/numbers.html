@@ -1,0 +1,311 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Learning</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #e3d8f1, #f8f8ff);
+            color: #2a2a2a;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 5px rgba(100, 0, 200, 0.3);
+            color: #4c0070;
+        }
+
+        /* Alphabet Grid */
+        .number-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        /* Card Design */
+        .number-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(100, 0, 200, 0.3);
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            border: 2px solid rgba(100, 0, 200, 0.2);
+        }
+
+        .number-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(100, 0, 200, 0.5);
+            border-color: rgba(100, 0, 200, 0.5);
+        }
+
+        /* Alphabet Title */
+        .number-box h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #5e0070;
+            margin-bottom: 10px;
+        }
+
+        /* Image Styling */
+        .number-box img {
+            width: 400px;
+            height: 400px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(3px 3px 10px rgba(100, 0, 200, 0.3));
+        }
+
+        .number-box:hover img {
+            transform: rotate(8deg) scale(1.1);
+        }
+
+        /* Description */
+        .number-desc {
+            font-size: 16px;
+            color: #0b0b0b;
+            font-weight: 300;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .number-box {
+                padding: 15px;
+            }
+
+            .number-box h3 {
+                font-size: 24px;
+            }
+
+            .number-box img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .number-desc {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Learn Numbers in Sign Language</h1>
+
+    <!-- Alphabet Grid -->
+    <div class="number-container">
+        <!-- Alphabet A -->
+        <div class="number-box">
+            <h3>0</h3>
+            <img src="{% static 'images/numbers/0.png' %}" alt="Sign A">
+            <p class="number-desc">Number 0
+                Sign “zero” by curving all your fingers and touching them to your thumb. Create an “O” shape with your hand with an open circle in the middle to represent the center of the number “0.”</p>
+        </div>
+
+        <div class="number-box">
+            <h3>1 to 5</h3>
+            <img src="{% static 'images/numbers/1-5.png' %}" alt="Sign A">
+            <p class="number-desc">Numbers 1-5
+                Signing numbers 1-5 is similar to how you would naturally count on your fingers. For most situations, face your palm toward you with the back of your hand facing outward.[2] However, if you’re signing a multiple-digit number or series of numbers, like a phone number, face your palm outwards.[3]
+                
+                    1: Point upward with your index finger, keep the rest of your fingers in a fist or ASL “S”-shape.
+                    2: Point upward with your index and middle fingers.
+                    3: Same as signing the number 2, but with your thumb extended.
+                    4: Hold up all fingers except your thumb.
+                    5: Hold up all five fingers</p>
+        </div>
+
+        <div class="number-box">
+            <h3>6 to 9</h3>
+            <img src="{% static 'images/numbers/6-9.png' %}" alt="Sign A">
+            <p class="number-desc">
+                Numbers 6-9
+                The numbers 6-9 are counted by touching a different finger to your thumb for each digit. Face your palm outwards, towards the person to whom you are signing. The order is pinkie to thumb (6), then ring finger (7), middle finger (8), index (9). If you forget which way this goes, it might be helpful to remember that for the smallest number (6) you touch your thumb to the smallest finger (pinkie).[4]
+                
+                    6: From a 5 handshape, touch your pinky to your thumb.
+                    7: From a 5 handshape, touch your ring finger to your thumb.
+                    8: From a 5 handshape, touch your middle finger to your thumb.
+                    9: From a 5 handshape, touch your index finger to your thumb.
+                
+                </p>
+        </div>
+
+        <div class="number-box">
+            <h3>10</h3>
+            <img src="{% static 'images/numbers/10.png' %}" alt="Sign A">
+            <p class="number-desc">Number 10
+                Sign the number 10 by shaking an “A” or “thumbs up” handshape. Make a fist and extend your thumb out. Lightly shake your hand from side to side</p>
+        </div>
+
+        <div class="number-box">
+            <h3>11 to 15</h3>
+            <img src="{% static 'images/numbers/11-15.png' %}" alt="Sign A">
+            <p class="number-desc">
+                Numbers 11-15
+                Face your palm towards you to sign numbers 11-15. Numbers 11-12 require you to “flick” your fingers upward and outward from your palm. For numbers 13-15, bend your fingers toward you in more of a “come here” gesture.[6]
+                
+                    11: From a loose fist, flick your index finger twice against your thumb.
+                    12: From a loose fist, flick your index and middle fingers twice against your thumb.
+                    13: Extend your thumb, index, and middle fingers. Bend your index and middle fingers twice toward you.
+                    14: Extend all fingers but your thumb. Fold your extended fingers toward you twice.
+                    15: Extend all fingers including your thumb. Fold your index, middle, ring, and pinky fingers toward you twice.
+                
+                </p>
+        </div>
+        
+        <div class="number-box">
+            <h3>11-19</h3>
+            <img src="{% static 'images/numbers/11-19.png' %}" alt="Sign A">
+            <p class="number-desc">
+                Numbers 16-19
+                For each number, your hand takes the shape of the base number, e.g. “6” for “16” and “8” for “18.” Start with your palm facing inward and twist your wrist as if you were going to turn the sign to face outward. Instead, stop about halfway through the turn, twist your hand back toward you, and repeat.[7]
+                
+                    16: Touch your pinky to your thumb. Face your palm toward you then twist it outward twice.
+                    17: Touch your ring finger to your thumb. Face your palm toward you then twist it outward twice.
+                    18: Touch your middle finger to your thumb. Face your palm toward you then twist it outward twice.
+                    19: Touch your index finger to your thumb. Face your palm toward you then twist it outward twice.
+                
+                </p>
+        </div>
+
+        <div class="number-box">
+            <h3>20</h3>
+            <img src="{% static 'images/numbers/20.png' %}" alt="Sign A">
+            <p class="number-desc">Number 20
+                To sign the number 20, face your palm forward and tap your thumb and index finger together twice. Curl all other fingers into your palm. This gesture is similar to how you would pinch something, or if you were making the “G” sign but opening and closing your fingers.</p>
+        </div>
+
+        <div class="number-box">
+            <h3>21</h3>
+            <img src="{% static 'images/numbers/21.png' %}" alt="Sign A">
+            <p class="number-desc">Number 21
+                The sign for 21 almost looks like a “gun” gesture. Start from an “L” handshape with your palm facing outward. Extend your index and thumb finger and keep the rest of your fingers clenched. Bend your thumb twice toward your index finger.</p>
+        </div>
+
+        <div class="number-box">
+            <h3>22</h3>
+            <img src="{% static 'images/numbers/22.png' %}" alt="Sign A">
+            <p class="number-desc">
+                Number 22
+                Make a “2” with your fingers. Move your palm downward once, as if “tapping” the air with your “2” handshape. Repeat this motion a few inches away from the original sign.[10]
+                
+                    If you sign right-handed, move your second “2” toward the right. If you sign left-handed, move it toward the left.
+                
+                </p>
+        </div>
+        
+        <div class="number-box">
+            <h3>23</h3>
+            <img src="{% static 'images/numbers/23.png' %}" alt="Sign A">
+            <p class="number-desc">
+                Number 23
+                Orient your palm outward. Extend your thumb, index, and middle fingers to create a “3” handshape. Flick your middle finger down twice to complete the sign.[11]
+                
+                    The signs for numbers 23-29 are all compound signs where the “L” shape represents the number 2.
+                
+                </p>
+        </div>
+
+        <div class="number-box">
+            <h3>24</h3>
+            <img src="{% static 'images/numbers/24.png' %}" alt="Sign A">
+            <p class="number-desc">Number 24
+                Start with your palm facing forward. Make an “L” or “gun” handshape with your thumb and index finger extended and your index finger pointing upward. Move your hand slightly sideways, away from your body, and sign the number “4” by extending every finger except your thumb.</p>
+        </div>
+
+        <div class="number-box">
+            <h3>25</h3>
+            <img src="{% static 'images/numbers/25.png' %}" alt="Sign A">
+            <p class="number-desc">
+                Number 25
+                 Face your palm away from you. Make a “5” handshape by extending all of your fingers, including your thumb. Bend your middle finger down twice to sign 25.
+            </p>
+        </div>
+
+
+        <div class="number-box">
+            <h3>26</h3>
+            <img src="{% static 'images/numbers/26.png' %}" alt="Sign A">
+            <p class="number-desc">Number 26
+                Face your palm outward. Make an “L” handshape with your thumb and index finger, then move your hand slightly sideways, away from your body. Switch to a “6” handshape. To sign a 6, touch your pinky to your thumb and extend all other fingers.[14] X </p>
+        </div>
+
+        <div class="number-box">
+            <h3>27</h3>
+            <img src="{% static 'images/numbers/27.png' %}" alt="Sign A">
+            <p class="number-desc">Number 27
+                Orient your palm forward and sign the letter “L” by extending your thumb and index finger. Move your hand slightly sideways, away from your body, and sign the number “7” by touching your ring finger to your thumb and extending all other fingers upward.[15] X </p>
+        </div>
+
+        <div class="number-box">
+            <h3>28</h3>
+            <img src="{% static 'images/numbers/28.png' %}" alt="Sign A">
+            <p class="number-desc">Number 28
+                With your palm facing forward, sign the letter “L.” Extend your index finger and thumb and make sure your index finger is pointing upward. Move your hand slightly sideways, away from your body. Sign the number “8” by extending all fingers and then touching your middle finger to your thumb</p>
+        </div>
+
+        <div class="number-box">
+            <h3>29</h3>
+            <img src="{% static 'images/numbers/29.png' %}" alt="Sign A">
+            <p class="number-desc">Number 29
+                Face your palm outward. Extend your thumb and index finger to make the “L” handshape. Then, move your hand slightly sideways, away from your body, and sign the number “9” by touching your index finger to your thumb with all other fingers extended.[</p>
+        </div>
+
+        <div class="number-box">
+            <h3>Multipule of 10(30 - 100)</h3>
+            <img src="{% static 'images/numbers/multipule of 10(30 - 100).png' %}" alt="Sign A">
+            <p class="number-desc">
+                Multiples of 10
+                The numbers that are evenly divisible by 10 include 30, 40, 50, 60, 70, 80, and 90. Each of these numbers are expressed by signing the first digit followed by the sign for zero.[18]
+                
+                    All of these number signs are signed with the palm facing outward, even if their digits would be signed palm-inward on their own.
+                    30: Face your palm outward and sign a “3” handshape by extending your thumb, index, and middle fingers. Then, curl all your fingers to touch your thumb in the “zero” handshape.
+                    40: Face your palm outward and sign a “4” handshape by extending your index, middle, ring, and pinky fingers. Then, curl all your fingers to touch your thumb in the “zero” handshape.
+                    50: Face your palm outward and sign a “5” handshape by extending all your fingers. Then, curl all your fingers to touch your thumb in the “zero” handshape.
+                    60: Face your palm outward and sign a “6” handshape by touching your pinky to your thumb with all other fingers extended. Then, curl all your fingers to touch your thumb in the “zero” handshape.
+                
+                </p>
+        </div>
+
+        <div class="number-box">
+            <h3>31 to 99</h3>
+            <img src="{% static 'images/numbers/31-99.png' %}" alt="Sign A">
+            <p class="number-desc">Numbers 31-99
+                Once you learn digits 1-10 in ASL, signing numbers 31-99 are fairly simple. With your palm facing outward, sign each number by signing the first and second digits in quick succession.[19]
+                
+                    For example, 32 is signed as 3-2, 41 is signed as 4-1, etc</p>
+        </div>
+
+        <div class="number-box">
+            <h3>100</h3>
+            <img src="{% static 'images/numbers/28.png' %}" alt="Sign A">
+            <p class="number-desc">Number 100
+                Make a “1” shape with your hand then quickly move into a “C” handshape. To help remember this sign, think about how “C” equals 100 in Roman numerals.</p>
+        </div>
+
+      
+</div>
+
+</body>
+</html>

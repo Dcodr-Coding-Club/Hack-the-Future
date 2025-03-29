@@ -49,10 +49,13 @@ INSTALLED_APPS = [
     "AIPlanner",
     'Courses',
     'Dashboard',
+    "gamification",
+    'corsheaders',
     'asl_sign',
 ]
 
 MIDDLEWARE = [
+     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -142,3 +145,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "Dashboard.CustomUser"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5501",  # Your frontend (Live Server from VS Code)
+    # "http://localhost:5500",
+]
