@@ -9,30 +9,30 @@ import resume from './Resume.jpg';
 
 export const BtnList = [
   { label: "Home", link: "/", image: home, newTab: false },
-  { label: "About", link: "/about", image: about, newTab: false },
-  { label: "Projects", link: "/projects", image: projects, newTab: false },
+  { label: "Courses", link: "/about", image: about, newTab: false },
+  { label: "Classes", link: "/projects", image: projects, newTab: false },
   { label: "Contact", link: "/contact", image: contact, newTab: false },
   {
     label: "Github",
-    link: "https://www.github.com/codebucks27",
+    link: "/about",
     image: github,
     newTab: true,
   },
   {
     label: "LinkedIn",
-    link: "https://www.linkedin.com/in/codebucks",
+    link: "/contact",
     image: linkedin,
     newTab: true,
   },
   {
-    label: "X",
-    link: "https://www.x.com/code_bucks",
+    label: "Profile",
+    link: "/Profile",
     image: twitter,
     newTab: true,
   },
   {
-    label: "Resume",
-    link: "/resume.pdf",
+    label: "Aboutus",
+    link: "/Aboutus",
     image: resume,
     newTab: true,
   },
