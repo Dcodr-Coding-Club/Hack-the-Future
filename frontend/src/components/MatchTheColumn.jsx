@@ -54,21 +54,21 @@ const MatchTheColumn = () => {
       setNodes(savedNodes);
       setEdges(savedEdges);
     } else {
-      axios.get("http://localhost:5000/api/games/questions")
+      axios.get("http://localhost:5000/api/game/questions")
         .then((res) => {
           const nodeCount = Math.max(res.data.left.length, res.data.right.length);
           const nodeSpacing = Math.min(100, 600 / nodeCount);
           const startY = 150; 
   
           const leftNodes = res.data.left.map((item, index) => ({
-            id: `L-${item.id}`,
+            id:`${item.id}`,
             type: "wordNode",
             position: { x: 250, y: startY + index * nodeSpacing },
             data: { label: item.text },
           }));
   
           const rightNodes = res.data.right.map((item, index) => ({
-            id: `R-${item.id}`,
+            id: `${item.id}`,
             type: "imageNode",
             position: { x: 500, y: startY + index * nodeSpacing },
             data: { label: item.text },
@@ -76,6 +76,7 @@ const MatchTheColumn = () => {
   
           setNodes([...leftNodes, ...rightNodes]);
           localStorage.setItem("nodes", JSON.stringify([...leftNodes, ...rightNodes]));
+          localStorage.setItem("answers", JSON.stringify(res.data.answers));
         })
         .catch((error) => console.error("Error fetching options:", error));
     }
@@ -99,12 +100,16 @@ const MatchTheColumn = () => {
 
   const handleSubmit = () => {
     const formattedEdges = edges.map(({ source, target }) => ({ source, target }));
+    
     axios
-      .post("http://localhost:5000/api/games/questions/validate", { connections: edges })
+      .post("http://localhost:5000/api/game/questions/validate", {
+        connections: formattedEdges,
+        answers: JSON.parse(localStorage.getItem("answers")), // Send the correct answers stored earlier
+      })
       .then((res) => setValidationResults(res.data.correctConnections))
       .catch((error) => console.error("Validation error:", error));
   };
-
+  
   return (
     <div style={styles.container}>
       <div style={styles.gameWrapper}>

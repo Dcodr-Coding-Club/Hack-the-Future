@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const fs = require('fs');
 
 
 
@@ -26,53 +27,60 @@ router.post("/check-answer", (req, res) => {
 
 
 
-// Static question (only one question)
-const question = {
-  left: [
-    { id: "l1", text: "Apple" },
-    { id: "l2", text: "Dog" },
-    { id: "l3", text: "Car" },
-    
-  ],
-  right: [
-    { id: "r1", text: "Fruit" },
-    { id: "r2", text: "Vehicle" },
-    { id: "r3", text: "Animal" },
-    
-  ],
-  answers: {
-    l1: "r1", // Apple → Fruit
-    l2: "r3", // Banana → Fruit
-    l3: "r2", // Car → Vehicle
-    
-  },
+// Helper function to shuffle an array
+const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
+
+// Load questions from JSON
+const loadQuestions = () => {
+  const data = JSON.parse(fs.readFileSync("questions.json", "utf8"));
+  const question = data.questions[0];
+
+  const selectedLeft = shuffleArray([...question.left]).slice(0, 3);
+  const answers = Object.fromEntries(
+    selectedLeft.map((item) => [item.id, question.answers[item.id]])
+  );
+
+  const selectedRight = selectedLeft.map((item) => ({
+    id: answers[item.id],
+    text: question.right.find((r) => r.id === answers[item.id]).text,
+  }));
+
+  return { left: selectedLeft, right: shuffleArray(selectedRight), answers };
 };
 
-// ✅ Get the static question (no need for IDs)
+// ✅ Get a random question
 router.get("/questions", (req, res) => {
-  res.json({ left: question.left, right: question.right });
+  const randomizedQuestion = loadQuestions();
+  // Send the correct answers along with the question for validation
+  res.json({
+    left: randomizedQuestion.left,
+    right: randomizedQuestion.right,
+    answers: randomizedQuestion.answers, // Send correct answers
+  });
 });
 
 // ✅ Validate user answers
 router.post("/questions/validate", (req, res) => {
-    const { connections } = req.body;
-    if (!connections) return res.status(400).json({ error: "No connections provided" });
-  
-    let correctConnections = [];
-  
-    connections.forEach(({ source, target }) => {
-      const leftId = source.replace("L-", ""); // Extract actual IDs
-      const rightId = target.replace("R-", "");
-  
-      if (question.answers[leftId] === rightId) {
-        correctConnections.push(`${source}-${target}`);
-      }
-    });
-  
-    res.json({
-      correctConnections, // Send correct connections back for validation coloring
-      message: `You got ${correctConnections.length} out of ${Object.keys(question.answers).length} correct!`,
-    });
+  const { connections, answers } = req.body;
+  if (!connections || !answers)
+    return res.status(400).json({ error: "No connections provided" });
+
+  let correctConnections = [];
+
+  connections.forEach(({ source, target }) => {
+    const leftId = source.replace("L-", "");
+    const rightId = target.replace("R-", "");
+
+    if (answers[leftId] === rightId) {
+      correctConnections.push(`${source}-${target}`);
+    }
+  });
+
+  res.json({
+    correctConnections,
+    message: `You got ${correctConnections.length} out of ${Object.keys(answers).length} correct!`,
+  });
 });
+
 
 module.exports = router; 
