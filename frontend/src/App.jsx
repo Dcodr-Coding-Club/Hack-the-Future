@@ -1,7 +1,7 @@
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import { Navbar } from "./components";
-import { About, Contact, Home, Projects, Profile } from "./pages"; // Import Profile Page
+import { About, Contact, Home, Projects, Profile , Aboutus } from "./pages"; // Import Profile Page
 
 const App = () => {
   return (
@@ -25,7 +25,8 @@ const MainContent = () => {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/profile" element={<Profile />} /> {/* Add Profile Route */}
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/Aboutus" element={<Aboutus />} /> {/* Add Profile Route */}
       </Routes>
     </main>
   );
