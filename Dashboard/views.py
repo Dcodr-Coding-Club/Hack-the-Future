@@ -58,7 +58,7 @@ def numbers(request):
     return render(request, 'numbers.html')
 
 def common_greetings(request):
-    return render(request, 'course/common_greetings.html')
+    return render(request, 'common_greetings.html')
 
 def basic_questions(request):
     return render(request, 'course/basic_questions.html')
