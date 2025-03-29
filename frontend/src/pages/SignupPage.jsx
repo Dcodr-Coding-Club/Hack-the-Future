@@ -28,6 +28,18 @@ function SignupPage() {
       return;
     }
 
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setErrorMessage("Please enter a valid email address.");
+      setLoading(false);
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      setErrorMessage("Password must be at least 8 characters long.");
+      setLoading(false);
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage("Passwords do not match.");
       setLoading(false);
@@ -57,9 +69,13 @@ function SignupPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-cover bg-center relative font-[Inter]" style={{backgroundImage: "url('/sky.png')" }}
->
-      <div className="absolute inset-0 bg-black bg-opacity-0"></div>
+    <div
+      className="flex items-center justify-center h-screen bg-cover bg-center relative font-[Inter]"
+      style={{
+        backgroundImage: "url('/sky.png')",
+        backgroundColor: "#f0f0f0", // Fallback in case image fails
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -67,13 +83,13 @@ function SignupPage() {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="relative bg-white text-gray-800 p-12 rounded-2xl shadow-lg w-full max-w-lg"
       >
-        <h2 className="text-3xl font-bold text-center">Sign Up<br /><br /></h2>
+        <h2 className="text-3xl font-bold text-center">Sign Up</h2>
         <p className="text-gray-600 text-center mb-6">
           🚀 Welcome, Adventurer! 🚀<br />
           Join us and embark on an exciting journey of discovery! 🌟📖
         </p>
 
-        {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
+        {errorMessage && <p className="text-red-500 text-center mb-3">{errorMessage}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <input
@@ -101,7 +117,7 @@ function SignupPage() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            placeholder="Password"
+            placeholder="Password (min 8 chars)"
             required
             className="w-full p-4 bg-gray-200 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
           />
