@@ -1,0 +1,68 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Sign Display</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        #asl-image { width: 300px; height: 300px; border: 2px solid black; }
+    </style>
+</head>
+<body>
+    <h2>ASL Sign Display</h2>
+    <img id="asl-image" src="" alt="ASL Sign">
+    <script>
+        let images = {{ images|safe }};  // Get image list from Django
+        let index = 0;
+
+        function showNextImage() {
+            if (index < images.length) {
+                document.getElementById('asl-image').src = images[index];
+                index++;
+                setTimeout(showNextImage, 1500); // Change image every 1.5 seconds
+            }
+        }
+
+        showNextImage(); // Start image slideshow
+    </script>
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Sign Display</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        #asl-image { width: 300px; height: 300px; border: 2px solid black; }
+    </style>
+</head>
+<body>
+    <h2>ASL Sign Display</h2>
+    <img id="asl-image" src="" alt="ASL Sign">
+    
+    <script>
+        let images = {{ images|safe }};  // Django sends list of image URLs
+
+        if (!Array.isArray(images) || images.length === 0) {
+            document.body.innerHTML += "<p>No images found</p>";
+        } else {
+            let index = 0;
+
+            function showNextImage() {
+                if (index < images.length) {
+                    document.getElementById('asl-image').src = images[index];
+                    index++;
+                    setTimeout(showNextImage, 1500); // Change image every 1.5 seconds
+                }
+            }
+
+            showNextImage(); // Start image slideshow
+        }
+    </script>
+</body>
+</html>
+
