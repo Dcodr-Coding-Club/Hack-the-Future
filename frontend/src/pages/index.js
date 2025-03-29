@@ -9,5 +9,5 @@ export {
     About,
     Projects,
     Profile,
-    Contact
+    Contact,
 }
