@@ -23,7 +23,7 @@ def text_to_sign(request):
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         for char in text:
-            cursor.execute("SELECT image_path FROM asl_signs WHERE character=?", (char,))
+            cursor.execute("SELECT image_path FROM asl_signs WHERE character=?", (char))
             result = cursor.fetchone()
             if result:
                 image_path = os.path.join(settings.BASE_DIR, result[0])  # Ensure full path
