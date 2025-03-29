@@ -14,5 +14,4 @@
 
 ## Other
 - [ ] Creating the courses  
-- [ ] Creating the quizzes  
 - [ ] Creating the games  
