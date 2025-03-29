@@ -25,14 +25,14 @@ export const BtnList = [
     newTab: true,
   },
   {
-    label: "Twitter",
-    link: "/contact",
+    label: "Profile",
+    link: "/Profile",
     image: twitter,
     newTab: true,
   },
   {
-    label: "Resume",
-    link: "/contact",
+    label: "Aboutus",
+    link: "/Aboutus",
     image: resume,
     newTab: true,
   },
