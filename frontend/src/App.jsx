@@ -23,7 +23,7 @@ const MainContent = () => {
 
       <Navbar />
       <Routes>
-        <Route path="/test" element={<FillEquationGame />} />
+      
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<Home />} />
