@@ -5,6 +5,7 @@ from .views import signup_view, login_view, logout_view, CustomPasswordResetView
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from gamification.views import get_quiz
 
 def redirect_to_login(request):
     return redirect('login')
@@ -20,7 +21,8 @@ urlpatterns = [
     path("password_reset/done/", auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_done.html"), name="password_reset_done"),
     path("reset/<uidb64>/<token>/", CustomPasswordResetConfirmView.as_view(), name="password_reset_confirm"),
     path("reset/done/", auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_complete.html"), name="password_reset_complete"),
-    path('dashboard/', views.dashboard, name='dashboard')
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path("quiz/",get_quiz,name="quiz"),
 ]
 
 if settings.DEBUG:
