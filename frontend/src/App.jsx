@@ -2,6 +2,8 @@ import { Route, BrowserRouter as Router, Routes, useLocation } from "react-route
 import Navigation from "./components/Navigation";
 import { Navbar } from "./components";
 import { About, Contact, Home, Projects, Profile , Aboutus } from "./pages"; // Import Profile Page
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage"
 
 const App = () => {
   return (
