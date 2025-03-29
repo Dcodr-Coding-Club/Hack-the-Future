@@ -20,6 +20,7 @@ This project is an interactive platform designed for the deaf and mute community
 **Database**: SQLite (to store sign images and learning data)
 
 **Features & Usage**
+
 **1. Speech-to-Text & Text-to-Sign**
 Users input text or use speech recognition.
 The system retrieves corresponding ASL images from the database.
