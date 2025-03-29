@@ -2,3 +2,5 @@ SpeechRecognition
 pyaudio
 opencv-python
 numpy
+Pillow
+django-cors-headers
