@@ -19,7 +19,7 @@ export const OutputConsole = ({ code, language }) => {
   };
 
   return (
-    <div className="bg-[#0D021F] border border-[#4A00E0] rounded-lg p-4 text-[#EAEAEA] mt-4 w-[calc(62vw)] ml-4">
+    <div className="bg-[#0D021F] border border-[#4A00E0] rounded-lg p-4 text-[#EAEAEA] mt-4 w-[calc(58vw)] ml-4">
       <h2 className="text-lg font-semibold mb-2">Output:</h2>
       <button
         className="bg-[#4A00E0] text-white px-4 py-2 rounded-lg"

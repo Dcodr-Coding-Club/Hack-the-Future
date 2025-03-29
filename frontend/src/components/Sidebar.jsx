@@ -112,7 +112,10 @@ export const Sidebar = ({ roomId, setCode, handleCodeChange, code, language }) =
       </div>
 
       {/* Room Info */}
-      <div className="mt-4 p-3 bg-[#1E1E2F] rounded-lg text-sm">
+      <div 
+        className="mt-4 p-3 bg-[#1E1E2F] rounded-lg text-sm cursor-copy"
+        onClick={() => navigator.clipboard.writeText(roomId)}
+      >
         <p>🔑 <strong>Room ID:</strong> {roomId}</p>
       </div>
 

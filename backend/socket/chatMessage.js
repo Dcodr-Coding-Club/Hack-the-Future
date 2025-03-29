@@ -11,12 +11,17 @@ export const initSocket = (server) => {
     io.on("connection", (socket) => {
         console.log(`User Connected: ${socket.id}`);
 
-        socket.on("send_message", (data) => {
-            io.emit("receivedmessage", { message: data.message }); 
+        socket.on("joinRoom", (roomId) => {
+            socket.join(roomId); // Join the specific room
+            console.log(`User ${socket.id} joined room ${roomId}`);
         });
 
-        socket.on("codeUpdate",(data)=>{
-            io.emit("changeCode", data);
-        })
+        socket.on("send_message", (data) => {
+            io.to(data.roomId).emit("receivedmessage", { username: data.username, message: data.message }); // Emit to specific room with username
+        });
+
+        socket.on("codeUpdate", (data) => {
+            io.to(data.roomId).emit("changeCode", data.newCode); // Emit to specific room
+        });
     });
 };

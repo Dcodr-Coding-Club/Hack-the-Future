@@ -13,33 +13,37 @@ export const CodeEditor = () => {
   const [language, setLanguage] = useState("javascript");
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-
-  const handleCodeChange = (newCode) => {
-    // setCode(newCode);
-    // console.log(newCode);
-    socket.emit("codeUpdate",newCode);
-  };
-
-  const handleSendButton = () => {
-    if (message.trim()) {
-      socket.emit("send_message", { message }); // ✅ Send message as an object
-      setMessage("");
-    }
-  };
+  const username = "YourUsername"; // Replace with actual username logic
 
   useEffect(() => {
+    // Join the room when the component mounts
+    socket.emit("joinRoom", roomId);
+
     socket.on("receivedmessage", (newMessage) => {
-      setMessages((prev) => [...prev, newMessage]); // ✅ Store entire object
+      setMessages((prev) => [...prev, newMessage]);
     });
 
     socket.on("changeCode", (newC) => {
       setCode(newC);
-    })
+    });
 
     return () => {
       socket.off("receivedmessage");
+      socket.off("changeCode");
     };
-  }, []);
+  }, [roomId]);
+
+  const handleCodeChange = (newCode) => {
+    setCode(newCode);
+    socket.emit("codeUpdate", { roomId, newCode }); // Include roomId in the emission
+  };
+
+  const handleSendButton = () => {
+    if (message.trim()) {
+      socket.emit("send_message", { roomId, username, message }); // Include username in the emission
+      setMessage("");
+    }
+  };
 
   return (
     <div className="flex h-screen bg-[#0D021F]">
@@ -56,8 +60,7 @@ export const CodeEditor = () => {
             <h2 className="text-lg text-white font-semibold">💬 ChatBox</h2>
             <div className="flex-1 overflow-y-auto bg-[#0D021F] rounded-lg mt-2 p-2">
               {messages.map((msg, index) => (
-                <div key={index} className="text-white text-sm p-1">{msg.message}</div>
-                // ✅ Extract `message` to avoid React error
+                <div key={index} className="text-white text-sm p-1">{msg.username}: {msg.message}</div>
               ))}
             </div>
             {/* Chat Input */}
