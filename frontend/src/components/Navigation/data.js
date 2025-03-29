@@ -25,8 +25,8 @@ export const BtnList = [
     newTab: true,
   },
   {
-    label: "Twitter",
-    link: "/contact",
+    label: "Profile",
+    link: "/Profile",
     image: twitter,
     newTab: true,
   },
