@@ -31,7 +31,7 @@ export const Sidebar = ({ roomId, setCode, code, language }) => {
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (!file) return;
-
+    
     const reader = new FileReader();
     reader.onload = (e) => {
       console.log("File content:", e.target.result);

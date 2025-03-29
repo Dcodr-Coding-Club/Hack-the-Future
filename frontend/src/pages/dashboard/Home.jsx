@@ -21,11 +21,11 @@ export const Home = () => {
       try {
         const token = localStorage.getItem("token");
         const decoded = JSON.parse(atob(token.split(".")[1]));
-        console.log("deconde:", decoded);
         if (decoded) {
           setUsername(decoded.id); // Set username
         }
       } catch (error) {
+        toast.error('Inavalid token');
         console.error("Invalid token:", error);
       }
     }
@@ -61,9 +61,10 @@ export const Home = () => {
         toast.success("Room created Successfully!");
         router(`/editor/${roomId}`);
       } else {
-        alert("Failed to create room");
+        toast.error("Failed to create room");
       }
     } catch (error) {
+      toast.error('Error creating room')
       console.error("Error creating room:", error);
     }
   };
@@ -86,11 +87,11 @@ export const Home = () => {
         toast.success("Joined room successfully!");
         router(`/editor/${enteredRoomId}`); // Redirect to the editor
       } else {
-        alert(data.message);
+        toast.error(data.message);
       }
     } catch (error) {
       console.error("Error joining room:", error);
-      alert("Failed to join room");
+      toast.error("Failed to join room");
     }
   };
 

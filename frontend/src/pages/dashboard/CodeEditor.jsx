@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { io } from "socket.io-client"; // WebSocket client
 import { Sidebar } from "../../components/Sidebar.jsx";
 import { WriteCode } from "../../components/Editor.jsx";
 import { OutputConsole } from "../../components/OutputConsole.jsx";
 
-const socket = io("http://localhost:3000"); // Replace with your backend URL
 
 export const CodeEditor = () => {
   const { roomId } = useParams(); // Get roomId from URL
@@ -14,40 +12,11 @@ export const CodeEditor = () => {
   const [messages, setMessages] = useState([]); // Chat messages
   const [message, setMessage] = useState(""); // Current input message
 
-  useEffect(() => {
-    if (!roomId) return;
 
-    // Join the room
-    socket.emit("joinRoom", roomId);
-
-    // Receive code updates from other users
-    socket.on("codeUpdate", (newCode) => {
-      setCode(newCode);
-    });
-
-    // Receive chat messages
-    socket.on("receiveMessage", (newMessage) => {
-      setMessages((prev) => [...prev, newMessage]);
-    });
-
-    return () => {
-      socket.disconnect(); // Cleanup on unmount
-    };
-  }, [roomId]);
-
-  // Handle code changes & emit updates
   const handleCodeChange = (newCode) => {
     setCode(newCode);
-    socket.emit("codeUpdate", { roomId, newCode });
   };
 
-  // Send a chat message
-  const sendMessage = () => {
-    if (message.trim()) {
-      socket.emit("sendMessage", { roomId, message });
-      setMessage(""); // Clear input
-    }
-  };
 
   return (
     <div className="flex h-screen bg-[#0D021F]">
@@ -77,7 +46,7 @@ export const CodeEditor = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <button className="ml-2 bg-[#4A00E0] text-white p-2 rounded-lg" onClick={sendMessage}>
+              <button className="ml-2 bg-[#4A00E0] text-white p-2 rounded-lg">
                 Send
               </button>
             </div>

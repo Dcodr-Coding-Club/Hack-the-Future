@@ -5,7 +5,7 @@ import { User } from "../modules/User.js";
 export const createRoom = async (req, res) => {
     try {
         const { roomId, roomName, ownerId } = req.body;
-        console.log(roomId, roomName, ownerId);
+        // console.log(roomId, roomName, ownerId);
 
         // Validate if ownerId is a valid ObjectId
         if (!mongoose.Types.ObjectId.isValid(ownerId)) {
@@ -40,7 +40,7 @@ export const createRoom = async (req, res) => {
 export const getRoomDetails = async (req, res) => {
     try {
         const { roomId } = req.params;
-        console.log(roomId);
+        // console.log(roomId);
         const room = await Room.findOne({ room_id: roomId }).populate("collaborators", "username");
 
         if (!room) {
