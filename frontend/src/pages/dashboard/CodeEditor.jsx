@@ -1,22 +1,39 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Sidebar } from "../../components/Sidebar.jsx";
+import io from "socket.io-client";
 import { WriteCode } from "../../components/Editor.jsx";
 import { OutputConsole } from "../../components/OutputConsole.jsx";
+import { Sidebar } from "../../components/Sidebar.jsx";
 
+const socket = io.connect("http://localhost:3000");
 
 export const CodeEditor = () => {
-  const { roomId } = useParams(); // Get roomId from URL
+  const { roomId } = useParams();
   const [code, setCode] = useState("// Write your code here...");
   const [language, setLanguage] = useState("javascript");
-  const [messages, setMessages] = useState([]); // Chat messages
-  const [message, setMessage] = useState(""); // Current input message
-
+  const [messages, setMessages] = useState([]); 
+  const [message, setMessage] = useState("");
 
   const handleCodeChange = (newCode) => {
     setCode(newCode);
   };
 
+  const handleSendButton = () => {
+    if (message.trim()) {
+      socket.emit("send_message", { message }); // ✅ Send message as an object
+      setMessage("");
+    }
+  };
+
+  useEffect(() => {
+    socket.on("receivedmessage", (newMessage) => {
+      setMessages((prev) => [...prev, newMessage]); // ✅ Store entire object
+    });
+
+    return () => {
+      socket.off("receivedmessage");
+    };
+  }, []);
 
   return (
     <div className="flex h-screen bg-[#0D021F]">
@@ -25,7 +42,6 @@ export const CodeEditor = () => {
 
       {/* Code Editor + Chat Box Section */}
       <div className="flex flex-col flex-1">
-        {/* Code Editor & Chat Box */}
         <div className="flex flex-1">
           <WriteCode code={code} setCode={handleCodeChange} language={language} setLanguage={setLanguage} />
           
@@ -34,7 +50,8 @@ export const CodeEditor = () => {
             <h2 className="text-lg text-white font-semibold">💬 ChatBox</h2>
             <div className="flex-1 overflow-y-auto bg-[#0D021F] rounded-lg mt-2 p-2">
               {messages.map((msg, index) => (
-                <div key={index} className="text-white text-sm p-1">{msg}</div>
+                <div key={index} className="text-white text-sm p-1">{msg.message}</div> 
+                // ✅ Extract `message` to avoid React error
               ))}
             </div>
             {/* Chat Input */}
@@ -46,7 +63,7 @@ export const CodeEditor = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <button className="ml-2 bg-[#4A00E0] text-white p-2 rounded-lg">
+              <button className="ml-2 bg-[#4A00E0] text-white p-2 rounded-lg" onClick={handleSendButton}>
                 Send
               </button>
             </div>
