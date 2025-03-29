@@ -57,7 +57,7 @@ function SignupPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-cover bg-center relative font-[Inter]" style={{backgroundImage: "url('/public/sky.png')" }}
+    <div className="flex items-center justify-center h-screen bg-cover bg-center relative font-[Inter]" style={{backgroundImage: "url('/sky.png')" }}
 >
       <div className="absolute inset-0 bg-black bg-opacity-0"></div>
       <motion.div
