@@ -1,7 +1,7 @@
 # Project TO-DO List
 
 ## Frontend
-- [x ] Log in & Sign-up Page  
+- [x] Log in & Sign-up Page  
 - [ ] Each course page  
 - [ ] Each quiz page  
 - [ ] Mini Games page  
