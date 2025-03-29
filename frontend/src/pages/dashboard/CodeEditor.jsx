@@ -52,7 +52,7 @@ export const CodeEditor = () => {
   return (
     <div className="flex h-screen bg-[#0D021F]">
       {/* Sidebar */}
-      <Sidebar roomId={roomId}/>
+      <Sidebar roomId={roomId} setCode={setCode} code={code} language={language} />
 
       {/* Code Editor + Chat Box Section */}
       <div className="flex flex-col flex-1">

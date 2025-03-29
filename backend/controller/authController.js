@@ -1,5 +1,5 @@
 import { User } from "../modules/User.js";
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { generateToken } from "../utils/generateToken.js";
 
 export const RegisterUser = async (req, res) => {

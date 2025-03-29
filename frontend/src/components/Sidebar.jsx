@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
 import { FaUpload } from "react-icons/fa";
 
-export const Sidebar = ({ roomId }) => {
+export const Sidebar = ({ roomId, setCode, code, language }) => {
   const [files, setFiles] = useState([
     "4_Mar_RegulaFalsi.c",
     "4_Mar_RegulaFalsi.exe",
     "18_2.c",
-    "18_2.exe",
-    "18_3.c",
-    "18Feb.exe",
-    "18FebBisectionMethod.c",
-    "18FebBisectionMethod.exe",
+    "18_2.exe"
   ]);
 
   const [collaborators, setCollaborators] = useState([]);
@@ -31,20 +27,84 @@ export const Sidebar = ({ roomId }) => {
     fetchRoomDetails();
   }, [roomId]);
 
+  // Handles file upload
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      console.log("File content:", e.target.result);
+      setCode(e.target.result);
+      setFiles((prevFiles) =>
+        prevFiles.includes(file.name) ? prevFiles : [...prevFiles, file.name]
+      );
+    };
+
+    reader.readAsText(file);
+  };
+
+  // Handles file selection
+  const handleFileClick = async (filename) => {
+    try {
+      const response = await fetch(`/files/${filename}`);
+      const text = await response.text();
+      setCode(text);
+      setFilename(filename);
+    } catch (error) {
+      console.error("Error loading file:", error);
+    }
+  };
+
+  // Function to handle file download
+  const handleDownload = () => {
+    console.log("Code to download:", code); // Check the code content
+    if (!code) {
+      alert("No code to download!");
+      return;
+    }
+    
+    const blob = new Blob([code], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    
+    // Set the download filename based on the language
+    const extension = language === 'javascript' ? 'js' :
+                      language === 'python' ? 'py' :
+                      language === 'c' ? 'c' :
+                      language === 'cpp' ? 'cpp' : 'txt'; // Default to .txt if no match
+                      
+    link.download = `code.${extension}`; // Use a default filename based on the language
+    link.click();
+    URL.revokeObjectURL(link.href); // Clean up
+  };
+
+
   return (
     <div className="w-64 h-full bg-[#0D021F] text-[#EAEAEA] flex flex-col p-4 border-r border-[#4A00E0]">
-      {/* Logo */}
       <h2 className="text-2xl font-bold text-[#7E3AF2] mb-4">SyncIDE</h2>
 
-      {/* Upload Button */}
-      <button className="flex items-center justify-center bg-[#7E3AF2] text-white py-2 px-4 rounded-lg mb-4 hover:bg-[#9B51E0] transition">
+      <label className="flex items-center justify-center bg-[#7E3AF2] text-white py-2 px-4 rounded-lg mb-4 hover:bg-[#9B51E0] transition cursor-pointer">
         <FaUpload className="mr-2" /> Upload
+        <input type="file" accept=".c,.cpp,.js,.py" className="hidden" onChange={handleFileUpload} />
+      </label>
+
+      {/* Download Button */}
+      <button
+        className="bg-[#4A00E0] text-white px-4 py-2 rounded-lg mb-4"
+        onClick={handleDownload}
+      >
+        📥 Download
       </button>
 
       {/* File List */}
       <div className="flex-1 overflow-y-auto">
         {files.map((file, index) => (
-          <div key={index} className="flex items-center text-sm py-1 px-2 hover:bg-[#1E1E2F] rounded">
+          <div
+            key={index}
+            className="flex items-center text-sm py-1 px-2 hover:bg-[#1E1E2F] rounded cursor-pointer"
+            onClick={() => handleFileClick(file)}
+          >
             📄 {file}
           </div>
         ))}
