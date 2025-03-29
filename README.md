@@ -1,71 +1,44 @@
-# Hack the Future | Horizon 2025, IIITV-ICD
+**Team Name - Upay**
 
-Welcome to **Hack the Future**, the 36-hour online hackathon organized by Coding Club DCodr as part of **Horizon 2025**, the annual technical fest of **IIITV-ICD**. This is your chance to collaborate, innovate, and build creative solutions to real-world problems.
+**Team Members: Aishna Bhatia, Aesha Ladani, Priyanka Lotiya, Urvashi Ladva, Yashvi Khatri**
 
-**Once the hackathon begins, please follow the instructions below carefully.**
+**Sign Language Learning Platform**
 
----
+**Overview**
+This project is an interactive platform designed for the deaf and mute community, featuring:
 
-## **Instructions for Participants**
+**Speech-to-Text & Text-to-Sign Conversion**: Converts spoken words into text and translates them into American Sign Language (ASL) signs.
 
-### ✅ **Step 1: Fork the Repository**
-1. Once problem statements are available. Click the **Fork** button at the top right corner to create a copy of this repository in your GitHub account.
-2. Clone the forked repository to your local machine using the command:
+**Learning Modules**: Structured lessons for different skill levels: Beginner, Intermediate, and Advanced.
 
-```bash
-git clone <your-forked-repo-link>
-```
+**Quizzes & Games**: Engaging activities tailored to reinforce learning.
 
-### ✅ **Step 2: Select a Problem Statement**
-- Review the provided problem statements in the PROBLEMS.md.
-- Choose any one problem statement to work on.
-- Work directly on the `main` branch to ensure your final work is on the main branch, as the organizers will evaluate your project every 6 hours.
+**AI-Based Learning Planner**: Personalized learning schedules based on the user's available time and qualifications.
 
-### ✅ **Step 3: Project Development**
-- Develop your project locally.
-- Commit your changes frequently with meaningful messages:
+**Progress Tracking**: Monitors user performance and suggests areas for improvement.
 
-```bash
-git add .
-git commit -m "Initial commit with base project setup"
-```
+**Tech Stack**
+**Backend**: Django (Python) with SQLite database
+**Frontend**: HTML, CSS, JavaScript
+**Computer Vision**: OpenCV (for video/image processing)
+**Database**: SQLite (to store sign images and learning data)
 
-- Push your changes to your forked repository:
+**Features & Usage**
 
-```bash
-git push origin main
-```
+**1. Speech-to-Text & Text-to-Sign**
+Users input text or use speech recognition.
+The system retrieves corresponding ASL images from the database.
+Images are displayed in sequence to form sign language representation.
 
-### ✅ **Step 4: Submission**
-1. Create a **Pull Request (PR)** to this repository before the hackathon ends.
-2. Your repository should contain:
-    - `README.md`: Instructions to run your project.
-    - Source code and necessary files.
-    - Documentation (if any).
-3. 4-5 Page PPT Presentation summarizing your solution to make it easier for judges to evaluate.
-   -  Slide 1: Title, team name, and problem statement.
-   -  Slide 2: Objective and solution overview.
-   -  Slide 3: Key features and technologies used.
-   -  Slide 4: solutions implemented.
-   -  Slide 5: Challenges faced.
+**2. Learning Modules**
+Users choose a skill level (Beginner, Intermediate, Advanced).
+Lessons are structured with step-by-step guides.
 
-⚠️ **Note:** Only PRs submitted before the hackathon deadline will be considered. Late submissions will not be accepted.
+**3. Quizzes & Games**
+Interactive challenges to test ASL comprehension.
+Users earn points and unlock new levels.
 
----
+**4. AI-Based Learning Planner**
+Custom schedules based on user input (time availability & qualification).
+Progress tracking to recommend next steps.
 
-## 🔍 **Evaluation Criteria**
-- **Innovation & Creativity:** Uniqueness and originality of the solution.
-- **Functionality & Implementation:** Proper execution and working functionality.
-- **Code Quality:** Clean, readable, and maintainable code.
-- **Presentation & Documentation:** Clear instructions and explanations.
-
----
-
-## ⏱️ **Hackathon Timeline**
-- **Start:** [28/03/2025 5PM]
-- **End:** [30/03/2025 5AM]
-- **Duration:** 36 hours (continuous online mode)
-
----
-
-🚀 **Good luck and happy hacking!** 🎯

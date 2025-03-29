@@ -7,6 +7,9 @@ from django.conf.urls.static import static
 from . import views  
 from django.shortcuts import render
 from gamification.views import get_quiz
+from .views import basic_questions
+
+
 def redirect_to_login(request):
     return redirect('login')
 
@@ -30,6 +33,7 @@ urlpatterns = [
     path('numbers/', views.numbers, name='numbers'),
     path('common_greetings/', views.common_greetings, name='common_greetings'),
     path('basic_questions/', views.basic_questions, name='basic_questions'),
+    path('basic-questions/', basic_questions, name='basic_questions'),
 
     path('everyday_vocabulary/', views.everyday_vocabulary, name='everyday_vocabulary'),
     path('sentence_structure/', views.sentence_structure, name='sentence_structure'),

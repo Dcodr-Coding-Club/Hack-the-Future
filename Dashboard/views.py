@@ -83,3 +83,15 @@ def storytelling(request):
 
 def alphabets(request):
     return render(request, 'Alphabets.html')
+
+def basic_questions(request):
+    questions = {
+        "Who": "With your dominant hand, place your thumb on your chin and let your index finger wiggle from the joint.",
+        "What": "Put your hands outward in front of you, with elbows bent and palms up. Shake your hands back and forth towards each other.",
+        "Where": "Hold up the index finger of your dominant hand, like you're indicating 'one,' then shake it side to side.",
+        "When": "Put both of your index fingers together at a 90-degree angle at the tips. Your dominant index finger then makes a full circle around the passive index finger and returns to the starting position.",
+        "Which": "Make both hands into fists with your thumbs pointing up; alternate each fist in an up-and-down movement.",
+        "Why": "Touch the side of your forehead with the fingers of your dominant hand, extend your thumb and pinky (in the Y sign) while you bring your hand down.",
+        "How": "With fingers pointing downward and backs of fingers and knuckles touching, roll hands inward to your chest and up so that the pinky sides of your hands are touching."
+    }
+    return render(request, "basic_questions.html", {"questions": questions})
