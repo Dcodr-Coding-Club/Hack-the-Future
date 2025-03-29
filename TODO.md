@@ -13,11 +13,11 @@
 - [ ] API services  
 
 ## Other
-- [ ] Creating the courses  
-- [ ] Creating the games  
+- [x] Creating the courses  
+- [x] Creating the games  
 
 ## Games
-- [ ] Letter to sign match the column
-- [ ] duolingo style letters to sign and sign to letters
+- [x] Letter to sign match the column
+- [x] duolingo style letters to sign and sign to letters
 - [ ] MCQ
 - [ ] normal reading writing and maths operations
