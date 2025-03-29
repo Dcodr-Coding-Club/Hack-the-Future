@@ -3,6 +3,45 @@ const router = express.Router();
 const fs = require('fs');
 const wordList = require("../JSON/words.json");  // Adjust path accordingly
 
+
+function generateEquation() {
+  const num1 = Math.floor(Math.random() * 10) + 1;
+  const num2 = Math.floor(Math.random() * 10) + 1;
+  const operations = ["+", "-", "*", "/"];
+  const op = operations[Math.floor(Math.random() * operations.length)];
+
+  let answer;
+  switch (op) {
+    case "+": answer = num1 + num2; break;
+    case "-": answer = num1 - num2; break;
+    case "*": answer = num1 * num2; break;
+    case "/": answer = (num2 !== 0 ? (num1 / num2).toFixed(2) : "undefined"); break;
+  }
+
+  // Randomly hide one of the numbers
+  const hideIndex = Math.random() > 0.5 ? 0 : 2; // Either num1 or num2
+
+  let equation = [num1, op, num2, "=", answer];
+  let displayEquation = [...equation];
+
+  if (hideIndex === 0) displayEquation[0] = "_";  // Hide num1
+  if (hideIndex === 2) displayEquation[2] = "_";  // Hide num2
+
+  return {
+    equation: displayEquation,
+    answer: equation[hideIndex],
+    options: [equation[hideIndex], equation[hideIndex] + 1, equation[hideIndex] - 1]
+  };
+}
+
+// API Route
+router.get("/random-equation", (req, res) => {
+  const equationData = generateEquation();
+  res.json(equationData);
+});
+
+module.exports = router;
+
 function getRandomNumber() {
   return Math.floor(Math.random() * 1000) + 1; // Random number between 1 and 1000
 }
