@@ -2,6 +2,30 @@ const express = require("express");
 const router = express.Router();
 
 
+
+const words = ["apple", "banana", "grape", "cherry"];
+
+function getRandomWord() {
+  return words[Math.floor(Math.random() * words.length)];
+}
+
+// ✅ Route to get a random word
+router.get("/random-word", (req, res) => {
+  const word = getRandomWord();
+  res.json({ word });
+});
+
+// ✅ Route to check the answer
+router.post("/check-answer", (req, res) => {
+  const { userAnswer, correctWord } = req.body;
+  if (userAnswer === correctWord) {
+    return res.json({ success: true, message: "Correct!" });
+  }
+  res.json({ success: false, message: "Try again!" });
+});
+
+
+
 // Static question (only one question)
 const question = {
   left: [
