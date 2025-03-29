@@ -20,19 +20,19 @@ export const BtnList = [
   },
   {
     label: "LinkedIn",
-    link: "https://www.linkedin.com/in/codebucks",
+    link: "/contact",
     image: linkedin,
     newTab: true,
   },
   {
     label: "Twitter",
-    link: "https://www.x.com/code_bucks",
+    link: "/contact",
     image: twitter,
     newTab: true,
   },
   {
     label: "Resume",
-    link: "/resume.pdf",
+    link: "/contact",
     image: resume,
     newTab: true,
   },
