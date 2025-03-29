@@ -10,7 +10,7 @@ const Root = () => {
   const isAuthenticated = !!localStorage.getItem("token");
 
   return isAuthenticated ? (
-    <Navigate to="/" />
+    <Navigate to="/dashboard" />
   ) : (
     <Navigate to="/login" />
   )
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     element: <Home />
   },
   {
-    path: '/editor',
+    path: '/editor/:roomId',
     element: <CodeEditor />
   }
 ])

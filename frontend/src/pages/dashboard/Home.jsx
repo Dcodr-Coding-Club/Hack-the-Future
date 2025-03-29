@@ -1,17 +1,74 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { useNavigate } from "react-router-dom";
-import { FaCode, FaFolderOpen, FaPlus, FaSyncAlt, FaUsers, FaUpload } from "react-icons/fa";
+import { FaCode, FaFolderOpen, FaUsers } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
 
 export const Home = () => {
-  const [username, setUsername] = useState("User");
+  const [username, setUsername] = useState("");
+  const [roomName, setRoomName] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [recentRooms, setRecentRooms] = useState([]);
   const router = useNavigate();
+
+  useEffect(() => {
+    // Get the token from localStorage
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const token = localStorage.getItem("token");
+        const decoded = JSON.parse(atob(token.split(".")[1]));
+        console.log("deconde:", decoded);
+        if (decoded) {
+          setUsername(decoded.id); // Set username
+        }
+      } catch (error) {
+        console.error("Invalid token:", error);
+      }
+    }
+    
+    // Load recent rooms
+    const savedRooms = JSON.parse(localStorage.getItem("recentRooms")) || [];
+    setRecentRooms(savedRooms);
+  }, []);
+  
+  const handleCreateRoom = async () => {
+    if (!roomName.trim()) {
+      alert("Room name cannot be empty!");
+      return;
+    }
+
+    const roomId = uuidv4();
+    const newRoom = { roomId, roomName, ownerId: username, collaborators: [] };
+
+    try {
+      const response = await fetch("http://localhost:3000/api/rooms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newRoom),
+      });
+
+      if (response.ok) {
+        setIsModalOpen(false);
+
+        // Save room in local storage
+        const updatedRooms = [...recentRooms, newRoom].slice(-5);
+        localStorage.setItem("recentRooms", JSON.stringify(updatedRooms));
+        setRecentRooms(updatedRooms);
+
+        router(`/editor/${roomId}`);
+      } else {
+        alert("Failed to create room");
+      }
+    } catch (error) {
+      console.error("Error creating room:", error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0D021F] text-[#EAEAEA] flex flex-col items-center justify-center p-8 space-y-8">
-      {/* Header with Animation */}
       <motion.h1
         className="text-4xl font-bold mb-6 text-center"
         initial={{ opacity: 0, y: -20 }}
@@ -21,77 +78,76 @@ export const Home = () => {
         Welcome, {username}!
       </motion.h1>
 
-      {/* Main Grid Layout */}
       <div className="grid gap-6 w-full max-w-2xl">
-        {/* Live Collaboration Section */}
         <Card className="bg-[#1A012F] hover:shadow-2xl transition transform hover:scale-105">
           <CardContent className="p-6">
             <h2 className="text-lg font-semibold mb-2 flex items-center gap-2">
               <FaUsers /> Live Collaboration
             </h2>
-            <p className="text-sm text-gray-400">Join active coding sessions or create your own room.</p>
+            <p className="text-sm text-gray-400">
+              Join active coding sessions or create your own room.
+            </p>
             <div className="mt-4 flex space-x-4">
-              <Button className="bg-[#4A00E0] hover:bg-[#7E3AF2] flex-1" onClick={() => router("/join-room")}>
+              <Button
+                className="bg-[#4A00E0] hover:bg-[#7E3AF2] flex-1"
+                onClick={() => router("/join-room")}
+              >
                 Join Room
               </Button>
-              <Button className="bg-[#4A00E0] hover:bg-[#7E3AF2] flex-1" onClick={() => router("/create-room")}>
+              <Button
+                className="bg-[#4A00E0] hover:bg-[#7E3AF2] flex-1"
+                onClick={() => setIsModalOpen(true)}
+              >
                 Create Room
               </Button>
             </div>
           </CardContent>
         </Card>
 
-        {/* Recent Projects */}
-        <Card className="bg-[#1A012F] hover:shadow-2xl transition transform hover:scale-105">
-          <CardContent className="p-6">
-            <h2 className="text-lg font-semibold mb-2 flex items-center gap-2">
-              <FaFolderOpen /> Recent Projects
-            </h2>
-            <ul className="space-y-2">
-              <li className="bg-[#7E3AF2] p-2 rounded-lg cursor-pointer hover:bg-[#9B51E0] transition flex items-center gap-2">
-                <FaCode /> Project A
-              </li>
-              <li className="bg-[#7E3AF2] p-2 rounded-lg cursor-pointer hover:bg-[#9B51E0] transition flex items-center gap-2">
-                <FaCode /> Project B
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
+        {recentRooms.length > 0 && (
+          <Card className="bg-[#1A012F] hover:shadow-2xl transition transform hover:scale-105">
+            <CardContent className="p-6">
+              <h2 className="text-lg font-semibold mb-2 flex items-center gap-2">
+                <FaFolderOpen /> Recent Rooms
+              </h2>
+              <ul className="space-y-2">
+                {recentRooms.map((room, index) => (
+                  <li
+                    key={index}
+                    className="bg-[#7E3AF2] p-2 rounded-lg cursor-pointer hover:bg-[#9B51E0] transition flex items-center gap-2"
+                    onClick={() => router(`/editor/${room.roomId}`)}
+                  >
+                    <FaCode /> {room.roomName}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        )}
+      </div>
 
-        {/* Navigation Buttons */}
-        <Button
-          className="bg-[#7E3AF2] hover:bg-[#9B51E0] p-3 text-lg rounded-lg flex items-center gap-2 justify-center"
-          onClick={() => router("/new-project")}
-        >
-          <FaPlus /> New Project
-        </Button>
-
-        {/* Code Editor Access */}
-        <Button
-          className="bg-[#FF5733] hover:bg-[#E14A2B] p-3 text-lg rounded-lg flex items-center gap-2 justify-center"
-          onClick={() => router("/editor")}
-        >
-          <FaCode /> Open Code Editor
-        </Button>
-
-        {/* Version Control & Offline Sync */}
-        <Card className="bg-[#1A012F] hover:shadow-2xl transition transform hover:scale-105">
-          <CardContent className="p-6 flex flex-col space-y-3">
-            <h2 className="text-lg font-semibold flex items-center gap-2">
-              <FaSyncAlt /> Version Control & Offline Sync
-            </h2>
-            <p className="text-sm text-gray-400">Track your code changes, sync when online, and resolve conflicts.</p>
-            <div className="flex space-x-4">
-              <Button className="bg-[#00C853] hover:bg-[#00A844] flex-1 flex items-center gap-2 justify-center">
-                <FaUpload /> Commit Changes
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-[#1A012F] p-6 rounded-lg shadow-lg w-96 text-center">
+            <h2 className="text-lg font-semibold mb-4">Enter Room Name</h2>
+            <input
+              type="text"
+              placeholder="Room Name"
+              value={roomName}
+              onChange={(e) => setRoomName(e.target.value)}
+              className="w-full p-2 border rounded bg-gray-800 text-white"
+            />
+            <div className="flex justify-between mt-4">
+              <Button className="bg-[#4A00E0] hover:bg-[#7E3AF2]" onClick={handleCreateRoom}>
+                Create
               </Button>
-              <Button className="bg-[#FF1744] hover:bg-[#D50000] flex-1 flex items-center gap-2 justify-center">
-                <FaSyncAlt /> Sync Now
+              <Button className="bg-gray-600 hover:bg-gray-500" onClick={() => setIsModalOpen(false)}>
+                Cancel
               </Button>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

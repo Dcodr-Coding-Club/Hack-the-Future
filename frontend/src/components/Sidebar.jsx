@@ -1,8 +1,7 @@
-// components/Sidebar.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaUpload } from "react-icons/fa";
 
-export const Sidebar = () => {
+export const Sidebar = ({ roomId }) => {
   const [files, setFiles] = useState([
     "4_Mar_RegulaFalsi.c",
     "4_Mar_RegulaFalsi.exe",
@@ -14,11 +13,23 @@ export const Sidebar = () => {
     "18FebBisectionMethod.exe",
   ]);
 
-  const [collaborators, setCollaborators] = useState([
-    { name: "Harsh", color: "bg-red-500" },
-    { name: "Kartik", color: "bg-blue-500" },
-    { name: "Sama", color: "bg-blue-500" },
-  ]);
+  const [collaborators, setCollaborators] = useState([]);
+
+  useEffect(() => {
+    const fetchRoomDetails = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/rooms/${roomId}`);
+        if (!response.ok) throw new Error("Failed to fetch room details");
+
+        const data = await response.json();
+        setCollaborators(data.collaborators);
+      } catch (error) {
+        console.error("Error fetching room data:", error);
+      }
+    };
+
+    fetchRoomDetails();
+  }, [roomId]);
 
   return (
     <div className="w-64 h-full bg-[#0D021F] text-[#EAEAEA] flex flex-col p-4 border-r border-[#4A00E0]">
@@ -41,21 +52,23 @@ export const Sidebar = () => {
 
       {/* Room Info */}
       <div className="mt-4 p-3 bg-[#1E1E2F] rounded-lg text-sm">
-        <p>🔑 <strong>Room ID:</strong> 123198</p>
-        <p>🔒 <strong>Password:</strong> asdgh2</p>
+        <p>🔑 <strong>Room ID:</strong> {roomId}</p>
       </div>
 
       {/* Collaborators */}
       <div className="mt-4">
         <h3 className="text-lg font-semibold mb-2">Collaborators</h3>
-        {collaborators.map((user, index) => (
-          <div key={index} className={`flex items-center space-x-2 mb-2`}>
-            <div className={`w-4 h-4 rounded-full ${user.color}`}></div>
-            <p>{user.name}</p>
-          </div>
-        ))}
+        {collaborators.length > 0 ? (
+          collaborators.map((user, index) => (
+            <div key={index} className="flex items-center space-x-2 mb-2">
+              <div className="w-4 h-4 rounded-full bg-blue-500"></div>
+              <p>{user.name}</p>
+            </div>
+          ))
+        ) : (
+          <p>No collaborators yet</p>
+        )}
       </div>
     </div>
   );
 };
-
