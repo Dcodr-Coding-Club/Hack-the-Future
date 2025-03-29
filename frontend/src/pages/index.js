@@ -10,6 +10,6 @@ export {
     About,
     Projects,
     Profile,
+    Contact,
     Aboutus,
-    Contact
 }

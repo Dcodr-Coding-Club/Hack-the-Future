@@ -1,9 +1,14 @@
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import { Navbar } from "./components";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+
+
 import { About, Contact, Home, Projects, Profile , Aboutus } from "./pages"; // Import Profile Page
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage"
+
 
 const App = () => {
   return (
@@ -18,7 +23,6 @@ const MainContent = () => {
 
   return (
     <main className="bg-slate-300/20 relative">
-      {/* Navigation only visible on Home page */}
       {location.pathname === "/" && <Navigation />} 
 
       <Navbar />

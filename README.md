@@ -2,7 +2,7 @@
 
 ## Team Members  
 - Payaldurga Paila **(Team Leader)** 
-- Kankantee Meghana  
+- Meghana Kankantee
 - Harsha Agrawal  
 - Ayush Mishra  
 - Sarthak Daga  
