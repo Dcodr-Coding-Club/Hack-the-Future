@@ -5,9 +5,15 @@ from django.urls import reverse_lazy
 from .forms import SignupForm, LoginForm
 from .models import CustomUser
 
-
 def dashboard(request):
-    return render(request, "dashboard.html", {"quiz_url": "/gamification/quiz/"})
+    return render(request, "dashboard.html", {
+        "quiz_url": "/gamification/quiz/",
+        "word_match_url": "/gamification/word-match/",
+        "flashcards_url": "/gamification/flashcards/",
+    })
+
+# def dashboard(request):
+#     return render(request, "dashboard.html", {"quiz_url": "/gamification/quiz/"},{"word_match_url" : "/gamification/word_match"})
 # Signup View
 def signup_view(request):
     if request.method == "POST":

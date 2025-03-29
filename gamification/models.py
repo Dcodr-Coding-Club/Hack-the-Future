@@ -40,6 +40,7 @@ class Leaderboard(models.Model):
     GAME_CHOICES = [
         ('quiz', 'Quiz'),
         ('word_match', 'Word Match'),
+        ('flashcard', 'Flashcard'),
     ]
 
     username = models.CharField(max_length=50)
@@ -50,9 +51,33 @@ class Leaderboard(models.Model):
     def __str__(self):
         return f"{self.username} - {self.score} ({self.game_type})"
 
+
 class WordMatchQuestion(models.Model):
     word = models.CharField(max_length=255)  # The word to match
-    image = models.ImageField(upload_to="word_match/")  # Sign language image
+    image = models.ImageField(upload_to="word-match/")  # Sign language image
 
     def __str__(self):
         return self.word
+
+
+class Flashcard(models.Model):
+    sign_image = models.ImageField(upload_to="flashcards/")  # Sign language image
+    correct_word = models.CharField(max_length=255)  # The correct word
+    option1 = models.CharField(max_length=255)
+    option2 = models.CharField(max_length=255)
+    option3 = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.correct_word
+    
+
+from django.conf import settings
+from django.db import models
+
+class FlashcardScore(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # Track scores per user
+    score = models.IntegerField(default=0)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.score} points"

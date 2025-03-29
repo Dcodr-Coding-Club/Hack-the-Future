@@ -17,7 +17,15 @@ class QuizAdmin(admin.ModelAdmin):
 admin.site.register(Quiz, QuizAdmin)
 
 
-from django.contrib import admin
 from .models import WordMatchQuestion
 
 admin.site.register(WordMatchQuestion)
+
+
+from .models import Flashcard
+
+admin.site.register(Flashcard)
+
+from .models import Leaderboard
+
+admin.site.register(Leaderboard)

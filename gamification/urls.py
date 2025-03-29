@@ -8,6 +8,10 @@ urlpatterns = [
     path('get_leaderboard/', views.get_leaderboard, name='get_leaderboard'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('quiz/', views.quiz, name='quiz'), 
-    path("word-match/", views.word_match_game, name="word_match"), 
+    path("word-match/", views.word_match_game, name="word_match"),
+    path("word-match-leaderboard/", views.word_match_leaderboard, name="word_match_leaderboard"),
+    path("flashcards/", views.flashcard_game, name="flashcard-game"),
+    path("save_flashcard_score/", views.save_flashcard_score, name="save_flashcard_score"),
+    path("flashcard-leaderboard/", views.flashcard_leaderboard, name="flashcard_leaderboard"),
 ]
 

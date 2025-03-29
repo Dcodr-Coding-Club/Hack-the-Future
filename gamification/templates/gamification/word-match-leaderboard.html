@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Match Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #leaderboard-container {
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="leaderboard-container">
+        <h1>🏆 Word Match Leaderboard</h1>
+        <table id="leaderboard">
+            <tr>
+                <th>Player</th>
+                <th>Score</th>
+            </tr>
+        </table>
+        <button onclick="goBack()">Back to Word Match</button>
+    </div>
+
+    <script>
+        function fetchLeaderboard() {
+            fetch("http://127.0.0.1:8000/gamification/get_leaderboard/?game_type=word_match")
+                .then(response => response.json())
+                .then(data => {
+                    let leaderboardTable = document.getElementById("leaderboard");
+                    leaderboardTable.innerHTML = "<tr><th>Player</th><th>Score</th></tr>";
+
+                    if (data.leaderboard.length === 0) {
+                        let row = leaderboardTable.insertRow();
+                        let cell = row.insertCell(0);
+                        cell.colSpan = 2;
+                        cell.innerText = "No scores yet.";
+                        return;
+                    }
+
+                    data.leaderboard.forEach(entry => {
+                        let row = leaderboardTable.insertRow();
+                        row.insertCell(0).innerText = entry.username;
+                        row.insertCell(1).innerText = entry.score;
+                    });
+                })
+                .catch(error => console.error("Error fetching leaderboard:", error));
+        }
+        fetchLeaderboard();
+
+        function goBack() {
+            window.location.href = "/gamification/word-match/";
+        }
+
+        // Fetch leaderboard on page load
+        
+    </script>
+</body>
+</html>

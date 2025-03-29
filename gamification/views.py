@@ -50,6 +50,11 @@ import json
 #             return JsonResponse({"error": str(e)}, status=500)
 
 #     return JsonResponse({"error": "Invalid request"}, status=400)
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from .models import Leaderboard
+
 @csrf_exempt
 def save_score(request):
     if request.method == "POST":
@@ -57,9 +62,9 @@ def save_score(request):
             data = json.loads(request.body)
             username = data.get("username", "Guest")
             score = data.get("score")
-            game_type = data.get("game_type", "quiz")  # Default to 'quiz' if not provided
+            game_type = data.get("game_type", "quiz")
 
-            if username and score is not None and game_type in ['quiz', 'word_match']:
+            if username and score is not None:
                 Leaderboard.objects.create(username=username, score=score, game_type=game_type)
                 return JsonResponse({"message": "Score saved successfully"}, status=201)
             else:
@@ -69,15 +74,12 @@ def save_score(request):
 
     return JsonResponse({"error": "Invalid request"}, status=400)
 
+
 def get_leaderboard(request):
     game_type = request.GET.get("game_type", "quiz")  # Default to 'quiz'
     scores = Leaderboard.objects.filter(game_type=game_type).order_by('-score', 'date')
     data = [{"username": entry.username, "score": entry.score} for entry in scores]
     return JsonResponse({"leaderboard": data})
-# def get_leaderboard(request):
-#     scores = Leaderboard.objects.order_by('-score', 'date')
-#     data = [{"username": entry.username, "score": entry.score} for entry in scores]
-#     return JsonResponse({"leaderboard": data})
 
 from django.shortcuts import render
 from .models import Leaderboard
@@ -87,10 +89,70 @@ def leaderboard(request):
     return render(request, 'leaderboard.html', {'scores': scores})
 
 
+# def get_leaderboard(request):
+#     scores = Leaderboard.objects.order_by('-score', 'date')
+#     data = [{"username": entry.username, "score": entry.score} for entry in scores]
+#     return JsonResponse({"leaderboard": data})
 
+# from django.shortcuts import render
+# from .models import Leaderboard
+
+# def leaderboard(request):
+#     scores = Leaderboard.objects.order_by('-score')  # Order by highest score
+#     return render(request, 'leaderboard.html', {'scores': scores})
+
+
+import random
 from django.shortcuts import render
 from .models import WordMatchQuestion
 
 def word_match_game(request):
-    questions = WordMatchQuestion.objects.all()  # Fetch questions from DB
-    return render(request, "gamification/word_match.html", {"questions": questions})
+    questions = WordMatchQuestion.objects.all() # Fetch questions from DB
+    return render(request, "gamification/word-match.html", {"questions": questions})
+
+
+from django.shortcuts import render
+
+def word_match_leaderboard(request):
+    return render(request, "gamification/word-match-leaderboard.html")
+
+from django.shortcuts import render
+from .models import Flashcard
+import random
+
+def flashcard_game(request):
+    flashcards = Flashcard.objects.all()
+    
+    for flashcard in flashcards:
+        # Ensure the correct answer and wrong options are unique
+        choices = list(set([flashcard.option1, flashcard.option2, flashcard.option3, flashcard.correct_word]))
+        random.shuffle(choices)  # Shuffle options randomly
+        flashcard.shuffled_options = choices  # Attach shuffled options to the flashcard object
+
+    return render(request, "gamification/flashcard-game.html", {"flashcards": flashcards})
+
+
+from django.views.decorators.csrf import csrf_exempt
+import json
+@csrf_exempt
+def save_flashcard_score(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            username = data.get("username", "Guest")
+            score = data.get("score")
+
+            if username and score is not None:
+                Leaderboard.objects.create(username=username, score=score, game_type="flashcard")
+                return JsonResponse({"message": "Flashcard score saved successfully"}, status=201)
+            else:
+                return JsonResponse({"error": "Invalid data"}, status=400)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+def flashcard_leaderboard(request):
+    scores = Leaderboard.objects.filter(game_type="flashcard").order_by('-score', 'date')
+    return render(request, "gamification/flashcard-leaderboard.html", {"scores": scores})
