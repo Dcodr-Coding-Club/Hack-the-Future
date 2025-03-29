@@ -14,7 +14,6 @@ export const CodeEditor = () => {
   const [messages, setMessages] = useState([]); // Chat messages
   const [message, setMessage] = useState(""); // Current input message
 
-  console.log(roomId);
   useEffect(() => {
     if (!roomId) return;
 

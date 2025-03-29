@@ -5,6 +5,7 @@ import { Card, CardContent } from "../../components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { FaCode, FaFolderOpen, FaUsers } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 
 export const Home = () => {
   const [username, setUsername] = useState("");
@@ -57,13 +58,39 @@ export const Home = () => {
         const updatedRooms = [...recentRooms, newRoom].slice(-5);
         localStorage.setItem("recentRooms", JSON.stringify(updatedRooms));
         setRecentRooms(updatedRooms);
-
+        toast.success("Room created Successfully!");
         router(`/editor/${roomId}`);
       } else {
         alert("Failed to create room");
       }
     } catch (error) {
       console.error("Error creating room:", error);
+    }
+  };
+
+  const handleJoinRoom = async () => {
+    const enteredRoomId = prompt("Enter Room ID:");
+    console.log(enteredRoomId);
+    // da015c43-df07-4736-aaf2-bc28b844b001
+    if (!enteredRoomId) return;
+  
+    try {
+      const response = await fetch(`http://localhost:3000/api/rooms/join/${enteredRoomId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username }), // Send username in body
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        toast.success("Joined room successfully!");
+        router(`/editor/${enteredRoomId}`); // Redirect to the editor
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error joining room:", error);
+      alert("Failed to join room");
     }
   };
 
@@ -90,7 +117,7 @@ export const Home = () => {
             <div className="mt-4 flex space-x-4">
               <Button
                 className="bg-[#4A00E0] hover:bg-[#7E3AF2] flex-1"
-                onClick={() => router("/join-room")}
+                onClick={handleJoinRoom}
               >
                 Join Room
               </Button>

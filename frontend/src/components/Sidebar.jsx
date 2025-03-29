@@ -18,7 +18,7 @@ export const Sidebar = ({ roomId }) => {
   useEffect(() => {
     const fetchRoomDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/rooms/${roomId}`);
+        const response = await fetch(`http://localhost:3000/api/rooms/get/${roomId}`);
         if (!response.ok) throw new Error("Failed to fetch room details");
 
         const data = await response.json();
