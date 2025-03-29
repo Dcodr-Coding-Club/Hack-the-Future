@@ -5,7 +5,7 @@ const Profile = () => {
   const [location, setLocation] = useState("");
   const [age, setAge] = useState("");
   const [hobbies, setHobbies] = useState("");
-  const [profilePic, setProfilePic] = useState("");
+  const [profilePic, setProfilePic] = useState("/pp.png"); // Default placeholder image
   const [showEditOptions, setShowEditOptions] = useState(false);
 
   const handleImageChange = (event) => {
@@ -18,17 +18,18 @@ const Profile = () => {
   };
 
   const removeImage = () => {
-    setProfilePic("");
+    setProfilePic("/pp.png"); // Reset to default image
     setShowEditOptions(false);
   };
 
   return (
-    <div className="font-sans antialiased bg-gradient-to-br from-blue-300 to-pink-300 min-h-screen flex items-center justify-center p-8">
+    <div className="font-sans antialiased bg-gradient-to-br from-blue-300 to-pink-300 min-h-screen flex items-center justify-center p-8"
+      style={{ backgroundImage: "url('/sky.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="w-[70%] flex flex-col md:flex-row bg-white shadow-2xl rounded-3xl overflow-hidden p-6">
         <div className="w-full md:w-1/3 flex flex-col items-center mt-16 relative"> 
           <div className="relative">
             <img
-              src={profilePic || "https://via.placeholder.com/150"}
+              src={profilePic} // Corrected image reference
               alt="Profile"
               className="w-64 h-64 md:w-72 md:h-72 object-cover rounded-full shadow-lg border-4 border-white"
             />
@@ -37,7 +38,7 @@ const Profile = () => {
             📷 Upload Photo
             <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
           </label>
-          {profilePic && (
+          {profilePic !== "/pp.png" && ( // Show edit button only if not default image
             <button
               onClick={() => setShowEditOptions(true)}
               className="absolute bottom-0 right-0 bg-gray-700 text-white p-2 rounded-full shadow-md hover:bg-gray-800"
