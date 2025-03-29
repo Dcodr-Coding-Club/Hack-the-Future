@@ -10,10 +10,6 @@ export {
     About,
     Projects,
     Profile,
-<<<<<<< HEAD
     Contact,
-=======
     Aboutus,
-    Contact
->>>>>>> bf0ebdf8bce09605be487c77438671bbd0786e2c
 }
