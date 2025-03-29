@@ -11,6 +11,7 @@ urlpatterns = [
     path('',include("Dashboard.urls")),
     path('gamification/',include("gamification.urls")),
     path('dashboard/', include('asl_sign.urls')),
+    path('speech/', include('speech_to_text.urls')),
 ]
 
 
