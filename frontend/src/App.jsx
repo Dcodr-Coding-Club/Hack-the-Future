@@ -1,15 +1,12 @@
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import { Navbar } from "./components";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 
-import { About, Contact, Home, Projects, Profile, Aboutus } from "./pages"; // Import Profile Page
+
+import { About, Contact, Home, Projects, Profile , Aboutus } from "./pages"; // Import Profile Page
+
 
 const App = () => {
   return (
@@ -24,7 +21,7 @@ const MainContent = () => {
 
   return (
     <main className="bg-slate-300/20 relative">
-      {location.pathname === "/" && <Navigation />}
+      {location.pathname === "/" && <Navigation />} 
 
       <Navbar />
       <Routes>
@@ -35,8 +32,7 @@ const MainContent = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/Aboutus" element={<Aboutus />} />{" "}
-        {/* Add Profile Route */}
+        <Route path="/Aboutus" element={<Aboutus />} /> {/* Add Profile Route */}
       </Routes>
     </main>
   );
