@@ -1,10 +1,9 @@
 # Project TO-DO List
 
 ## Frontend
-- [ ] Log in & Sign-up Page  
+- [x] Log in & Sign-up Page  
 - [ ] Each course page  
-- [ ] Each quiz page  
-- [ ] Mini Games page  
+- [ ] Each quiz/game page  
 - [ ] Progress Page  
 
 ## Backend
@@ -15,5 +14,10 @@
 
 ## Other
 - [ ] Creating the courses  
-- [ ] Creating the quizzes  
 - [ ] Creating the games  
+
+## Games
+- [ ] Letter to sign match the column
+- [ ] duolingo style letters to sign and sign to letters
+- [ ] MCQ
+- [ ] normal reading writing and maths operations
