@@ -1,7 +1,7 @@
-
 import os
 import cv2
 import sqlite3
+import threading  
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings

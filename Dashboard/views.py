@@ -10,7 +10,10 @@ def dashboard(request):
         "quiz_url": "/gamification/quiz/",
         "word_match_url": "/gamification/word-match/",
         "flashcards_url": "/gamification/flashcards/",
-        "typingGame_url": "/gamification/sign-typing-game/"
+        "typingGame_url": "/gamification/sign-typing-game/",
+        "input_url": reverse_lazy('input_text'),  
+        "text_to_sign_url": reverse_lazy('text_to_sign'),
+        "speech_to_text_url": "/speech/ab/",
     })
 
 # Signup View

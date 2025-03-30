@@ -73,9 +73,9 @@
     {{ image_urls|json_script:"asl_images" }}
     
     <script>
-        const images = JSON.parse(document.getElementById('asl_images').textContent);
-        let index = 0;
-        const imgElement = document.getElementById('asl-image');
+        // const images = JSON.parse(document.getElementById('asl_images').textContent);
+        // let index = 0;
+        // const imgElement = document.getElementById('asl-image');
     
         function showNextImage() {
             if (index < images.length) {

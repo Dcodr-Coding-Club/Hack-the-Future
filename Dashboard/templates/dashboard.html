@@ -392,17 +392,16 @@
     <h2 class="mb-3">ASL Converter</h2>
 
     <div class="menu-container">
-        <!-- Speech to Sign Button -->
-        <a href="{{ speech_to_sign_url }}" class="menu-box">
-            <img src="{% static 'images/Speech.png' %}" alt="Speech to Sign">
-            <span>Speech to Sign</span>
+        <!-- Speech to Text Button -->
+        <a href="{{ speech_to_text_url }}" class="menu-box">
+            <img src="{% static 'images/Speech.png' %}" alt="Speech to Text">
+            <span>Speech to Text</span>
         </a>
 
-        <!-- Text to Sign Button -->
-        <a href="{{ text_to_sign_url }}" class="menu-box">
-            <img src= "{% static 'images/Text.png' %}"alt="Text to Sign">
-            <span>Text to Sign</span>
-        </a>
+        <a href="{% url 'input_text' %}" class="menu-box">
+          <img src="{% static 'images/Text.png' %}" alt="Text to Sign">
+          <span>Text to Sign</span>
+      </a>
     </div>
 </div>
 
