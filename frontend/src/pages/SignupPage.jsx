@@ -84,6 +84,7 @@ function SignupPage() {
         className="relative bg-white text-gray-800 p-12 rounded-2xl shadow-lg w-full max-w-lg"
       >
         <h2 className="text-3xl font-bold text-center">Sign Up</h2>
+        <br></br>
         <p className="text-gray-600 text-center mb-6">
           🚀 Welcome, Adventurer! 🚀<br />
           Join us and embark on an exciting journey of discovery! 🌟📖

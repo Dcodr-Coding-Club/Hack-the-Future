@@ -61,6 +61,7 @@ function LoginPage() {
         className="relative bg-white text-gray-800 p-12 rounded-2xl shadow-lg w-full max-w-lg"
       >
         <h2 className="text-3xl font-bold text-center">Log In</h2>
+        <br></br>
         <p className="text-gray-600 text-center mb-6">
           🎉 Hey there, Little Explorer! 🎉<br />
           Welcome back to your magical learning world! 🚀✨<br />

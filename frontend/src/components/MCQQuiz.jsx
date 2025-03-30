@@ -108,6 +108,7 @@ const MCQQuiz = () => {
             width: open ? drawerWidth : 56,
             boxSizing: "border-box",
             transition: "width 0.3s ease",
+            marginTop: "160px"
           },
         }}
       >
@@ -120,7 +121,7 @@ const MCQQuiz = () => {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginLeft: open ? `${drawerWidth}px` : "56px" }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginLeft: open ? `${drawerWidth}px` : "56px" ,marginTop: "150px" }}>
         <Toolbar />
         {quizCompleted ? (
           <Box textAlign="center">
