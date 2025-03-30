@@ -1,0 +1,9 @@
+<h1>Your Generated Study Plan</h1>
+{% if study_plan %}
+    <pre>{{ study_plan }}</pre>
+{% else %}
+    <p>No study plan generated yet.</p>
+{% endif %}
+
+<h2>Estimated Completion Date</h2>
+<p>{{ completion_date }}</p>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Plan Generator</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f6fa;
+            --text-color: #2c3e50;
+            --border-radius: 8px;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        .study-plan {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .completion-date {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .week-block {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+
+        .week-block h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .course-name {
+            font-weight: 500;
+            color: #2c5282;
+            margin: 1rem 0;
+        }
+
+        .day-block {
+            background: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .day-block h4 {
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .day-block ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .day-block li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .day-block li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            form {
+                padding: 1rem;
+            }
+
+            .study-plan {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate Your Study Plan</h1>
+
+    <form id="studyPlanForm" method="POST">
+        {% csrf_token %}
+        <label for="skill_level">Skill Level:</label>
+        <select id="skill_level" name="skill_level">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+        </select>
+
+        <label for="learning_speed">Learning Speed:</label>
+        <select id="learning_speed" name="learning_speed">
+            <option value="Slow">Slow</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Fast">Fast</option>
+        </select>
+
+        <label for="daily_hours">Daily Hours:</label>
+        <input type="number" id="daily_hours" name="daily_hours">
+
+        <label for="preferred_days">Preferred Days (comma separated):</label>
+        <input type="text" id="preferred_days" name="preferred_days">
+
+        <button type="submit">Generate Plan</button>
+    </form>
+
+    <div id="studyPlanResult"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded');
+            const form = document.getElementById('studyPlanForm');
+            
+            form.addEventListener('submit', function(event) {
+                console.log('Form submission intercepted');
+                event.preventDefault();  // This should now work
+                
+                // Gather data from the form
+                const formData = new FormData(event.target);
+
+                // Prepare the data for submission
+                const data = {
+                    skill_level: formData.get('skill_level'),
+                    learning_speed: formData.get('learning_speed'),
+                    daily_hours: formData.get('daily_hours'),
+                    preferred_days: formData.get('preferred_days'),
+                    courses: formData.get('courses')
+                };
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                // Send the POST request to Django backend
+                fetch('/plan/generate-study-plan/', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(response => response.json())  // Expecting HTML response from the backend
+                .then(data => {
+                    const studyPlan = data.study_plan.data.study_plan;
+                    const completionDate = data.study_plan.data.expected_completion_date;
+                    
+                    let html = `
+                        <div class="study-plan">
+                            <h2>Your Study Plan</h2>
+                            <p class="completion-date">Expected Completion: ${completionDate}</p>
+                            ${Object.entries(studyPlan).map(([week, weekData]) => `
+                                <div class="week-block">
+                                    <h3>${week}</h3>
+                                    <p class="course-name">Course: ${weekData.Course}</p>
+                                    ${Object.entries(weekData).filter(([day]) => day !== 'Course').map(([day, dayData]) => `
+                                        <div class="day-block">
+                                            <h4>${day}</h4>
+                                            <p>Hours: ${dayData.Hours}</p>
+                                            <ul>
+                                                ${dayData.Tasks.map(task => `
+                                                    <li>${task}</li>
+                                                `).join('')}
+                                            </ul>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    
+                    document.getElementById('studyPlanResult').innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

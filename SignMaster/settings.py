@@ -152,3 +152,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5501",  # Your frontend (Live Server from VS Code)
     # "http://localhost:5500",
 ]
+# settings.py
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = False  # Set to True for production over HTTPS
+CSRF_TRUSTED_ORIGINS = []  # Add trusted origins if needed
