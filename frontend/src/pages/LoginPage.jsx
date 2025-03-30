@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -27,7 +29,9 @@ function LoginPage() {
       console.log("Login Response:", data);
       if (response.ok) {
         alert("Login successful!");
-        setTimeout(() => navigate("/profile"), 500);
+        localStorage.setItem("isAuthenticated", "true");
+        window.dispatchEvent(new Event("authChange"));
+        setTimeout(() => navigate("/"), 500);
       } else {
         alert(`Error: ${data.message}`);
       }

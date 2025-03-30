@@ -56,7 +56,7 @@ function SignupPage() {
       const data = await response.json();
       if (response.ok) {
         alert("Signup successful!");
-        setTimeout(() => navigate("/profile"), 500);
+        setTimeout(() => navigate("/login"), 500);
       } else {
         setErrorMessage(data.message || "Signup failed. Please try again.");
       }
