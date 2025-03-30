@@ -1,83 +1,79 @@
 {% csrf_token %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Speech to Text</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Sign</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result, #signResult {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-    <h2>Click to Record and Transcribe</h2>
-    <button id="recordButton" onclick="toggleRecording()">Start Recording</button>
+    <h2>Click to Record and Convert to Sign Language</h2>
+    <button id="recordButton" onclick="transcribeSpeech()">Start Recording</button>
     <p id="result"></p>
+    <p id="signResult"></p>
 
     <script>
-        let isRecording = false;
-        let mediaRecorder;
-        let audioChunks = [];
-
         function getCSRFToken() {
             return document.cookie.split('; ')
                 .find(row => row.startsWith('csrftoken='))?.split('=')[1];
         }
 
-        async function toggleRecording() {
+        async function transcribeSpeech() {
             const button = document.getElementById("recordButton");
+            button.innerText = "Recording...";
 
-            if (!isRecording) {
-                startRecording();
-                button.innerText = "Stop Recording";
-            } else {
-                stopRecording();
+            try {
+                const response = await fetch('/speech/transcribe/', {
+                    method: 'POST',
+                    headers: { 'X-CSRFToken': getCSRFToken() }
+                });
+
+                const data = await response.json();
+                document.getElementById("result").innerText = "Text: " + (data.transcribed_text || data.error);
+
+                if (data.transcribed_text) {
+                    convertToSign(data.transcribed_text);
+                } else {
+                    button.innerText = "Start Recording";
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("result").innerText = "Error processing request";
                 button.innerText = "Start Recording";
             }
         }
 
-        async function startRecording() {
+        async function convertToSign(text) {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                mediaRecorder = new MediaRecorder(stream);
-                audioChunks = [];
-
-                mediaRecorder.ondataavailable = event => {
-                    audioChunks.push(event.data);
-                };
-
-                mediaRecorder.onstop = async () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                    const formData = new FormData();
-                    formData.append("audio", audioBlob, "recording.wav");
-
-                    try {
-                        const response = await fetch('/speech/transcribe/', {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRFToken': getCSRFToken()
-                            },
-                            body: formData
-                        });
-
-                        const data = await response.json();
-                        document.getElementById("result").innerText = data.transcribed_text || data.error;
-                    } catch (error) {
-                        console.error("Error:", error);
-                        document.getElementById("result").innerText = "Error processing request";
-                    }
-                };
-
-                mediaRecorder.start();
-                isRecording = true;
+                const response = await fetch(`/dashboard/text-to-sign/?text=${encodeURIComponent(text)}`);
+                const data = await response.json();
+                document.getElementById("signResult").innerText = "Sign: " + (data.sign_language_output || "❓");
             } catch (error) {
-                console.error("Microphone access error:", error);
-                alert("Microphone access denied or unavailable.");
+                console.error("Error fetching sign output:", error);
+                document.getElementById("signResult").innerText = "Sign conversion failed";
             }
-        }
 
-        function stopRecording() {
-            if (mediaRecorder && isRecording) {
-                mediaRecorder.stop();
-                isRecording = false;
-            }
+            document.getElementById("recordButton").innerText = "Start Recording";
         }
     </script>
 
