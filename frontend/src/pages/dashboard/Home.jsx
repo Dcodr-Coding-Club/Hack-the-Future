@@ -29,12 +29,18 @@ export const Home = () => {
         console.error("Invalid token:", error);
       }
     }
-    
+
     // Load recent rooms
     const savedRooms = JSON.parse(localStorage.getItem("recentRooms")) || [];
     setRecentRooms(savedRooms);
   }, []);
-  
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router('/login');
+    }
+  }, [])
   const handleCreateRoom = async () => {
     if (!roomName.trim()) {
       alert("Room name cannot be empty!");
@@ -74,14 +80,14 @@ export const Home = () => {
     console.log(enteredRoomId);
     // da015c43-df07-4736-aaf2-bc28b844b001
     if (!enteredRoomId) return;
-  
+
     try {
       const response = await fetch(`http://localhost:3000/api/rooms/join/${enteredRoomId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username }), // Send username in body
       });
-  
+
       const data = await response.json();
       if (response.ok) {
         toast.success("Joined room successfully!");
@@ -92,6 +98,14 @@ export const Home = () => {
     } catch (error) {
       console.error("Error joining room:", error);
       toast.error("Failed to join room");
+    }
+  };
+
+  const handleLogout = () => {
+    const token = localStorage.getItem("token"); // Check if token exists
+    if (token) {
+      localStorage.removeItem("token"); // Clear the token
+      router("/login"); // Redirect to login page
     }
   };
 
@@ -152,6 +166,13 @@ export const Home = () => {
             </CardContent>
           </Card>
         )}
+
+        <button
+          className="bg-red-600 text-white px-4 py-2 rounded-lg"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
 
       {isModalOpen && (

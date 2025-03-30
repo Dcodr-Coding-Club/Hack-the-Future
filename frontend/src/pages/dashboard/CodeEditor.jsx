@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { WriteCode } from "../../components/Editor.jsx";
@@ -13,7 +13,14 @@ export const CodeEditor = () => {
   const [language, setLanguage] = useState("javascript");
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [activeFile, setActiveFile] = useState("");
+
+  const activeFileRef = useRef(activeFile); // Store activeFile as a ref
   const username = "YourUsername"; // Replace with actual username logic
+
+  useEffect(() => {
+    activeFileRef.current = activeFile; // Keep ref updated with latest activeFile
+  }, [activeFile]);
 
   useEffect(() => {
     // Join the room when the component mounts
@@ -23,8 +30,11 @@ export const CodeEditor = () => {
       setMessages((prev) => [...prev, newMessage]);
     });
 
-    socket.on("changeCode", (newC) => {
-      setCode(newC);
+    socket.on("changeCode", (newC, currentFile) => {
+      // Compare with ref instead of state
+      if (activeFileRef.current === currentFile) {
+        setCode(newC);
+      }
     });
 
     return () => {
@@ -35,7 +45,23 @@ export const CodeEditor = () => {
 
   const handleCodeChange = (newCode) => {
     setCode(newCode);
-    socket.emit("codeUpdate", { roomId, newCode }); // Include roomId in the emission
+    socket.emit("codeUpdate", { roomId, newCode, activeFile: activeFileRef.current }); // Ensure latest activeFile is sent
+
+    // Send a request to update the database
+    if (activeFileRef.current) {
+      fetch(`http://localhost:3000/api/file/update/${activeFileRef.current}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: newCode }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.success) {
+            console.error("Error updating file in database:", data.message);
+          }
+        })
+        .catch((error) => console.error("Error updating file:", error));
+    }
   };
 
   const handleSendButton = () => {
@@ -48,7 +74,15 @@ export const CodeEditor = () => {
   return (
     <div className="flex h-screen bg-[#0D021F]">
       {/* Sidebar */}
-      <Sidebar roomId={roomId} setCode={setCode} handleCodeChange={handleCodeChange} code={code} language={language} />
+      <Sidebar
+        roomId={roomId}
+        setCode={setCode}
+        handleCodeChange={handleCodeChange}
+        code={code}
+        language={language}
+        activeFile={activeFile}
+        setActiveFile={setActiveFile}
+      />
 
       {/* Code Editor + Chat Box Section */}
       <div className="flex flex-col flex-1">

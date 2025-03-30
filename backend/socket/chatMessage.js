@@ -21,7 +21,7 @@ export const initSocket = (server) => {
         });
 
         socket.on("codeUpdate", (data) => {
-            io.to(data.roomId).emit("changeCode", data.newCode); // Emit to specific room
+            io.to(data.roomId).emit("changeCode", data.newCode, data.activeFile); // Emit to specific room
         });
     });
 };

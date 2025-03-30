@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { FaUpload } from "react-icons/fa";
+import { toast } from "react-toastify";
 
-export const Sidebar = ({ roomId, setCode, handleCodeChange, code, language }) => {
-  const [files, setFiles] = useState([
-    "4_Mar_RegulaFalsi.c",
-    "4_Mar_RegulaFalsi.exe",
-    "18_2.c",
-    "18_2.exe"
-  ]);
+export const Sidebar = ({ roomId, setCode, handleCodeChange, code, language, activeFile, setActiveFile }) => {
+  const [files, setFiles] = useState([]);
 
   const [collaborators, setCollaborators] = useState([]);
 
+  const user = localStorage.getItem("token");
+  const decodedUser = JSON.parse(atob(user.split(".")[1]));
+
+  // ! Fetched Collaborator
   useEffect(() => {
     const fetchRoomDetails = async () => {
       try {
@@ -27,36 +27,83 @@ export const Sidebar = ({ roomId, setCode, handleCodeChange, code, language }) =
     fetchRoomDetails();
   }, [roomId]);
 
+  // ! Fetched Files 
+  useEffect(() => {
+    const fetchFiles = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/rooms/file/get/${roomId}`);
+        if (!response.ok) throw new Error("Failed to fetch Files");
+  
+        const data = await response.json();
+        console.log(data.files);
+        setFiles(data.files);  // Set the array of files in state
+      } catch (error) {
+        console.error("Error fetching files:", error);
+      }
+    };
+  
+    fetchFiles();
+  }, [roomId]);
+
   // Handles file upload
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (!file) return;
-    
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      console.log("File content:", e.target.result);
-      setCode(e.target.result);
-      handleCodeChange(e.target.result);
-      setFiles((prevFiles) =>
-        prevFiles.includes(file.name) ? prevFiles : [...prevFiles, file.name]
-      );
-    };
 
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      // console.log("File content:", e.target.result);
+
+      const fileContent = e.target.result;
+      try {
+        const response = await fetch("http://localhost:3000/api/rooms/file/upload", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            filename: file.name,
+            content: fileContent,
+            owner: decodedUser.id, // Replace with actual user ID
+            roomId, // Ensure the file is associated with the room
+          }),
+        });
+
+        const data = await response.json(); // Convert response to JSON
+
+        if (!response.ok) {
+          throw new Error(data.message || "File upload failed");
+        }
+
+        toast.success("File uploaded successfully!");
+        setFiles((prevFiles) => [...prevFiles, data.savedFile]);
+        handleCodeChange(fileContent);
+        setActiveFile(data.savedFile._id);
+        setCode(fileContent);
+      } catch (error) {
+        console.error("Error uploading file:", error);
+        toast.error(error.message || "An error occurred");
+      }
+    };
     reader.readAsText(file);
   };
-
   // Handles file selection
-  const handleFileClick = async (filename) => {
-    try {
-      const response = await fetch(`/files/${filename}`);
-      const text = await response.text();
-      setCode(text);
-      setFilename(filename);
-    } catch (error) {
-      console.error("Error loading file:", error);
-    }
+  const handleFileClick = async (file) => {
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/rooms/file/specificFile/${file._id}`);
+
+        const data = await response.json(); // Convert response to JSON
+        if (!response.ok) throw new Error("Failed to fetch single File");
+        setActiveFile(data.file._id);
+        setCode(data.file.content);
+      } catch (error) {
+        toast.error(error.message);
+        console.log(error);
+      }
   };
 
+  useEffect(() => {
+    // console.log("Updated Active File:", activeFile);
+  }, [activeFile]);
   // Function to handle file download
   const handleDownload = () => {
     console.log("Code to download:", code); // Check the code content
@@ -64,17 +111,17 @@ export const Sidebar = ({ roomId, setCode, handleCodeChange, code, language }) =
       alert("No code to download!");
       return;
     }
-    
+
     const blob = new Blob([code], { type: 'text/plain' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    
+
     // Set the download filename based on the language
     const extension = language === 'javascript' ? 'js' :
-                      language === 'python' ? 'py' :
-                      language === 'c' ? 'c' :
-                      language === 'cpp' ? 'cpp' : 'txt'; // Default to .txt if no match
-                      
+      language === 'python' ? 'py' :
+        language === 'c' ? 'c' :
+          language === 'cpp' ? 'cpp' : 'txt'; // Default to .txt if no match
+
     link.download = `code.${extension}`; // Use a default filename based on the language
     link.click();
     URL.revokeObjectURL(link.href); // Clean up
@@ -106,13 +153,13 @@ export const Sidebar = ({ roomId, setCode, handleCodeChange, code, language }) =
             className="flex items-center text-sm py-1 px-2 hover:bg-[#1E1E2F] rounded cursor-pointer"
             onClick={() => handleFileClick(file)}
           >
-            📄 {file}
+            📄 {file.filename}
           </div>
         ))}
       </div>
 
       {/* Room Info */}
-      <div 
+      <div
         className="mt-4 p-3 bg-[#1E1E2F] rounded-lg text-sm cursor-copy"
         onClick={() => navigator.clipboard.writeText(roomId)}
       >

@@ -21,7 +21,7 @@ export const WriteCode = ({ code, setCode, language, setLanguage }) => {
       {/* Code Editor */}
       <div className="flex-1 border border-[#4A00E0] rounded-lg overflow-hidden">
         <Editor
-          height="29.8rem"
+          height="25rem"
           theme="vs-dark"
           language={language}
           value={code}
