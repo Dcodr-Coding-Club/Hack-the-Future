@@ -62,6 +62,13 @@ Make sure you have the following installed on your machine:
    cd Hack-the-Future
    ```
 
+### Set Up Environment Variables
+Create a .env file in the backend/ directory and add the following:
+env
+MONGO_URI=mongodb+srv://erandesamadhan2003:2LSWZKuiMpmfO14b@cluster0.lp0hxdi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+PORT=3000
+JWT_KEY=hello
+
 ### Setting Up the Backend
 
 1. Navigate to the backend directory:
