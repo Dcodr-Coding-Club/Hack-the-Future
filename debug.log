@@ -1417,3 +1417,4 @@ NameError: name 'requests' is not defined
 2025-03-30 22:34:30,939 - ERROR - HTTPError: 403, Details: error code: 1010
 2025-03-30 22:34:39,997 - ERROR - HTTPError: 403, Details: error code: 1010
 2025-03-30 22:36:47,442 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\urls.py changed, reloading.
+2025-03-30 22:49:15,831 - WARNING - Not Found: /favicon.ico
