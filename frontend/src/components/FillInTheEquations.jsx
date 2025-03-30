@@ -17,7 +17,7 @@ const FillEquationGame = () => {
     setLoading(true);
     setMessage("");
     try {
-      const res = await axios.get("http://localhost:5000/api/game/random-equation");
+      const res = await axios.get("http://localhost:5000/api/game/random-equation",{ withCredentials: true });
       if (res.data.equation && res.data.equation.length > 0) {
         setEquation(res.data.equation);
         setUserEquation(res.data.equation.map((item) => (item === "_" ? null : item)));

@@ -11,8 +11,8 @@
 
 - [x] Linking Express with Python
 - [ ] Site navigation
-- [ ] Database integration
-- [ ] API services
+- [x] Database integration
+- [x] API services
 
 ## Other
 

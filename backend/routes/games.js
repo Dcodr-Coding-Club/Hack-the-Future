@@ -1,9 +1,10 @@
 const express = require("express");
-const router = express.Router();
 const fs = require('fs');
 const wordList = require("../JSON/words.json");  // Adjust path accordingly
 
-
+module.exports = (client) => {
+  const router = express.Router();
+  
 function generateEquation() {
   const num1 = Math.floor(Math.random() * 10) + 1;
   const num2 = Math.floor(Math.random() * 10) + 1;
@@ -208,4 +209,5 @@ router.post("/questions/validate", (req, res) => {
   });
 });
 
-module.exports = router; 
+return router;
+};

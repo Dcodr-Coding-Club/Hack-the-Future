@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const serverURL = "http://localhost:5000";
 
@@ -8,17 +9,22 @@ export default function RandomWords() {
   const [userSelection, setUserSelection] = useState([]);
   const [feedback, setFeedback] = useState("");
 
-
   // Fetch a random word from the backend
   useEffect(() => {
     fetchWord();
   }, []);
 
   async function fetchWord() {
-    const response = await fetch(`${serverURL}/api/game/random-word`);
-    const data = await response.json();
-    setCorrectWord(data.word);
-    displayShuffledLetters(data.word);
+    try {
+      const response = await axios.get(`${serverURL}/api/game/random-word`, {
+        withCredentials: true, // Ensures session data is sent
+      });
+
+      setCorrectWord(response.data.word);
+      displayShuffledLetters(response.data.word);
+    } catch (error) {
+      console.error("Error fetching word:", error);
+    }
   }
 
   // Shuffle letters and set images
@@ -47,16 +53,21 @@ export default function RandomWords() {
 
   // Check the answer
   async function checkAnswer() {
-    const response = await fetch(`${serverURL}/api/game/check-answer`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userAnswer: userSelection.map(l => l.char).join(""), correctWord }),
-    });
-  
-    const data = await response.json();
-    setFeedback(data.message); // Store result instead of alert
+    try {
+      const response = await axios.post(
+        `${serverURL}/api/game/check-answer`,
+        {
+          userAnswer: userSelection.map((l) => l.char).join(""),
+          correctWord,
+        },
+        { withCredentials: true } // Ensures authentication/session is used
+      );
+
+      setFeedback(response.data.message); // Store result instead of alert
+    } catch (error) {
+      console.error("Error validating answer:", error);
+    }
   }
-  
 
   // Reset the game
   function resetGame() {
@@ -110,9 +121,8 @@ export default function RandomWords() {
         </div>
       </div>
       <p style={{ fontSize: "18px", fontWeight: "bold", color: feedback === "Correct!" ? "green" : "red" }}>
-  {feedback}
-</p>
-
+        {feedback}
+      </p>
 
       {/* Buttons */}
       <div style={styles.buttonContainer}>
@@ -125,7 +135,6 @@ export default function RandomWords() {
         <button style={styles.button} onClick={fetchWord}>
           ⏭️ Next
         </button>
-
       </div>
     </div>
   );

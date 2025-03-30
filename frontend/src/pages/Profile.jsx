@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -7,20 +7,120 @@ const Profile = () => {
   const [hobbies, setHobbies] = useState("");
   const [profilePic, setProfilePic] = useState("/pp.png"); // Default placeholder image
   const [showEditOptions, setShowEditOptions] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfilePic(imageUrl);
+      setSelectedFile(file);
       setShowEditOptions(false);
     }
   };
 
+ const handleSubmit = async () => {
+    try {
+        // Step 1: Fetch authenticated user ID before submitting
+        const authResponse = await fetch("http://localhost:5000/api/auth/check-auth", {
+            method: "GET",
+            credentials: "include",
+        });
+
+        const authData = await authResponse.json();
+        if (!authResponse.ok || !authData.isAuthenticated) {
+            alert("User not authenticated. Please log in.");
+            return;
+        }
+
+        const userId = authData.user.user_id; // Get user_id
+        if (!userId) {
+            alert("User ID is missing. Please try again.");
+            return;
+        }
+
+        // Step 2: Create form data and include user_id
+        const formData = new FormData();
+        formData.append("user_id", userId); 
+        formData.append("name", name);
+        formData.append("location", location);
+        formData.append("age", age);
+        formData.append("hobbies", hobbies);
+
+        if (selectedFile) {
+            formData.append("profile_pic", selectedFile);
+        }
+
+        // Step 3: Submit form data
+        const response = await fetch("http://localhost:5000/api/auth/profile", {
+            method: "POST",
+            body: formData,
+            credentials: "include",
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert("Profile updated successfully!");
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error("Error updating profile:", error);
+    }
+};
+
+
+  
   const removeImage = () => {
     setProfilePic("/pp.png"); // Reset to default image
     setShowEditOptions(false);
   };
+  useEffect(() => {
+    const fetchUserAndProfile = async () => {
+        try {
+            // Step 1: Get authenticated user
+            const authResponse = await fetch("http://localhost:5000/api/auth/check-auth", {
+                method: "GET",
+                credentials: "include", // Ensures cookies are sent
+            });
+
+            const authData = await authResponse.json();
+
+            if (!authResponse.ok || !authData.isAuthenticated) {
+                console.warn("User not authenticated");
+                return;
+            }
+
+            const userId = authData.user.user_id; // Get user ID from authentication
+
+            // Step 2: Fetch Profile using user ID
+            const profileResponse = await fetch("http://localhost:5000/api/auth/profile", {
+              method: "GET",
+              credentials: "include", // Send cookies for session authentication
+          });
+            const profileData = await profileResponse.json();
+
+            if (profileResponse.ok) {
+              setUserId(profileData.user_id);
+                setName(profileData.name || "");
+                setLocation(profileData.location || "");
+                setAge(profileData.age || "");
+                setHobbies(profileData.hobbies || "");
+
+                if (profileData.profile_pic) {
+                    setProfilePic(`http://localhost:5000${profileData.profile_pic}`);
+                }
+            } else {
+                console.warn("Profile not found:", profileData.message);
+            }
+        } catch (error) {
+            console.error("Error fetching user/profile:", error);
+        }
+    };
+
+    fetchUserAndProfile();
+}, []);
 
   return (
     <div className="font-sans antialiased bg-gradient-to-br from-blue-300 to-pink-300 min-h-screen flex items-center justify-center p-8"
@@ -29,7 +129,7 @@ const Profile = () => {
         <div className="w-full md:w-1/3 flex flex-col items-center mt-16 relative"> 
           <div className="relative">
             <img
-              src={profilePic} // Corrected image reference
+              src={profilePic}
               alt="Profile"
               className="w-64 h-64 md:w-72 md:h-72 object-cover rounded-full shadow-lg border-4 border-white"
             />
@@ -38,7 +138,7 @@ const Profile = () => {
             📷 Upload Photo
             <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
           </label>
-          {profilePic !== "/pp.png" && ( // Show edit button only if not default image
+          {profilePic !== "/pp.png" && (
             <button
               onClick={() => setShowEditOptions(true)}
               className="absolute bottom-0 right-0 bg-gray-700 text-white p-2 rounded-full shadow-md hover:bg-gray-800"
@@ -77,10 +177,17 @@ const Profile = () => {
               This little superstar has already written their first short story!
             </p>
           </div>
+          {/* Save Profile Button */}
+          <button
+            onClick={handleSubmit}
+            className="mt-6 w-full bg-pink-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-pink-600 transition duration-200"
+          >
+            Save Profile
+          </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Profile;
