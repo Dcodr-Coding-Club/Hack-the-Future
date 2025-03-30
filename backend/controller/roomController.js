@@ -13,7 +13,7 @@ export const createRoom = async (req, res) => {
         }
 
         const owner = await User.findById(ownerId);
-        console.log("owner: ",owner)
+        console.log("owner: ", owner)
         if (!owner) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -63,35 +63,65 @@ export const getRoomDetails = async (req, res) => {
 
 export const joinRoom = async (req, res) => {
     try {
-      const { roomId } = req.params; // Extract roomId from URL params
-      const { username } = req.body; // Extract username from request body
-        
-      // Check if room exists
-      const room = await Room.findOne({ room_id: roomId });
-      if (!room) {
-        return res.status(404).json({ message: "Room not found" });
-      }
-  
-      // Find user by username
-      const user = await User.findById(username);
-      
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-  
-      // Ensure user is not already in the room
-      if (room.collaborators.includes(user._id)) {
+        const { roomId } = req.params; // Extract roomId from URL params
+        const { username } = req.body; // Extract username from request body
+
+        // Check if room exists
+        const room = await Room.findOne({ room_id: roomId });
+        if (!room) {
+            return res.status(404).json({ message: "Room not found" });
+        }
+
+        // Find user by username
+        const user = await User.findById(username);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Ensure user is not already in the room
+        if (room.collaborators.includes(user._id)) {
+            return res.status(200).json({ message: "Joined room successfully", room });
+        }
+
+        // Add user ID to collaborators array
+        room.collaborators.push(user._id);
+        await room.save(); // Save updated room document
+
         return res.status(200).json({ message: "Joined room successfully", room });
-      }
-  
-      // Add user ID to collaborators array
-      room.collaborators.push(user._id);
-      await room.save(); // Save updated room document
-  
-      return res.status(200).json({ message: "Joined room successfully", room });
     } catch (error) {
-      console.error("Error joining room:", error);
-      res.status(500).json({ message: "Internal Server Error" });
+        console.error("Error joining room:", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
-  };
-  
+};
+
+
+export const getRooms = async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        if (!userId) {
+            return res.status(400).json({
+                success: false,
+                message: "UserId required",
+            });
+        }
+
+        // Find rooms where the user is a collaborator
+        const rooms = await Room.find({ collaborators: userId })
+            .populate("owner", "name email") 
+            .populate("collaborators", "name email") ;
+
+        return res.status(200).json({
+            success: true,
+            rooms,
+        });
+
+    } catch (error) {
+        console.error("Error fetching rooms:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+        });
+    }
+};

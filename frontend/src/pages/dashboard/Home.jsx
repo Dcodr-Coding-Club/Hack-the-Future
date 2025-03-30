@@ -14,6 +14,7 @@ export const Home = () => {
   const [recentRooms, setRecentRooms] = useState([]);
   const [name, setName] = useState("");
   const router = useNavigate();
+  const [rooms,setRooms] = useState([]);
 
   useEffect(() => {
     // Get the token from localStorage
@@ -24,7 +25,7 @@ export const Home = () => {
         const decoded = JSON.parse(atob(token.split(".")[1]));
         if (decoded) {
           setName(decoded.username)
-          setUsername(decoded.id); // Set username
+          setUsername(decoded.id); 
         }
       } catch (error) {
         toast.error('Inavalid token');
@@ -43,6 +44,28 @@ export const Home = () => {
       router('/login');
     }
   }, [])
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/rooms/getrooms/${username}`);
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch rooms");
+        }
+  
+        const data = await response.json();
+        setRooms(data.rooms); // Update state with fetched rooms
+  
+      } catch (error) {
+        console.error("Error fetching rooms:", error);
+      }
+    };
+  
+    fetchRooms(); // Call the function
+  
+  }, [username]); 
+
   const handleCreateRoom = async () => {
     if (!roomName.trim()) {
       alert("Room name cannot be empty!");
@@ -155,13 +178,13 @@ export const Home = () => {
                 <FaFolderOpen /> Recent Rooms
               </h2>
               <ul className="space-y-2">
-                {recentRooms.map((room, index) => (
+                {rooms.map((room, index) => (
                   <li
                     key={index}
                     className="bg-[#7E3AF2] p-2 rounded-lg cursor-pointer hover:bg-[#9B51E0] transition flex items-center gap-2"
                     onClick={() => router(`/editor/${room.roomId}`)}
                   >
-                    <FaCode /> {room.roomName}
+                    <FaCode /> {room.room_name}
                   </li>
                 ))}
               </ul>
