@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Quiz
+from .models import Quiz,Leaderboard,Flashcard,WordMatchQuestion
 
 class QuizAdmin(admin.ModelAdmin):
     list_display = ('question', 'level', 'display_question_image')  
@@ -11,21 +11,13 @@ class QuizAdmin(admin.ModelAdmin):
         if obj.question_image:
             return format_html('<img src="{}" width="50" height="50" />', obj.question_image.url)
         return "No Image"
-
     display_question_image.short_description = "Question Image"
+
 
 admin.site.register(Quiz, QuizAdmin)
 
-
-from .models import WordMatchQuestion
-
 admin.site.register(WordMatchQuestion)
 
-
-from .models import Flashcard
-
 admin.site.register(Flashcard)
-
-from .models import Leaderboard
 
 admin.site.register(Leaderboard)

@@ -9,7 +9,7 @@
         #leaderboard-container { max-width: 600px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
-        th { background-color: #f4f4f4; }
+        th { background-color: #007bff; }
         h1 { margin-bottom: 20px; }
         button { margin-top: 20px; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; background-color: #007BFF; color: white; }
         button:hover { background-color: #0056b3; }
@@ -17,7 +17,7 @@
 </head>
 <body>
     <div id="leaderboard-container">
-        <h1>🏆 Leaderboard</h1>
+        <h1>🏆 Quiz Leaderboard</h1>
         <table id="leaderboard">
             <tr>
                 <th>Player</th>
@@ -26,35 +26,8 @@
         </table>
         <!-- <button onclick="fetchLeaderboard()">Refresh Leaderboard 🔄</button> -->
         <button onclick="goBack()">Back to Quiz</button>
-    </div>
-    
-    <!-- <button onclick="fetchLeaderboard('quiz')">Quiz Leaderboard</button> -->
-    <!-- <button onclick="fetchLeaderboard('word_match')">Word Match Leaderboard</button> -->
+    </div> 
     <script>
-        // function fetchLeaderboard() {
-        //     fetch("http://127.0.0.1:8000/gamification/get_leaderboard/")
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             let leaderboardTable = document.getElementById("leaderboard");
-        //             leaderboardTable.innerHTML = "<tr><th>Player</th><th>Score</th></tr>";
-
-        //             if (data.leaderboard.length === 0) {
-        //                 let row = leaderboardTable.insertRow();
-        //                 let cell = row.insertCell(0);
-        //                 cell.colSpan = 2;
-        //                 cell.innerText = "No scores yet.";
-        //                 return;
-        //             }
-
-        //             data.leaderboard.forEach(entry => {
-        //                 let row = leaderboardTable.insertRow();
-        //                 row.insertCell(0).innerText = entry.username;
-        //                 row.insertCell(1).innerText = entry.score;
-        //             });
-        //         })
-        //         .catch(error => console.error("Error fetching leaderboard:", error));
-        // }
-
         function fetchLeaderboard(gameType = "quiz") {
             fetch(`http://127.0.0.1:8000/gamification/get_leaderboard/?game_type=${gameType}`)
                 .then(response => response.json())

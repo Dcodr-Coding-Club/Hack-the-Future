@@ -1,5 +1,11 @@
 from django.http import JsonResponse
-from .models import Quiz
+from .models import Quiz,Leaderboard,WordMatchQuestion,Flashcard
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+import json
+import random
+import os
+from django.conf import settings
 
 
 def get_quiz(request, level):
@@ -24,16 +30,8 @@ def get_quiz(request, level):
     return JsonResponse({"quizzes": data})
 
 
-from django.shortcuts import render
-
 def quiz(request):
     return render(request, 'quiz.html')  # Render the quiz.html template
-
-
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
-from .models import Leaderboard
 
 @csrf_exempt
 def save_score(request):
@@ -61,32 +59,17 @@ def get_leaderboard(request):
     data = [{"username": entry.username, "score": entry.score} for entry in scores]
     return JsonResponse({"leaderboard": data})
 
-from django.shortcuts import render
-from .models import Leaderboard
-
 def leaderboard(request):
     scores = Leaderboard.objects.order_by('-score')  # Order by highest score
     return render(request, 'leaderboard.html', {'scores': scores})
-
-
-
-import random
-from django.shortcuts import render
-from .models import WordMatchQuestion
 
 def word_match_game(request):
     questions = WordMatchQuestion.objects.all() # Fetch questions from DB
     return render(request, "gamification/word-match.html", {"questions": questions})
 
 
-from django.shortcuts import render
-
 def word_match_leaderboard(request):
     return render(request, "gamification/word-match-leaderboard.html")
-
-from django.shortcuts import render
-from .models import Flashcard
-import random
 
 def flashcard_game(request):
     flashcards = Flashcard.objects.all()
@@ -100,8 +83,6 @@ def flashcard_game(request):
     return render(request, "gamification/flashcard-game.html", {"flashcards": flashcards})
 
 
-from django.views.decorators.csrf import csrf_exempt
-import json
 @csrf_exempt
 def save_flashcard_score(request):
     if request.method == "POST":
@@ -125,12 +106,6 @@ def flashcard_leaderboard(request):
     scores = Leaderboard.objects.filter(game_type="flashcard").order_by('-score', 'date')
     return render(request, "gamification/flashcard-leaderboard.html", {"scores": scores})
 
-
-import os
-import random
-from django.conf import settings
-from django.http import JsonResponse
-from django.shortcuts import render
 
 def sign_typing_game(request):
     # Path to the folder containing sign images
@@ -156,11 +131,6 @@ def sign_typing_game(request):
         })
     else:
         return JsonResponse({"error": "No images found"}, status=404)
-    
-
-from django.http import JsonResponse
-import random
-import os
 
 def get_new_question(request):
     # Assuming images are stored in 'media/quiz_images/'
@@ -178,9 +148,6 @@ def get_new_question(request):
         "image_url": f"/{image_folder}{new_image}",
         "correct_letter": correct_letter
     })
-
-from django.shortcuts import render
-from .models import Leaderboard
 
 def sign_typing_game_leaderboard(request):
     # Filter scores for the "sign_typing_game" game type
