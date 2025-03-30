@@ -67,19 +67,19 @@ def common_greetings(request):
     return render(request, 'common_greetings.html')
 
 def basic_questions(request):
-    return render(request, 'course/basic_questions.html')
+    return render(request, 'basic_questions.html')
 
 def everyday_vocabulary(request):
-    return render(request, 'course/everyday_vocabulary.html')
+    return render(request, 'vocabulary.html')
 
 def sentence_structure(request):
-    return render(request, 'course/sentence_structure.html')
+    return render(request, 'sentence_structure.html')
 
 def expressing_feelings(request):
-    return render(request, 'course/expressing_feelings.html')
+    return render(request, 'expressing_feelings.html')
 
 def advanced_grammar(request):
-    return render(request, 'course/advanced_grammar.html')
+    return render(request, 'advanced_grammar.html')
 
 def signing_speed(request):
     return render(request, 'course/signing_speed.html')

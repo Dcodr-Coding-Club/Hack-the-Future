@@ -35,7 +35,7 @@ urlpatterns = [
     path('basic_questions/', views.basic_questions, name='basic_questions'),
     path('basic-questions/', basic_questions, name='basic_questions'),
 
-    path('everyday_vocabulary/', views.everyday_vocabulary, name='everyday_vocabulary'),
+    path('vocabulary/', views.everyday_vocabulary, name='everyday_vocabulary'),
     path('sentence_structure/', views.sentence_structure, name='sentence_structure'),
     path('expressing_feelings/', views.expressing_feelings, name='expressing_feelings'),
 
