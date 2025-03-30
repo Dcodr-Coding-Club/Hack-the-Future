@@ -1,23 +1,27 @@
 # Project TO-DO List
 
 ## Frontend
-- [x] Log in & Sign-up Page  
-- [ ] Each course page  
-- [ ] Each quiz/game page  
-- [ ] Progress Page  
+
+- [x] Log in & Sign-up Page
+- [ ] Each course page
+- [ ] Each quiz/game page
+- [ ] Progress Page
 
 ## Backend
-- [x] Linking Express with Python  
-- [ ] Site navigation  
-- [ ] Database integration  
-- [ ] API services  
+
+- [x] Linking Express with Python
+- [ ] Site navigation
+- [ ] Database integration
+- [ ] API services
 
 ## Other
-- [x] Creating the courses  
-- [x] Creating the games  
+
+- [x] Creating the courses
+- [x] Creating the games
 
 ## Games
+
 - [x] Letter to sign match the column
 - [x] duolingo style letters to sign and sign to letters
-- [ ] MCQ
-- [ ] normal reading writing and maths operations
+- [x] MCQ
+- [x] normal reading writing and maths operations
