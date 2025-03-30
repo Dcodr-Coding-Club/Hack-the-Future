@@ -8,7 +8,7 @@ class Quiz(models.Model):
         ('Intermediate', 'Intermediate'),
         ('High', 'High Talented'),
     ]
-
+    
     question = models.TextField()
     question_image = models.ImageField(upload_to='quiz_images/', blank=True, null=True) 
     option1 = models.CharField(max_length=255)

@@ -410,7 +410,8 @@
     </a> {% endcomment %}
 
 
-    <a href="{{ quiz_url }}" class="menu-box">
+   
+ <a href="{{ quiz_url }}" class="menu-box">
       <img src="https://signconverter.com/assets/quiz.webp" alt="Quiz">
       <span>Quiz</span>
     </a>
@@ -431,7 +432,26 @@
   
 
   </div>
+  <div class="container text-center mt-4">
+    <h2 class="mb-3">ASL Converter</h2>
+
+    <div class="menu-container">
+        <!-- Speech to Sign Button -->
+        <a href="{{ speech_to_sign_url }}" class="menu-box">
+            <img src="{% static 'images/Speech.png' %}" alt="Speech to Sign">
+            <span>Speech to Sign</span>
+        </a>
+
+        <!-- Text to Sign Button -->
+        <a href="{{ text_to_sign_url }}" class="menu-box">
+            <img src= "{% static 'images/Text.png' %}"alt="Text to Sign">
+            <span>Text to Sign</span>
+        </a>
+    </div>
+</div>
+
   <script>
+     
 
 
     function showDetails(title, description) {
