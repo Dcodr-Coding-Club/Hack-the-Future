@@ -24,7 +24,7 @@ const MainContent = () => {
 
       <Navbar />
       <Routes>
-      <Route path="/mcq" element={<MCQQuiz />} />
+      <Route path="/practice" element={<MCQQuiz />} />
         <Route path='/dashboard/*' element={<DashboardLayout/>}/>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />

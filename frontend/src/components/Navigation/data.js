@@ -20,7 +20,7 @@ export const BtnList = [
   },
   {
     label: "Practice",
-    link: "/contact",
+    link: "/practice",
     image: linkedin,
     newTab: true,
   },
