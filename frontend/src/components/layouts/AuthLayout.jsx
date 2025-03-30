@@ -44,8 +44,8 @@ export const AuthLayout = ({ children }) => {
             </div>
 
             {/* Left Side - Content */}
-            <div className='w-1/2 h-screen px-12 pt-8 pb-12'>
-                <h2 className='text-lg font-medium text-black'>SyncIDE</h2>
+            <div className='w-1/2 h-screen px-24 pt-8 pb-12'>
+                <h2 className='text-4xl font-medium text-black'>SyncIDE</h2>
                 {children}
             </div>
         </div>
