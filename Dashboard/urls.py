@@ -8,7 +8,7 @@ from . import views
 from django.shortcuts import render
 from gamification.views import quiz,word_match_game,flashcard_game
 from .views import basic_questions
-
+from .views import vocabulary_page
 
 def redirect_to_login(request):
     return redirect('login')
@@ -35,7 +35,7 @@ urlpatterns = [
     path('basic_questions/', views.basic_questions, name='basic_questions'),
     path('basic-questions/', basic_questions, name='basic_questions'),
 
-    path('everyday_vocabulary/', views.everyday_vocabulary, name='everyday_vocabulary'),
+    path('vocabulary/', vocabulary_page, name='vocabulary'),
     path('sentence_structure/', views.sentence_structure, name='sentence_structure'),
     path('expressing_feelings/', views.expressing_feelings, name='expressing_feelings'),
 

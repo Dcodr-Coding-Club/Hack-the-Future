@@ -73,13 +73,13 @@ def everyday_vocabulary(request):
     return render(request, 'course/everyday_vocabulary.html')
 
 def sentence_structure(request):
-    return render(request, 'course/sentence_structure.html')
+    return render(request, 'sentence_structure.html')
 
 def expressing_feelings(request):
-    return render(request, 'course/expressing_feelings.html')
+    return render(request, 'expressing_feelings.html')
 
 def advanced_grammar(request):
-    return render(request, 'course/advanced_grammar.html')
+    return render(request, 'advanced_grammar.html')
 
 def signing_speed(request):
     return render(request, 'course/signing_speed.html')
@@ -101,3 +101,6 @@ def basic_questions(request):
         "How": "With fingers pointing downward and backs of fingers and knuckles touching, roll hands inward to your chest and up so that the pinky sides of your hands are touching."
     }
     return render(request, "basic_questions.html", {"questions": questions})
+
+def vocabulary_page(request):
+    return render(request, "vocabulary.html")
