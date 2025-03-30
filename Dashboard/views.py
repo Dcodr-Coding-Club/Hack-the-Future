@@ -101,3 +101,6 @@ def basic_questions(request):
         "How": "With fingers pointing downward and backs of fingers and knuckles touching, roll hands inward to your chest and up so that the pinky sides of your hands are touching."
     }
     return render(request, "basic_questions.html", {"questions": questions})
+
+def vocabulary_page(request):
+    return render(request, "vocabulary.html")

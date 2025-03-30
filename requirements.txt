@@ -7,3 +7,7 @@ django-cors-headers
 gradio
 torch
 transformers
+gdown
+mediapipe
+keras.models
+os
