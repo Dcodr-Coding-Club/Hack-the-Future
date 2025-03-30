@@ -52,7 +52,7 @@ With an intuitive UI/UX built specifically for children, *StarStream* ensures a 
 ---
 
 ## 🤝 Acknowledgments
-A huge thank you to the *hackathon organizers, mentors, and fellow participants* for this incredible opportunity to build something meaningful! 🎉  
+A huge thank you to the *hackathon organizers, mentors, and fellow participants* for this incredible opportunity to build  something meaningful! 🎉  
 
 ---
 
