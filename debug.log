@@ -1387,3 +1387,25 @@ AttributeError: 'list' object has no attribute 'split'
 2025-03-30 20:18:50,322 - ERROR - HTTPError: 403, Details: error code: 1010
 2025-03-30 20:20:52,159 - ERROR - HTTPError: 403, Details: error code: 1010
 2025-03-30 20:22:32,569 - INFO - C:\Work\Projects\HTF\Hack-the-Future\AIPlanner\views.py changed, reloading.
+2025-03-30 22:14:20,587 - ERROR - Internal Server Error: /speech/transcribe/
+Traceback (most recent call last):
+  File "C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\views.py", line 24, in record_and_transcribe
+    requests.post(input_url, json={"text": text})
+    ^^^^^^^^
+NameError: name 'requests' is not defined
+2025-03-30 22:15:42,152 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 22:22:49,096 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:23:25,704 - WARNING - Not Found: /dashboard/{}
+2025-03-30 22:23:48,051 - WARNING - Not Found: /dashboard/{}
+2025-03-30 22:24:44,944 - WARNING - Not Found: /dashboard/{}
+2025-03-30 22:24:47,541 - WARNING - Not Found: /dashboard/{}
+2025-03-30 22:29:25,434 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\Dashboard\views.py changed, reloading.

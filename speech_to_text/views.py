@@ -1,3 +1,4 @@
+
 from django.views.decorators.csrf import csrf_exempt
 import speech_recognition as sr
 from django.http import JsonResponse
@@ -18,20 +19,7 @@ def record_and_transcribe(request):
         try:
             print("Converting speech to text...")
             text = recognizer.recognize_google(audio)  # Convert speech to text
-            
-            # Step 1: Send text to Text-to-Sign input URL
-            input_url = "http://127.0.0.1:8000/dashboard/input/"
-            requests.post(input_url, json={"text": text})
-
-            # Step 2: Fetch sign representation from Text-to-Sign output URL
-            sign_url = f"http://127.0.0.1:8000/dashboard/text-to-sign/?text={text}"
-            response = requests.get(sign_url)
-
-            if response.status_code == 200:
-                sign_output = response.json().get("sign_language_output")
-                return JsonResponse({"transcribed_text": text, "sign_output": sign_output})
-            else:
-                return JsonResponse({"error": "Failed to convert text to sign"}, status=500)
+            return JsonResponse({"transcribed_text": text})
 
         except sr.UnknownValueError:
             return JsonResponse({"error": "Could not understand the audio"}, status=400)

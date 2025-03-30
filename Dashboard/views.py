@@ -14,6 +14,7 @@ def dashboard(request):
         "input_url": reverse_lazy('input_text'),  
         "text_to_sign_url": reverse_lazy('text_to_sign'),
         "speech_to_text_url": "/speech/ab/",
+        "logout_url": reverse_lazy('logout'),
     })
 
 # Signup View
