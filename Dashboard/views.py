@@ -67,10 +67,10 @@ def common_greetings(request):
     return render(request, 'common_greetings.html')
 
 def basic_questions(request):
-    return render(request, 'course/basic_questions.html')
+    return render(request, 'basic_questions.html')
 
 def everyday_vocabulary(request):
-    return render(request, 'course/everyday_vocabulary.html')
+    return render(request, 'vocabulary.html')
 
 def sentence_structure(request):
     return render(request, 'sentence_structure.html')
