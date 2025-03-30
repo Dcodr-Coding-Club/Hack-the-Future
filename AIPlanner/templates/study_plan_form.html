@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Plan Generator</title>
+    <style>
+        /* Your CSS goes here */
+    </style>
+</head>
+<body>
+    <h1>Generate Your Study Plan</h1>
+
+    <form id="studyPlanForm" method="POST" action="{% url 'AIPlanner:generate_study_plan' %}">
+        {% csrf_token %}
+        <label for="skill_level">Skill Level:</label>
+        <select id="skill_level" name="skill_level">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+        </select>
+
+        <label for="learning_speed">Learning Speed:</label>
+        <select id="learning_speed" name="learning_speed">
+            <option value="Slow">Slow</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Fast">Fast</option>
+        </select>
+
+        <label for="daily_hours">Daily Hours:</label>
+        <input type="number" id="daily_hours" name="daily_hours">
+
+        <label for="preferred_days">Preferred Days (comma separated):</label>
+        <input type="text" id="preferred_days" name="preferred_days">
+
+        <button type="submit">Generate Plan</button>
+    </form>
+
+    <div id="studyPlanResult"></div>
+
+    <script>
+        document.getElementById('studyPlanForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Gather data from the form
+            const formData = new FormData(event.target);
+
+            // Prepare the data for submission
+            const data = {
+                skill_level: formData.get('skill_level'),
+                learning_speed: formData.get('learning_speed'),
+                daily_hours: formData.get('daily_hours'),
+                preferred_days: formData.get('preferred_days'),
+                courses: formData.get('courses')
+            };
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            // Send the POST request to Django backend
+            fetch('/plan/generate-study-plan/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.text())  // Expecting HTML response from the backend
+            .then(data => {
+                // Display the result on the page
+                document.getElementById('studyPlanResult').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
