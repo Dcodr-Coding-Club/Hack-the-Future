@@ -56,11 +56,4 @@ A huge thank you to the *hackathon organizers, mentors, and fellow participants*
 
 ---
 
-## 📬 Contact Us
-📧 *Email:* [your-email@example.com](mailto:your-email@example.com)  
-🔗 *GitHub Repo:* [GitHub Link](#) (Add repository link)  
-🌐 *Website:* [Project Website](#) (If deployed)  
-
----
-
 ⭐ StarStream - Enabling Every Child to Learn & Thrive! ⭐
