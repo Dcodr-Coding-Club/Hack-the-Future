@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import { About, Contact, Home, Projects, Profile , Aboutus } from "./pages"; // Import Profile Page
 import DashboardLayout from "./components/DashboardLayout";
+import MCQQuiz from "./components/MCQQuiz";
 const App = () => {
   return (
     <Router>
@@ -23,6 +24,7 @@ const MainContent = () => {
 
       <Navbar />
       <Routes>
+      <Route path="/mcq" element={<MCQQuiz />} />
         <Route path='/dashboard/*' element={<DashboardLayout/>}/>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
