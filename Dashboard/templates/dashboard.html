@@ -256,10 +256,64 @@
     </div>
   </nav>
 
-  <div class="content container mt-5">
-    <h2>Welcome to ASL Learning</h2>
-    <p>Select your learning level to begin your journey.</p>
+  
+  <!-- Full-screen Watermark -->
+  {% comment %} <div class="watermark">
+    <img src="{% static 'images\logo_signMaster.png' %}" alt="Logo">
+    <div class="title">SignMaster</div>
+    <div class="subtitle">Bridging Silence, Empowering Learning</div>
+   
+  </div> {% endcomment %}
+  
+
+  <div class="container text-center mt-4">
+    <h2 class="mb-3">Select your learning level to begin your journey.</h2>
   </div>
+
+  {% comment %} <div class="learning-boxes">
+    <!-- Beginner Level -->
+    <div class="learning-box" onclick="showDetails('Beginner', 'Learn basic ASL skills.')">
+      <a href="{% url 'start_progress' 'beginner' %}">Beginner</a>
+      <small>"Basic Communication & Daily Life"</small>
+      <ul>
+        <li><a href="{% url 'alphabets' %}">ASL Alphabet</a></li>
+        <li><a href="{% url 'numbers' %}">Numbers</a></li>
+        <li><a href="{% url 'common_greetings' %}">Common Greetings</a></li>
+        <li><a href="{% url 'basic_questions' %}">Basic Questions</a></li>
+      </ul>
+    </div>
+
+    <!-- Intermediate Level -->
+    <div class="learning-box" onclick="showDetails('Intermediate', 'Improve fluency and expressions.')">
+      Intermediate Level
+      <small>"Expressive ASL & Social Conversations"</small>
+      <ul>
+        <li><a href="{% url 'vocabulary' %}">Everyday Vocabulary</a></li>
+        <li><a href="{% url 'sentence_structure' %}">Basic Sentence Structure</a></li>
+        <li><a href="{% url 'expressing_feelings' %}">Expressing Yes/No & Feelings</a></li>
+      </ul>
+    </div>
+
+    <!-- Advanced Level -->
+    <div class="learning-box" onclick="showDetails('Advanced', 'Master ASL storytelling and grammar.')">
+      Advanced Level
+      <small>"Storytelling & Conversation Fluency"</small>
+      <ul>
+        <li><a href="{% url 'advanced_grammar' %}">Advanced Grammar</a></li>
+        <li><a href="{% url 'signing_speed' %}">Improving Signing Speed</a></li>
+        <li><a href="{% url 'storytelling' %}">ASL Storytelling</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Course Detail Popup -->
+  <div id="courseDetail" class="course-detail">
+    <span class="close-btn" onclick="hideDetails()">&times;</span>
+    <h3 id="courseTitle"></h3>
+    <p id="courseDescription"></p>
+  </div>
+ {% endcomment %}
+
 
  <div class="learning-container">
   <!-- Buttons for Levels -->
@@ -302,6 +356,9 @@
 </div>
 
   <!-- Menu Section -->
+  <div class="container text-center mt-4">
+  <h2 class="mb-3">Fun & Learn Zone!</h2>
+</div>
   <div class="menu-container">
     
  <a href="{{ quiz_url }}" class="menu-box">
