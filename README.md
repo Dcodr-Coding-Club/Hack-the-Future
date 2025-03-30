@@ -1,71 +1,126 @@
-# Hack the Future | Horizon 2025, IIITV-ICD
+# SyncIDE (Real-Time Collaborative Code Editor)
 
-Welcome to **Hack the Future**, the 36-hour online hackathon organized by Coding Club DCodr as part of **Horizon 2025**, the annual technical fest of **IIITV-ICD**. This is your chance to collaborate, innovate, and build creative solutions to real-world problems.
+## Team Name: Overflow.exe
 
-**Once the hackathon begins, please follow the instructions below carefully.**
+### Team Members:
+- Samadhan Erande
+- Sakshi
+- Gungun Agarwal
+- Kartik Rathod
+- Atharva Patil
 
----
+## Project Description
+SyncIDE is a real-time collaborative code editor that allows multiple users to work on code simultaneously. Users can create or join coding sessions using unique room IDs, enabling seamless collaboration and communication. The application supports various programming languages and features a user-friendly interface for coding, file management, and real-time updates. Additionally, it includes live voice chat and a chatbox for enhanced communication among collaborators.
 
-## **Instructions for Participants**
+### Features
+- **Real-Time Collaboration**: Work with others in real-time on the same codebase.
+- **Room Management**: Create and join rooms using unique IDs.
+- **File Upload and Download**: Upload existing code files and download your work.
+- **Language Support**: Supports multiple programming languages including JavaScript, Python, C, and C++.
+- **Live Voice Chat**: Communicate with collaborators through voice chat during coding sessions.
+- **Chatbox**: Engage in text-based conversations with team members while working on code.
+- **User-Friendly Interface**: Intuitive design for easy navigation and coding.
 
-### ✅ **Step 1: Fork the Repository**
-1. Once problem statements are available. Click the **Fork** button at the top right corner to create a copy of this repository in your GitHub account.
-2. Clone the forked repository to your local machine using the command:
+### Technologies Used
+- **Frontend**:
+  - React.js
+  - Socket.io
+  - Monaco Editor
+  - Tailwind CSS
+  - Toaster (for notifications)
+- **Backend**:
+  - Node.js
+  - Express.js
 
-```bash
-git clone <your-forked-repo-link>
-```
 
-### ✅ **Step 2: Select a Problem Statement**
-- Review the provided problem statements in the PROBLEMS.md.
-- Choose any one problem statement to work on.
-- Work directly on the `main` branch to ensure your final work is on the main branch, as the organizers will evaluate your project every 6 hours.
+# SyncIDE
 
-### ✅ **Step 3: Project Development**
-- Develop your project locally.
-- Commit your changes frequently with meaningful messages:
+## Getting Started
 
-```bash
-git add .
-git commit -m "Initial commit with base project setup"
-```
+Follow these steps to run the SyncIDE project locally after cloning it from GitHub.
 
-- Push your changes to your forked repository:
+### Prerequisites
 
-```bash
-git push origin main
-```
+Make sure you have the following installed on your machine:
 
-### ✅ **Step 4: Submission**
-1. Create a **Pull Request (PR)** to this repository before the hackathon ends.
-2. Your repository should contain:
-    - `README.md`: Instructions to run your project.
-    - Source code and necessary files.
-    - Documentation (if any).
-3. 4-5 Page PPT Presentation summarizing your solution to make it easier for judges to evaluate.
-   -  Slide 1: Title, team name, and problem statement.
-   -  Slide 2: Objective and solution overview.
-   -  Slide 3: Key features and technologies used.
-   -  Slide 4: solutions implemented.
-   -  Slide 5: Challenges faced.
+- [Node.js](https://nodejs.org/) (version 14 or higher)
+- [MongoDB](https://www.mongodb.com/) (for the backend database)
+- [Git](https://git-scm.com/) (for cloning the repository)
 
-⚠️ **Note:** Only PRs submitted before the hackathon deadline will be considered. Late submissions will not be accepted.
+### Cloning the Repository
 
----
+1. Open your terminal or command prompt.
+2. Clone the repository using the following command:
 
-## 🔍 **Evaluation Criteria**
-- **Innovation & Creativity:** Uniqueness and originality of the solution.
-- **Functionality & Implementation:** Proper execution and working functionality.
-- **Code Quality:** Clean, readable, and maintainable code.
-- **Presentation & Documentation:** Clear instructions and explanations.
+   ```bash
+   git clone https://github.com/your-username/Hack-the-Future.git
+   ```
 
----
+3. Navigate to the project directory:
 
-## ⏱️ **Hackathon Timeline**
-- **Start:** [28/03/2025 5PM]
-- **End:** [30/03/2025 5AM]
-- **Duration:** 36 hours (continuous online mode)
+   ```bash
+   cd Hack-the-Future
+   ```
 
----
+### Set Up Environment Variables
+Create a .env file in the backend/ directory and add the following:
+env
+MONGO_URI=mongodb+srv://erandesamadhan2003:2LSWZKuiMpmfO14b@cluster0.lp0hxdi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+PORT=3000
+JWT_KEY=hello
 
-🚀 **Good luck and happy hacking!** 🎯
+### Setting Up the Backend
+
+1. Navigate to the backend directory:
+
+   ```bash
+   cd backend
+   ```
+
+2. Install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the `backend` directory and add your MongoDB connection string:
+
+   ```plaintext
+   MONGODB_URI=your_mongodb_connection_string
+   PORT=5000
+   ```
+
+4. Start the backend server:
+
+   ```bash
+   npm start
+   ```
+
+### Setting Up the Frontend
+
+1. Open a new terminal window and navigate to the frontend directory:
+
+   ```bash
+   cd frontend
+   ```
+
+2. Install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the frontend development server:
+
+   ```bash
+   npm start
+   ```
+
+### Accessing the Application
+
+- Open your web browser and go to `http://localhost:3000` to access the SyncIDE application.
+
+### Additional Notes
+
+- Ensure that your MongoDB server is running before starting the backend.
+- If you encounter any issues, check the console for error messages and ensure all dependencies are installed correctly.
