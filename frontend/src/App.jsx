@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Navigation from "./components/Navigation";
+import Progress from "./components/src/progress";
 import { Navbar } from "./components";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -30,7 +31,8 @@ const MainContent = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/Aboutus" element={<Aboutus />} /> {/* Add Profile Route */}
+        <Route path="/Aboutus" element={<Aboutus />} /> 
+        <Route path="/progress" element={<Progress />} />{/* Add Profile Route */}
       </Routes>
     </main>
   );
