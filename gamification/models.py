@@ -25,22 +25,13 @@ class Quiz(models.Model):
     def __str__(self):
         return f"{self.level} - {self.question}"
 
-
-# class Leaderboard(models.Model):
-#     username = models.CharField(max_length=50)
-#     score = models.IntegerField()
-#     date = models.DateTimeField(auto_now_add=True)
-
-#     def __str__(self):
-#         return f"{self.username} - {self.score}"
-
-
 from django.db import models
 class Leaderboard(models.Model):
     GAME_CHOICES = [
         ('quiz', 'Quiz'),
         ('word_match', 'Word Match'),
         ('flashcard', 'Flashcard'),
+         ('sign_typing_game', 'Sign Typing Game'),  # Added game type
     ]
 
     username = models.CharField(max_length=50)
@@ -81,3 +72,15 @@ class FlashcardScore(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.score} points"
+
+
+from django.db import models
+
+class SignTypingGame(models.Model):
+    username = models.CharField(max_length=100)
+    score = models.IntegerField(default=0)
+    time_taken = models.FloatField()
+    date_played = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.username} - {self.score}"
