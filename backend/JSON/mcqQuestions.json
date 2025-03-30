@@ -1,0 +1,392 @@
+[
+    {
+      "id": 1,
+      "question": "What is 2 + 3?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "correct_option": 1,
+      "category": "Maths",
+      "subcategory": "Addition"
+    },
+    {
+      "id": 2,
+      "question": "What comes after the number 7?",
+      "options": [
+        "6",
+        "8",
+        "9",
+        "10"
+      ],
+      "correct_option": 1,
+      "category": "Maths",
+      "subcategory": "Number Sequence"
+    },
+    {
+      "id": 3,
+      "question": "How many sides does a triangle have?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "correct_option": 1,
+      "category": "Maths",
+      "subcategory": "Shapes"
+    },
+    {
+      "id": 4,
+      "question": "What is 5 - 2?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_option": 2,
+      "category": "Maths",
+      "subcategory": "Subtraction"
+    },
+    {
+      "id": 5,
+      "question": "Which number is the smallest?",
+      "options": [
+        "9",
+        "3",
+        "7",
+        "5"
+      ],
+      "correct_option": 1,
+      "category": "Maths",
+      "subcategory": "Comparison"
+    },
+    {
+      "id": 6,
+      "question": "How many legs does a dog have?",
+      "options": [
+        "2",
+        "4",
+        "6",
+        "8"
+      ],
+      "correct_option": 1,
+      "category": "Maths",
+      "subcategory": "Counting"
+    },
+    {
+      "id": 7,
+      "question": "What shape has four equal sides?",
+      "options": [
+        "Circle",
+        "Triangle",
+        "Square",
+        "Rectangle"
+      ],
+      "correct_option": 2,
+      "category": "Maths",
+      "subcategory": "Shapes"
+    },
+    {
+      "id": 8,
+      "question": "What is 1 more than 6?",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "correct_option": 2,
+      "category": "Maths",
+      "subcategory": "Addition"
+    },
+    {
+      "id": 9,
+      "question": "Which is an even number?",
+      "options": [
+        "3",
+        "5",
+        "6",
+        "7"
+      ],
+      "correct_option": 2,
+      "category": "Maths",
+      "subcategory": "Even and Odd Numbers"
+    },
+    {
+      "id": 10,
+      "question": "How many fingers do you have on one hand?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correct_option": 2,
+      "category": "Maths",
+      "subcategory": "Counting"
+    },
+    {
+      "id": 11,
+      "question": "What is the color of the sky on a clear day?",
+      "options": [
+        "Red",
+        "Blue",
+        "Green",
+        "Yellow"
+      ],
+      "correct_option": 1,
+      "category": "General Knowledge",
+      "subcategory": "Nature"
+    },
+    {
+      "id": 12,
+      "question": "Which animal is known as the 'King of the Jungle'?",
+      "options": [
+        "Tiger",
+        "Elephant",
+        "Lion",
+        "Zebra"
+      ],
+      "correct_option": 2,
+      "category": "General Knowledge",
+      "subcategory": "Animals"
+    },
+    {
+      "id": 13,
+      "question": "How many days are there in a week?",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "correct_option": 2,
+      "category": "General Knowledge",
+      "subcategory": "Time"
+    },
+    {
+      "id": 14,
+      "question": "Which fruit is known as the 'King of Fruits'?",
+      "options": [
+        "Banana",
+        "Apple",
+        "Mango",
+        "Grapes"
+      ],
+      "correct_option": 2,
+      "category": "General Knowledge",
+      "subcategory": "Fruits"
+    },
+    {
+      "id": 15,
+      "question": "What do we call a baby dog?",
+      "options": [
+        "Kitten",
+        "Puppy",
+        "Cub",
+        "Calf"
+      ],
+      "correct_option": 1,
+      "category": "General Knowledge",
+      "subcategory": "Animals"
+    },
+    {
+      "id": 16,
+      "question": "Which part of the body helps us to see?",
+      "options": [
+        "Ears",
+        "Nose",
+        "Eyes",
+        "Mouth"
+      ],
+      "correct_option": 2,
+      "category": "General Knowledge",
+      "subcategory": "Body Parts"
+    },
+    {
+      "id": 17,
+      "question": "How many wheels does a bicycle have?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct_option": 1,
+      "category": "General Knowledge",
+      "subcategory": "Transport"
+    },
+    {
+      "id": 18,
+      "question": "What is the capital of India?",
+      "options": [
+        "Mumbai",
+        "Kolkata",
+        "New Delhi",
+        "Chennai"
+      ],
+      "correct_option": 2,
+      "category": "General Knowledge",
+      "subcategory": "Geography"
+    },
+    {
+      "id": 19,
+      "question": "Which planet do we live on?",
+      "options": [
+        "Mars",
+        "Venus",
+        "Earth",
+        "Jupiter"
+      ],
+      "correct_option": 2,
+      "category": "General Knowledge",
+      "subcategory": "Space"
+    },
+    {
+      "id": 20,
+      "question": "Which month comes after February?",
+      "options": [
+        "January",
+        "March",
+        "April",
+        "May"
+      ],
+      "correct_option": 1,
+      "category": "General Knowledge",
+      "subcategory": "Months of the Year"
+    },
+    {
+      "id": 21,
+      "question": "What is the first letter of the alphabet?",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "correct_option": 0,
+      "category": "English",
+      "subcategory": "Alphabet"
+    },
+    {
+      "id": 22,
+      "question": "What is the opposite of 'big'?",
+      "options": [
+        "Small",
+        "Tall",
+        "Wide",
+        "Heavy"
+      ],
+      "correct_option": 0,
+      "category": "English",
+      "subcategory": "Opposites"
+    },
+    {
+      "id": 23,
+      "question": "Which of these is a vowel?",
+      "options": [
+        "B",
+        "C",
+        "A",
+        "D"
+      ],
+      "correct_option": 2,
+      "category": "English",
+      "subcategory": "Alphabet"
+    },
+    {
+      "id": 24,
+      "question": "What do we put at the end of a sentence?",
+      "options": [
+        "Comma",
+        "Question Mark",
+        "Period",
+        "Colon"
+      ],
+      "correct_option": 2,
+      "category": "English",
+      "subcategory": "Grammar"
+    },
+    {
+      "id": 25,
+      "question": "What is the plural of 'cat'?",
+      "options": [
+        "Cats",
+        "Cates",
+        "Catis",
+        "Catt"
+      ],
+      "correct_option": 0,
+      "category": "English",
+      "subcategory": "Plurals"
+    },
+    {
+      "id": 26,
+      "question": "Which word starts with 'B'?",
+      "options": [
+        "Apple",
+        "Ball",
+        "Cat",
+        "Dog"
+      ],
+      "correct_option": 1,
+      "category": "English",
+      "subcategory": "Words and Letters"
+    },
+    {
+      "id": 27,
+      "question": "Which of these is a noun?",
+      "options": [
+        "Run",
+        "Happy",
+        "Table",
+        "Quickly"
+      ],
+      "correct_option": 2,
+      "category": "English",
+      "subcategory": "Grammar"
+    },
+    {
+      "id": 28,
+      "question": "What sound does a 'C' make in 'Cat'?",
+      "options": [
+        "Sss",
+        "Kuh",
+        "Mmm",
+        "Puh"
+      ],
+      "correct_option": 1,
+      "category": "English",
+      "subcategory": "Phonics"
+    },
+    {
+      "id": 29,
+      "question": "Which word is a color?",
+      "options": [
+        "Jump",
+        "Blue",
+        "Sing",
+        "Soft"
+      ],
+      "correct_option": 1,
+      "category": "English",
+      "subcategory": "Vocabulary"
+    },
+    {
+      "id": 30,
+      "question": "Which sentence is correct?",
+      "options": [
+        "The cat is sleeping.",
+        "Cat the sleeping is.",
+        "Sleeping cat the is.",
+        "The sleeping is cat."
+      ],
+      "correct_option": 0,
+      "category": "English",
+      "subcategory": "Sentence Structure"
+    }
+  ]
