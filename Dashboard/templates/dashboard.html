@@ -286,7 +286,7 @@
   {% comment %} <div class="learning-boxes">
     <!-- Beginner Level -->
     <div class="learning-box" onclick="showDetails('Beginner', 'Learn basic ASL skills.')">
-      Beginner Level
+      <a href="{% url 'start_progress' 'beginner' %}">Beginner</a>
       <small>"Basic Communication & Daily Life"</small>
       <ul>
         <li><a href="{% url 'alphabets' %}">ASL Alphabet</a></li>
