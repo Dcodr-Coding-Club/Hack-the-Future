@@ -1571,3 +1571,8 @@ requests.exceptions.JSONDecodeError: Expecting value: line 3 column 1 (char 2)
 2025-03-30 22:22:22,343 - WARNING - Bad Request: /speech/transcribe/
 2025-03-30 22:23:47,859 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
 2025-03-30 22:24:10,089 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 23:18:38,541 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 23:21:32,391 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 23:27:45,211 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 23:28:01,527 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\urls.py changed, reloading.
+2025-03-30 23:29:24,400 - WARNING - Bad Request: /speech/transcribe/
