@@ -1387,34 +1387,187 @@ AttributeError: 'list' object has no attribute 'split'
 2025-03-30 20:18:50,322 - ERROR - HTTPError: 403, Details: error code: 1010
 2025-03-30 20:20:52,159 - ERROR - HTTPError: 403, Details: error code: 1010
 2025-03-30 20:22:32,569 - INFO - C:\Work\Projects\HTF\Hack-the-Future\AIPlanner\views.py changed, reloading.
-2025-03-30 22:14:20,587 - ERROR - Internal Server Error: /speech/transcribe/
+2025-03-30 21:19:15,567 - WARNING - Not Found: /favicon.ico
+2025-03-30 21:19:39,313 - ERROR - Internal Server Error: /speech/transcribe/
 Traceback (most recent call last):
-  File "C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
     response = get_response(request)
                ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
     return view_func(request, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\views.py", line 24, in record_and_transcribe
+  File "C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py", line 24, in record_and_transcribe
     requests.post(input_url, json={"text": text})
     ^^^^^^^^
-NameError: name 'requests' is not defined
-2025-03-30 22:15:42,152 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\views.py changed, reloading.
-2025-03-30 22:22:49,096 - WARNING - Bad Request: /speech/transcribe/
-2025-03-30 22:23:25,704 - WARNING - Not Found: /dashboard/{}
-2025-03-30 22:23:48,051 - WARNING - Not Found: /dashboard/{}
-2025-03-30 22:24:44,944 - WARNING - Not Found: /dashboard/{}
-2025-03-30 22:24:47,541 - WARNING - Not Found: /dashboard/{}
-2025-03-30 22:29:25,434 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\Dashboard\views.py changed, reloading.
-2025-03-30 22:29:53,698 - WARNING - Not Found: /dashboard/{}
-2025-03-30 22:34:03,267 - ERROR - HTTPError: 403, Details: error code: 1010
-2025-03-30 22:34:09,585 - ERROR - HTTPError: 403, Details: error code: 1010
-2025-03-30 22:34:21,390 - DEBUG - Trigger Block Response: {"data":{"study_plan":{"Week 1":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Introduction to Basic Communication","Common Greetings and Phrases","Understanding Daily Life Vocabulary"]}},"Week 2":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Basic Sentence Structure","Conversational Practice","Role-playing Daily Scenarios"]}},"Week 3":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Listening Comprehension Exercises","Simple Reading Tasks","Review and Practice of Previous Lessons"]}},"Week 4":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Interactive Speaking Activities","Basic Writing Exercises","Daily Life Conversations"]}},"Week 5":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Advanced Vocabulary Building","Complex Sentence Formation","Final Review and Assessment"]}}},"expected_completion_date":"End of Week 5"},"success":true}
-2025-03-30 22:34:22,180 - ERROR - HTTPError: 403, Details: error code: 1010
-2025-03-30 22:34:30,939 - ERROR - HTTPError: 403, Details: error code: 1010
-2025-03-30 22:34:39,997 - ERROR - HTTPError: 403, Details: error code: 1010
-2025-03-30 22:36:47,442 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\urls.py changed, reloading.
-2025-03-30 22:49:15,831 - WARNING - Not Found: /favicon.ico
+NameError: name 'requests' is not defined. Did you mean: 'request'?
+2025-03-30 21:19:39,317 - ERROR - Internal Server Error: /speech/transcribe/
+Traceback (most recent call last):
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py", line 24, in record_and_transcribe
+    requests.post(input_url, json={"text": text})
+    ^^^^^^^^
+NameError: name 'requests' is not defined. Did you mean: 'request'?
+2025-03-30 21:21:04,986 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 21:21:30,384 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 21:21:30,464 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 21:21:46,661 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 21:21:46,679 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:21:46,683 - DEBUG - http://127.0.0.1:8000 "POST /dashboard/input/ HTTP/1.1" 404 9703
+2025-03-30 21:21:46,687 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 21:21:46,709 - WARNING - Not Found: /dashboard/text-to-sign/
+2025-03-30 21:21:46,713 - DEBUG - http://127.0.0.1:8000 "GET /dashboard/text-to-sign/?text=hello%20hello HTTP/1.1" 404 9742
+2025-03-30 21:21:46,716 - ERROR - Internal Server Error: /speech/transcribe/
+2025-03-30 21:24:46,968 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:24:47,984 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:24:50,316 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:24:53,783 - WARNING - Not Found: /input
+2025-03-30 21:24:56,447 - WARNING - Not Found: /input
+2025-03-30 21:25:17,690 - WARNING - Not Found: /text-to-sign
+2025-03-30 21:26:15,695 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:26:16,822 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:26:48,643 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:26:50,129 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:26:59,832 - WARNING - Not Found: /login/dashboard/input
+2025-03-30 21:28:03,047 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:28:05,210 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:35:38,520 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:35:43,210 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:40:23,800 - WARNING - Not Found: /dashboard/input/
+2025-03-30 21:40:47,880 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\Dashboard\views.py changed, reloading.
+2025-03-30 21:41:20,738 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 21:41:35,892 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 21:42:11,539 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 21:42:11,584 - WARNING - Forbidden (CSRF cookie not set.): /input/
+2025-03-30 21:42:11,585 - DEBUG - http://127.0.0.1:8000 "POST /input/ HTTP/1.1" 403 2855
+2025-03-30 21:42:11,588 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 21:42:11,594 - DEBUG - http://127.0.0.1:8000 "GET /text-to-sign/?text=hello%20hello%20hello HTTP/1.1" 200 1916
+2025-03-30 21:42:11,639 - ERROR - Internal Server Error: /speech/transcribe/
+Traceback (most recent call last):
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\models.py", line 971, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 3 column 1 (char 2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py", line 32, in record_and_transcribe
+    sign_output = response.json().get("sign_language_output")
+                  ^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\models.py", line 975, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 3 column 1 (char 2)
+2025-03-30 21:42:19,112 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 21:42:19,115 - WARNING - Forbidden (CSRF cookie not set.): /input/
+2025-03-30 21:42:19,116 - DEBUG - http://127.0.0.1:8000 "POST /input/ HTTP/1.1" 403 2855
+2025-03-30 21:42:19,118 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 21:42:19,124 - DEBUG - http://127.0.0.1:8000 "GET /text-to-sign/?text=Achcha%20error%20a%20raha%20hai HTTP/1.1" 200 2080
+2025-03-30 21:42:19,147 - ERROR - Internal Server Error: /speech/transcribe/
+Traceback (most recent call last):
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\models.py", line 971, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 3 column 1 (char 2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py", line 32, in record_and_transcribe
+    sign_output = response.json().get("sign_language_output")
+                  ^^^^^^^^^^^^^^^
+  File "C:\Users\YASHVI KHATRI\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\models.py", line 975, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 3 column 1 (char 2)
+2025-03-30 21:45:26,270 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 21:46:10,404 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 21:46:10,411 - WARNING - Forbidden (CSRF cookie not set.): /input/
+2025-03-30 21:46:10,414 - DEBUG - http://127.0.0.1:8000 "POST /input/ HTTP/1.1" 403 2855
+2025-03-30 21:46:10,415 - ERROR - Internal Server Error: /speech/transcribe/
+2025-03-30 21:46:13,542 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 21:48:33,331 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 21:49:13,773 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 21:49:21,329 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 21:49:21,337 - WARNING - Forbidden (CSRF cookie not set.): /input/
+2025-03-30 21:49:21,339 - DEBUG - http://127.0.0.1:8000 "POST /input/ HTTP/1.1" 403 2855
+2025-03-30 21:49:21,340 - ERROR - Internal Server Error: /speech/transcribe/
+2025-03-30 21:52:52,995 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 21:52:55,887 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 21:53:43,832 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /input/
+2025-03-30 21:53:46,464 - WARNING - Forbidden (CSRF token from the 'X-Csrftoken' HTTP header has incorrect length.): /input/
+2025-03-30 21:54:05,280 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 21:54:05,348 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 21:57:02,493 - WARNING - Method Not Allowed: /speech/transcribe/
+2025-03-30 21:57:04,810 - WARNING - Method Not Allowed: /speech/transcribe/
+2025-03-30 21:58:00,709 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 21:58:01,227 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 21:58:01,935 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:03:25,183 - WARNING - Method Not Allowed: /speech/transcribe/
+2025-03-30 22:07:52,973 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 22:07:52,979 - WARNING - Forbidden (CSRF cookie not set.): /input/
+2025-03-30 22:07:52,980 - DEBUG - http://127.0.0.1:8000 "POST /input/ HTTP/1.1" 403 2855
+2025-03-30 22:07:52,981 - ERROR - Internal Server Error: /speech/transcribe/
+2025-03-30 22:08:31,576 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:09:27,391 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 22:09:27,397 - WARNING - Forbidden (CSRF cookie not set.): /input/
+2025-03-30 22:09:27,399 - DEBUG - http://127.0.0.1:8000 "POST /input/ HTTP/1.1" 403 2855
+2025-03-30 22:09:27,400 - ERROR - Internal Server Error: /speech/transcribe/
+2025-03-30 22:09:38,825 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:11:50,763 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:11:54,795 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:12:13,337 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:12:23,528 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:16:21,397 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:8000
+2025-03-30 22:16:21,402 - WARNING - Forbidden (CSRF cookie not set.): /input/
+2025-03-30 22:16:21,404 - DEBUG - http://127.0.0.1:8000 "POST /input/ HTTP/1.1" 403 2855
+2025-03-30 22:16:21,405 - ERROR - Internal Server Error: /speech/transcribe/
+2025-03-30 22:16:34,508 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:20:53,873 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:22:22,310 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:22:22,343 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 22:23:47,859 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
+2025-03-30 22:24:10,089 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture-Upaay\Hack-the-Future\speech_to_text\views.py changed, reloading.
