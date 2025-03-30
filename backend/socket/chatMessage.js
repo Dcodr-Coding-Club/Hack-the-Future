@@ -1,4 +1,6 @@
 import { Server } from "socket.io";
+import { Message } from "../modules/Message.js"; // Import Message model
+
 
 export const initSocket = (server) => { 
     const io = new Server(server, {
@@ -11,13 +13,24 @@ export const initSocket = (server) => {
     io.on("connection", (socket) => {
         console.log(`User Connected: ${socket.id}`);
 
-        socket.on("joinRoom", (roomId) => {
+        socket.on("joinRoom", async (roomId) => {
             socket.join(roomId); // Join the specific room
             console.log(`User ${socket.id} joined room ${roomId}`);
+
+            // Fetch and send previous messages when a user joins
+            const messages = await Message.find({ roomId }).sort({ timestamp: 1 });
+            socket.emit("previousMessages", messages);
         });
 
-        socket.on("send_message", (data) => {
-            io.to(data.roomId).emit("receivedmessage", { username: data.username, message: data.message }); // Emit to specific room with username
+        socket.on("send_message", async (data) => {
+            const { roomId, username, message } = data;
+            
+            // Store message in database
+            const newMessage = new Message({ roomId, username, message });
+            await newMessage.save();
+
+            // Emit message to all users in the room
+            io.to(roomId).emit("receivedmessage", newMessage);
         });
 
         socket.on("codeUpdate", (data) => {

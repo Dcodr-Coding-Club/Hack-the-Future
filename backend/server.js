@@ -9,6 +9,8 @@ import { roomRoutes } from './routes/roomRoutes.js';
 import { createServer } from 'node:http';
 import { initSocket } from './socket/chatMessage.js';
 import fileRoutes from "./routes/fileRoutes.js";
+import { messageRoutes } from "./routes/messageRoutes.js";
+
 
 dotenv.config();
 connectDB();
@@ -29,6 +31,7 @@ app.use(cookieParser());
 app.use('/auth', authRoutes);
 app.use('/code', codeRoutes);
 app.use("/api/rooms", roomRoutes);
+app.use("/messages", messageRoutes);
 
 app.use("/api", fileRoutes);
 

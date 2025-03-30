@@ -41,6 +41,8 @@ export const Login = () => {
   
       if (response.ok) {
         localStorage.setItem("token", data.token); // Store token for future API calls
+        // localStorage.setItem("userId", data.userId); // Store userId
+
         toast.success("Login successful!");
         navigate("/dashboard"); // Redirect user on successful login
       } else {
