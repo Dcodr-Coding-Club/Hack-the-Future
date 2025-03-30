@@ -19,14 +19,8 @@ const StatsInfoCard = ({ icon, label, value, color }) => {
 export const AuthLayout = ({ children }) => {
     return (
         <div className='flex'>
-            {/* Left Side - Content */}
-            <div className='w-screen h-screen md:w-[60vw] px-12 pt-8 pb-12'>
-                <h2 className='text-lg font-medium text-black'>SyncIDE</h2>
-                {children}
-            </div>
-
             {/* Right Side - Image & Info */}
-            <div className='hidden md:block w-[40vw] h-screen bg-blue-50 bg-auth-bg-img bg-cover bg-no-repeat bg-center overflow-hidden p-8 relative'>
+            <div className='w-1/2 h-screen bg-blue-50 bg-auth-bg-img bg-cover bg-no-repeat bg-center overflow-hidden p-8 relative'>
                 <div className='w-48 h-48 rounded-[40px] bg-blue-700 absolute -top-7 -left-5'/>
                 <div className='w-48 h-48 rounded-[40px] border-[20px] border-cyan-600 absolute top-[30%] -right-10'/>
                 <div className='w-48 h-48 rounded-[40px] bg-indigo-700 absolute -bottom-7 -left-5'/>
@@ -47,6 +41,12 @@ export const AuthLayout = ({ children }) => {
                     alt="RealTimeCodeCollab" 
                     className='ml-6 w-48 h-[54%] lg:w-[80%] absolute bottom-10 shadow-lg shadow-blue-400/15 rounded-xl'
                 />
+            </div>
+
+            {/* Left Side - Content */}
+            <div className='w-1/2 h-screen px-12 pt-8 pb-12'>
+                <h2 className='text-lg font-medium text-black'>SyncIDE</h2>
+                {children}
             </div>
         </div>
     )
