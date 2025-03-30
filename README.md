@@ -31,3 +31,89 @@ SyncIDE is a real-time collaborative code editor that allows multiple users to w
 - **Backend**:
   - Node.js
   - Express.js
+
+
+# SyncIDE
+
+## Getting Started
+
+Follow these steps to run the SyncIDE project locally after cloning it from GitHub.
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- [Node.js](https://nodejs.org/) (version 14 or higher)
+- [MongoDB](https://www.mongodb.com/) (for the backend database)
+- [Git](https://git-scm.com/) (for cloning the repository)
+
+### Cloning the Repository
+
+1. Open your terminal or command prompt.
+2. Clone the repository using the following command:
+
+   ```bash
+   git clone https://github.com/your-username/Hack-the-Future.git
+   ```
+
+3. Navigate to the project directory:
+
+   ```bash
+   cd Hack-the-Future
+   ```
+
+### Setting Up the Backend
+
+1. Navigate to the backend directory:
+
+   ```bash
+   cd backend
+   ```
+
+2. Install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the `backend` directory and add your MongoDB connection string:
+
+   ```plaintext
+   MONGODB_URI=your_mongodb_connection_string
+   PORT=5000
+   ```
+
+4. Start the backend server:
+
+   ```bash
+   npm start
+   ```
+
+### Setting Up the Frontend
+
+1. Open a new terminal window and navigate to the frontend directory:
+
+   ```bash
+   cd frontend
+   ```
+
+2. Install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the frontend development server:
+
+   ```bash
+   npm start
+   ```
+
+### Accessing the Application
+
+- Open your web browser and go to `http://localhost:3000` to access the SyncIDE application.
+
+### Additional Notes
+
+- Ensure that your MongoDB server is running before starting the backend.
+- If you encounter any issues, check the console for error messages and ensure all dependencies are installed correctly.
