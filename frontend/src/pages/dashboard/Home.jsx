@@ -12,6 +12,7 @@ export const Home = () => {
   const [roomName, setRoomName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recentRooms, setRecentRooms] = useState([]);
+  const [name, setName] = useState("");
   const router = useNavigate();
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export const Home = () => {
         const token = localStorage.getItem("token");
         const decoded = JSON.parse(atob(token.split(".")[1]));
         if (decoded) {
+          setName(decoded.username)
           setUsername(decoded.id); // Set username
         }
       } catch (error) {
@@ -117,7 +119,7 @@ export const Home = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Welcome, {username}!
+        Welcome, {name}!
       </motion.h1>
 
       <div className="grid gap-6 w-full max-w-2xl">

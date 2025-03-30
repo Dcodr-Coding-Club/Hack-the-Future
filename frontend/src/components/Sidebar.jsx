@@ -75,7 +75,7 @@ export const Sidebar = ({ roomId, setCode, handleCodeChange, code, language, act
 
         toast.success("File uploaded successfully!");
         setFiles((prevFiles) => [...prevFiles, data.savedFile]);
-        handleCodeChange(fileContent);
+        // handleCodeChange(fileContent);
         setActiveFile(data.savedFile._id);
         setCode(fileContent);
       } catch (error) {

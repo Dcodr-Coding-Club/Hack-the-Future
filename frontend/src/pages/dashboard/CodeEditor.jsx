@@ -78,8 +78,10 @@ export const CodeEditor = () => {
       setMessages((prev) => [...prev, newMessage]);
     });
 
-    socket.on("changeCode", (newC) => {
-      setCode(newC);
+    socket.on("changeCode", (newC, incomingFile) => {
+      if(activeFileRef.current === incomingFile){
+        setCode(newC);
+      }
     });
 
     return () => {
