@@ -10,4 +10,4 @@ transformers
 gdown
 mediapipe
 keras.models
-os
+cv2
