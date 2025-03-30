@@ -13,8 +13,6 @@ def dashboard(request):
         "typingGame_url": "/gamification/sign-typing-game/"
     })
 
-# def dashboard(request):
-#     return render(request, "dashboard.html", {"quiz_url": "/gamification/quiz/"},{"word_match_url" : "/gamification/word_match"})
 # Signup View
 def signup_view(request):
     if request.method == "POST":

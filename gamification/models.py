@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-# Your other models follow here
 class Quiz(models.Model):
     LEVEL_CHOICES = [
         ('Beginner', 'Beginner'),
@@ -25,7 +24,7 @@ class Quiz(models.Model):
     def __str__(self):
         return f"{self.level} - {self.question}"
 
-from django.db import models
+
 class Leaderboard(models.Model):
     GAME_CHOICES = [
         ('quiz', 'Quiz'),
@@ -61,10 +60,6 @@ class Flashcard(models.Model):
     def __str__(self):
         return self.correct_word
     
-
-from django.conf import settings
-from django.db import models
-
 class FlashcardScore(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # Track scores per user
     score = models.IntegerField(default=0)
@@ -73,8 +68,6 @@ class FlashcardScore(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.score} points"
 
-
-from django.db import models
 
 class SignTypingGame(models.Model):
     username = models.CharField(max_length=100)

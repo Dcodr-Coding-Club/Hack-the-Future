@@ -14,7 +14,7 @@
             color: #333;
         }
         h2 {
-            color: #4CAF50;
+            color: #007bff;
         }
         img {
             margin: 20px 0;
@@ -28,14 +28,14 @@
         .input-section button {
             padding: 10px 20px;
             font-size: 1em;
-            background-color: #4CAF50;
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .input-section button:hover {
-            background-color: #45a049;
+            background-color: #007bff;
         }
         .game-over {
             color: red;
@@ -50,13 +50,6 @@
         let username = "";
         
         function startGame() {
-
-            username = prompt("Enter your username:").trim(); // Ask for the username
-    if (!username) {
-        alert("Username is required to play the game!");
-        return; // Stop the game if no username is provided
-    }
-            score = 0;
             timeLeft = 30;
             document.getElementById("score").innerText = score;
             document.getElementById("time-taken").innerText = "0.00 seconds";
@@ -83,7 +76,12 @@
         function endGame() {
     document.getElementById("game-over").style.display = "block";
     document.removeEventListener("keydown", handleKeyPress); // Remove keydown listener
-
+            // Ask for the username after the game ends
+    username = prompt("Enter your username to save your score:").trim();
+    if (!username) {
+        alert("Username is required to save your score!");
+        return; // Stop if no username is provided
+    }
     // Send score to the backend
     saveScore();
 
@@ -189,7 +187,7 @@
     <p id="game-over" class="game-over" style="display: none;">Game Over! Refresh the page to play again.</p>
     <!-- Add this button below the "Game Over" message -->
 <div>
-    <button onclick="window.location.href='/gamification/sign-typing-game-leaderboard/'" style="padding: 10px 20px; font-size: 1em; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    <button onclick="window.location.href='/gamification/sign-typing-game-leaderboard/'" style="padding: 10px 20px; font-size: 1em; background-color: #3b54e0; color: white; border: none; border-radius: 5px; cursor: pointer;">
         View Leaderboard
     </button>
 </div>
