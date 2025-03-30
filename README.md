@@ -10,9 +10,10 @@ This system ensures voter anonymity and result verifiability using Shamir’s se
 2. **Create 4 Authority Instances**
    - Using Docker:
      ```bash
-     docker-compose up --scale authority=4
-     ```
-   - OR using different ports manually:
+     docker-compose up --scale authority
+
+    ```
+   OR using different ports manually:
      authority instances:
      port --4001
      port --4002
