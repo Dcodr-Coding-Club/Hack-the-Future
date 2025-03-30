@@ -68,7 +68,7 @@ app.use((req, res, next) => {
 
 // Routes
 const authRoutes = require("./routes/auth")(passport, client); // Login & Signup
-const pythonRoutes = require("./routes/python"); // Python Integration
+
 const gameRoutes = require("./routes/games")(client); // Game API
 const mcqRoutes = require("./routes/MCQ")(client); // MCQ Quiz API
 
@@ -77,7 +77,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-app.use("/api/python", pythonRoutes);
 app.use("/api/game", gameRoutes);
 app.use("/api/mcq", mcqRoutes);
 

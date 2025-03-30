@@ -3,14 +3,14 @@
 ## Frontend
 
 - [x] Log in & Sign-up Page
-- [ ] Each course page
-- [ ] Each quiz/game page
-- [ ] Progress Page
+- [x] Each course page
+- [x] Each quiz/game page
+- [x] Progress Page
 
 ## Backend
 
 - [x] Linking Express with Python
-- [ ] Site navigation
+- [x] Site navigation
 - [x] Database integration
 - [x] API services
 
