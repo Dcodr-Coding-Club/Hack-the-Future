@@ -1,71 +1,74 @@
-# Hack the Future | Horizon 2025, IIITV-ICD
+# ResuMatch - Easy Resume Screening Tool
 
-Welcome to **Hack the Future**, the 36-hour online hackathon organized by Coding Club DCodr as part of **Horizon 2025**, the annual technical fest of **IIITV-ICD**. This is your chance to collaborate, innovate, and build creative solutions to real-world problems.
+ResuMatch helps you find the right people for your jobs by looking at resumes and matching them to what you need.
 
-**Once the hackathon begins, please follow the instructions below carefully.**
+## What You'll Need (Windows Only)
 
----
+1. A Windows computer
+2. Internet connection
 
-## **Instructions for Participants**
+## How to Install (Windows)
 
-### ✅ **Step 1: Fork the Repository**
-1. Once problem statements are available. Click the **Fork** button at the top right corner to create a copy of this repository in your GitHub account.
-2. Clone the forked repository to your local machine using the command:
+### Step 1: Install Node.js
 
-```bash
-git clone <your-forked-repo-link>
-```
+1. Go to [Node.js website](https://nodejs.org/)
+2. Click the big green button that says "LTS" (stands for Long Term Support)
+3. After download finishes, click the file to start installation
+4. Click "Next" for all prompts (all default settings are fine)
+5. Wait for installation to complete and click "Finish"
 
-### ✅ **Step 2: Select a Problem Statement**
-- Review the provided problem statements in the PROBLEMS.md.
-- Choose any one problem statement to work on.
-- Work directly on the `main` branch to ensure your final work is on the main branch, as the organizers will evaluate your project every 6 hours.
+### Step 2: Set Up ResuMatch
 
-### ✅ **Step 3: Project Development**
-- Develop your project locally.
-- Commit your changes frequently with meaningful messages:
+1. Right-click the ResuMatch ZIP file you downloaded
+2. Select "Extract All..."
+3. Choose where you want to put the files and click "Extract"
+4. Open the extracted folder
 
-```bash
-git add .
-git commit -m "Initial commit with base project setup"
-```
+### Step 3: Install and Start the App
 
-- Push your changes to your forked repository:
+1. Press and hold Shift key, then right-click in an empty area of the folder
+2. Select "Open command window here" or "Open PowerShell window here"
+3. Type this command and press Enter:
+   ```
+   npm install
+   ```
+4. Wait until it finishes (this might take a few minutes)
+5. Type this command and press Enter:
+   ```
+   npm run dev
+   ```
+6. When you see a message saying the server is running, open your web browser
+7. Type `http://localhost:3000` in the address bar and press Enter
 
-```bash
-git push origin main
-```
+## Using ResuMatch
 
-### ✅ **Step 4: Submission**
-1. Create a **Pull Request (PR)** to this repository before the hackathon ends.
-2. Your repository should contain:
-    - `README.md`: Instructions to run your project.
-    - Source code and necessary files.
-    - Documentation (if any).
-3. 4-5 Page PPT Presentation summarizing your solution to make it easier for judges to evaluate.
-   -  Slide 1: Title, team name, and problem statement.
-   -  Slide 2: Objective and solution overview.
-   -  Slide 3: Key features and technologies used.
-   -  Slide 4: solutions implemented.
-   -  Slide 5: Challenges faced.
+### Add a Job
+1. Click "Jobs" in the sidebar
+2. Click the "Add Job Posting" button
+3. Fill in the job details
+4. Type each skill needed and press Enter
+5. Click "Create Job Posting"
 
-⚠️ **Note:** Only PRs submitted before the hackathon deadline will be considered. Late submissions will not be accepted.
+### Add a Candidate
+1. Click "Candidates" in the sidebar
+2. Click "Upload Resume"
+3. Fill in the name and details
+4. Click "Choose File" to upload a resume
+5. Click "Submit"
 
----
+### Match Candidates to Jobs
+1. Click "Match" from any screen
+2. Select a job and a candidate
+3. See how well they match
+4. Save the match result
 
-## 🔍 **Evaluation Criteria**
-- **Innovation & Creativity:** Uniqueness and originality of the solution.
-- **Functionality & Implementation:** Proper execution and working functionality.
-- **Code Quality:** Clean, readable, and maintainable code.
-- **Presentation & Documentation:** Clear instructions and explanations.
+## Need Help?
 
----
+If something isn't working:
 
-## ⏱️ **Hackathon Timeline**
-- **Start:** [28/03/2025 5PM]
-- **End:** [30/03/2025 5AM]
-- **Duration:** 36 hours (continuous online mode)
+1. Make sure you installed Node.js correctly
+2. Try running `npm install` again
+3. Restart your computer and try again
+4. If a message says "port in use", close other programs and try again
 
----
-
-🚀 **Good luck and happy hacking!** 🎯
+The app works best with Microsoft Edge or Google Chrome browsers.
