@@ -6,7 +6,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views  
 from django.shortcuts import render
-from gamification.views import get_quiz
+from gamification.views import quiz,word_match_game,flashcard_game,sign_typing_game
+from .views import basic_questions
+from .views import vocabulary_page
+
 def redirect_to_login(request):
     return redirect('login')
 
@@ -30,15 +33,19 @@ urlpatterns = [
     path('numbers/', views.numbers, name='numbers'),
     path('common_greetings/', views.common_greetings, name='common_greetings'),
     path('basic_questions/', views.basic_questions, name='basic_questions'),
+    path('basic-questions/', basic_questions, name='basic_questions'),
 
-    path('everyday_vocabulary/', views.everyday_vocabulary, name='everyday_vocabulary'),
+    path('vocabulary/', vocabulary_page, name='vocabulary'),
     path('sentence_structure/', views.sentence_structure, name='sentence_structure'),
     path('expressing_feelings/', views.expressing_feelings, name='expressing_feelings'),
 
     path('advanced_grammar/', views.advanced_grammar, name='advanced_grammar'),
     path('signing_speed/', views.signing_speed, name='signing_speed'),
     path('storytelling/', views.storytelling, name='storytelling'),
-    path("quiz/",get_quiz,name="quiz"),
+    path("quiz/", quiz, name="quiz"),
+    path("word-match/", word_match_game, name="word-match"),
+    path("flashcards/",flashcard_game,name="flashcards"),
+    path("sign-typing-game/",sign_typing_game,name="sign-typing-game"),
 ]
 
 if settings.DEBUG:

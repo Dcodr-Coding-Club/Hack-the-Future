@@ -2,7 +2,6 @@
 import os
 import cv2
 import sqlite3
-import threading  # ✅ To run image display separately
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
@@ -19,26 +18,19 @@ def text_to_sign(request):
         return HttpResponse("No text provided.")
 
     # Fetch images for each character
-    images = []
+    image_urls = []
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         for char in text:
             cursor.execute("SELECT image_path FROM asl_signs WHERE character=?", (char,))
             result = cursor.fetchone()
             if result:
-                image_path = os.path.join(settings.BASE_DIR, result[0])  # Ensure full path
-                if os.path.exists(image_path):  # ✅ Check if image exists
-                    images.append(image_path)
-                else:
-                    print(f"❌ Image not found: {image_path}")  # Debugging log
-
-    if not images:
+                image_url = os.path.join(settings.STATIC_URL, os.path.relpath(result[0], 'static'))
+                image_urls.append(image_url)
+    if not image_urls:
         return HttpResponse("No ASL signs found for the input.")
 
-    # ✅ Run image display in a separate thread so Django can continue
-    threading.Thread(target=display_images_one_by_one, args=(images,), daemon=True).start()
-    return HttpResponse("✅ ASL signs are being displayed in a separate window.")
-   # return render(request, 'display_asl.html', {'image_paths': images})
+    return render(request, 'display_asl.html', {'image_urls': image_urls, 'input_text': text})
 
 def display_images_one_by_one(image_paths):
     """Show images one by one in a separate window."""

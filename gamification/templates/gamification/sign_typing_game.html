@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Typing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h2 {
+            color: #007bff;
+        }
+        img {
+            margin: 20px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .stats, .timer {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        .input-section button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-section button:hover {
+            background-color: #007bff;
+        }
+        .game-over {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        let score = 0;
+        let timeStart;
+        let timerInterval;
+        let timeLeft = 30; // Set the timer duration (in seconds)
+        let username = "";
+        
+        function startGame() {
+            timeLeft = 30;
+            document.getElementById("score").innerText = score;
+            document.getElementById("time-taken").innerText = "0.00 seconds";
+            document.getElementById("timer").innerText = timeLeft + " seconds";
+            document.getElementById("game-over").style.display = "none";
+            timeStart = new Date().getTime();
+
+            // Start the countdown timer
+            timerInterval = setInterval(updateTimer, 1000);
+
+            // Add global keydown listener
+            document.addEventListener("keydown", handleKeyPress);
+        }
+
+        function updateTimer() {
+            timeLeft--;
+            document.getElementById("timer").innerText = timeLeft + " seconds";
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                endGame();
+            }
+        }
+        function endGame() {
+    document.getElementById("game-over").style.display = "block";
+    document.removeEventListener("keydown", handleKeyPress); // Remove keydown listener
+            // Ask for the username after the game ends
+    username = prompt("Enter your username to save your score:").trim();
+    if (!username) {
+        alert("Username is required to save your score!");
+        return; // Stop if no username is provided
+    }
+    // Send score to the backend
+    saveScore();
+
+    // Redirect to the leaderboard after saving the score
+    setTimeout(() => {
+        window.location.href = "/gamification/sign-typing-game-leaderboard/";
+    }, 2000); // Redirect after 2 seconds
+}
+
+        function handleKeyPress(event) {
+            const userInput = event.key.toUpperCase(); // Get the key pressed by the user
+            const correctLetter = document.getElementById("correct-letter").value.trim().toUpperCase();
+
+            if (userInput === correctLetter) {
+                let timeTaken = (new Date().getTime() - timeStart) / 1000;
+                let points = timeTaken < 5 ? 10 : timeTaken < 10 ? 7 : timeTaken < 20 ? 5 : 3;
+                score += points;
+
+                document.getElementById("score").innerText = score;
+                document.getElementById("time-taken").innerText = timeTaken.toFixed(2) + " seconds";
+                fetchNewLetter();  
+                console.log(`✅ Correct! +${points} points`);
+                console.log("Fetching new question...");
+            } else {
+                console.log(`❌ Incorrect key: ${userInput}`);
+            }
+        }
+
+        function fetchNewLetter() {
+            console.log("Requesting new letter...");
+
+            fetch('/gamification/get-new-question/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json(); // Parse the JSON response
+                })
+                .then(data => {
+                    console.log("New question loaded:", data);
+
+                    if (data.image_url && data.correct_letter) {
+                        // Update the image and correct letter
+                        document.getElementById("sign-image").src = data.image_url;
+                        document.getElementById("correct-letter").value = data.correct_letter;
+
+                        // Restart the timer for the current question
+                        timeStart = new Date().getTime();
+                    } else {
+                        console.error("Error: Missing question data");
+                        alert("Error: Could not load new question. Please try again.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                    alert("An error occurred while fetching a new question. Please try again.");
+                });
+        }
+
+
+        function saveScore() {
+    fetch('/gamification/save_score/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username: username, // Include the username
+            score: score,
+            game_type: "sign_typing_game" // Specify the game type
+        }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to save score");
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Score saved successfully:", data);
+    })
+    .catch(error => {
+        console.error("Error saving score:", error);
+        alert("An error occurred while saving your score. Please try again.");
+    });
+}
+    </script>
+</head>
+<body onload="startGame()">
+    <h2>Sign Language Typing Game</h2>
+    <img id="sign-image" src="{{ image_url }}" alt="Sign Image" width="200">
+    <input type="hidden" id="correct-letter" value="{{ correct_letter }}">
+
+    <div class="stats">
+        <p>Score: <span id="score">0</span></p>
+        <p>Time Taken: <span id="time-taken">0.00 seconds</span></p>
+    </div>
+
+    <div class="timer">
+        <p>Time Left: <span id="timer">30 seconds</span></p>
+    </div>
+
+    <p id="game-over" class="game-over" style="display: none;">Game Over! Refresh the page to play again.</p>
+    <!-- Add this button below the "Game Over" message -->
+<div>
+    <button onclick="window.location.href='/gamification/sign-typing-game-leaderboard/'" style="padding: 10px 20px; font-size: 1em; background-color: #3b54e0; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        View Leaderboard
+    </button>
+</div>
+</body>
+</html>

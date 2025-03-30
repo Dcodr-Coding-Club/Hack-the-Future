@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Flashcards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .flashcard {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 350px;
+            text-align: center;
+        }
+        .flashcard img {
+            width: 150px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+        .options button {
+            display: block;
+            width: 90%;
+            margin: 8px auto;
+            padding: 14px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        .options button:hover {
+            background-color: #0056b3;
+        }
+        #feedback {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .center-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .action-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            color: rgb(40, 55, 132);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 200px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        #next-btn {
+            background-color: green;
+            display: none;
+        }
+        #next-btn:hover {
+            background-color: #10028a;
+        }
+        #save-score-btn {
+            background-color: blue;
+            display: none;
+        }
+        #save-score-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Guess the Correct Word</h2>
+    <div class="flashcard" id="flashcard">
+        {% for flashcard in flashcards %}
+            <div class="card" id="card{{ forloop.counter }}" style="display: none;">
+                <img src="{{ flashcard.sign_image.url }}" alt="Sign Image">
+                <div class="options">
+                    {% for choice in flashcard.shuffled_options %}
+                        <button onclick="checkAnswer(this, '{{ flashcard.correct_word }}')">{{ choice }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <h3>Score: <span id="score-display">0</span></h3>
+    <p id="feedback"></p>
+    
+    <div class="center-buttons">
+        <button id="next-btn" class="action-btn" onclick="showNextFlashcard()">Next Flashcard</button>
+        <button id="save-score-btn" class="action-btn" onclick="saveFlashcardScore()">Save Score</button>
+    </div>
+    
+    <button class="action-btn" onclick="window.location.href='/gamification/flashcard-leaderboard/'">View Leaderboard</button>
+    
+    <script>
+        let currentFlashcardIndex = 0;
+        let flashcards = document.querySelectorAll(".card");
+        
+        function showFlashcard(index) {
+            if (index < flashcards.length) {
+                flashcards.forEach(card => card.style.display = "none");
+                flashcards[index].style.display = "block";
+            }
+        }
+        let score = 0;
+
+        function checkAnswer(button, correctAnswer) {
+            if (button.innerText === correctAnswer) {
+                button.style.backgroundColor = "green";
+                document.getElementById("feedback").innerText = "✅ Correct!";
+                score++;
+                document.getElementById("score-display").innerText = score;
+            } else {
+                button.style.backgroundColor = "red";
+                document.getElementById("feedback").innerText = "❌ Try Again!";
+            }
+            document.getElementById("next-btn").style.display = "block";
+        }
+
+        function showNextFlashcard() {
+            currentFlashcardIndex++;
+            if (currentFlashcardIndex < flashcards.length) {
+                document.getElementById("feedback").innerText = "";
+                document.getElementById("next-btn").style.display = "none";
+                showFlashcard(currentFlashcardIndex);
+            } else {
+                document.getElementById("flashcard").innerHTML = "<h3>Game Over! 🎉</h3>";
+                document.getElementById("next-btn").style.display = "none";
+                document.getElementById("save-score-btn").style.display = "block";
+                const username = prompt("Enter your name for the leaderboard:", "Guest");
+                saveFlashcardScore(username, score);
+            }
+        }
+
+        function saveFlashcardScore(username, score) {
+            fetch("/gamification/save_flashcard_score/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: username, score: score })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Score saved successfully!");
+                window.location.href = "/gamification/flashcard-leaderboard/"; 
+            })
+            .catch(error => console.error("Error saving score:", error));
+        }
+        
+        showFlashcard(currentFlashcardIndex);
+    </script>
+</body>
+</html>

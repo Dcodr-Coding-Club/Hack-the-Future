@@ -10,8 +10,10 @@ urlpatterns = [
     path('',include("Dashboard.urls")),
     path('gamification/',include("gamification.urls")),
     path('plan/', include("AIPlanner.urls", namespace='AIPlanner')),
+    path('speech/', include('speech_to_text.urls')),
 ]
 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])

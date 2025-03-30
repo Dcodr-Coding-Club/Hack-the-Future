@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Greetings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="text-center bg-gradient-to-r from-purple-600 to-gray-700 text-white py-6 text-4xl font-bold shadow-lg">
+        Common Greetings in ASL
+    </header>
+
+    <!-- Full Width Image -->
+    <section class="w-full flex justify-center mt-6">
+        <img src="{% static 'images/Greeting.png' %}" alt="Common Greetings in ASL"
+             class="w-[1500px] h-[550px] object-contain shadow-lg">
+    </section>
+
+    <!-- Greetings Section -->
+    <section class="max-w-4xl mx-auto my-10 px-6">
+        <div class="grid sm:grid-cols-2 gap-6">
+            
+            <!-- Greeting Card -->
+            <div class="bg-white p-6 rounded-xl shadow-md text-center border border-purple-300">
+                <h2 class="text-2xl font-semibold text-purple-700">Hello</h2>
+                <p class="text-gray-600 mt-2">ASL Sign: Extend your dominant hand and move it in a small wave.</p>
+                <img src="{% static 'images/Hello.png' %}" alt="Hello in ASL" class="mt-4 mx-auto w-32">
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md text-center border border-purple-300">
+                <h2 class="text-2xl font-semibold text-purple-700">Thank You</h2>
+                <p class="text-gray-600 mt-2">ASL Sign: Touch your fingers to your chin and move your hand forward.</p>
+                <img src="{% static 'images/Thank_you.png' %}" alt="Thank You in ASL" class="mt-4 mx-auto w-32">
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md text-center border border-purple-300">
+                <h2 class="text-2xl font-semibold text-purple-700">Good Morning</h2>
+                <p class="text-gray-600 mt-2">ASL Sign: Move your dominant hand upward like the sun rising.</p>
+                <img src="{% static 'images/Good_morning.png' %}" alt="Good Morning in ASL" class="mt-4 mx-auto w-32">
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md text-center border border-purple-300">
+                <h2 class="text-2xl font-semibold text-purple-700">Goodbye</h2>
+                <p class="text-gray-600 mt-2">ASL Sign: Wave your hand as you would normally say goodbye.</p>
+                <img src="{% static 'images/Good_bye.png' %}" alt="Goodbye in ASL" class="mt-4 mx-auto w-32">
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>

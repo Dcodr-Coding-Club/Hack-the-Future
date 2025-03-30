@@ -9,7 +9,7 @@
         #leaderboard-container { max-width: 600px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
-        th { background-color: #f4f4f4; }
+        th { background-color: #007bff; }
         h1 { margin-bottom: 20px; }
         button { margin-top: 20px; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; background-color: #007BFF; color: white; }
         button:hover { background-color: #0056b3; }
@@ -17,7 +17,7 @@
 </head>
 <body>
     <div id="leaderboard-container">
-        <h1>🏆 Leaderboard</h1>
+        <h1>🏆 Quiz Leaderboard</h1>
         <table id="leaderboard">
             <tr>
                 <th>Player</th>
@@ -26,11 +26,10 @@
         </table>
         <!-- <button onclick="fetchLeaderboard()">Refresh Leaderboard 🔄</button> -->
         <button onclick="goBack()">Back to Quiz</button>
-    </div>
-
+    </div> 
     <script>
-        function fetchLeaderboard() {
-            fetch("http://127.0.0.1:8000/gamification/get_leaderboard/")
+        function fetchLeaderboard(gameType = "quiz") {
+            fetch(`http://127.0.0.1:8000/gamification/get_leaderboard/?game_type=${gameType}`)
                 .then(response => response.json())
                 .then(data => {
                     let leaderboardTable = document.getElementById("leaderboard");

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "gamification",
     'corsheaders',
     'asl_sign',
+    'speech_to_text',
 ]
 
 MIDDLEWARE = [
