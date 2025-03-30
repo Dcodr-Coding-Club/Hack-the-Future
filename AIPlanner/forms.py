@@ -3,3 +3,17 @@ from django import forms
 
 class userForm(forms.Form):
     pass 
+
+class RequestForm(forms.Form):
+    skill_level = forms.ChoiceField(choices=[
+        ('Beginner', 'Beginner'),
+        ('Intermediate', 'Intermediate'),
+        ('Advanced', 'Advanced')
+    ])
+    learning_speed = forms.ChoiceField(choices=[
+        ('Slow', 'Slow'),
+        ('Moderate', 'Moderate'),
+        ('Fast', 'Fast')
+    ])
+    daily_hours = forms.IntegerField(min_value=1)
+    preferred_days = forms.CharField()
