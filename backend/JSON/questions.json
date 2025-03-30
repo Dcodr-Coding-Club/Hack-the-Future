@@ -12,14 +12,14 @@
         { "id": "l8", "text": "Water" }
       ],
       "right": [
-        { "id": "r1", "text": "Fruit" },
-        { "id": "r2", "text": "Vehicle" },
-        { "id": "r3", "text": "Animal" },
-        { "id": "r4", "text": "Furniture" },
-        { "id": "r5", "text": "Celestial Body" },
-        { "id": "r6", "text": "Plant" },
-        { "id": "r7", "text": "Building" },
-        { "id": "r8", "text": "Liquid" }
+        { "id": "r1", "image": "/images/apple.png" },
+        { "id": "r2", "image": "/images/vehicle.png" },
+        { "id": "r3", "image": "/images/animal.png" },
+        { "id": "r4", "image": "/images/furniture.png" },
+        { "id": "r5", "image": "/images/sun.png" },
+        { "id": "r6", "image": "/images/tree.png" },
+        { "id": "r7", "image": "/images/house.png" },
+        { "id": "r8", "image": "/images/water.png" }
       ],
       "answers": {
         "l1": "r1",
@@ -33,4 +33,4 @@
       }
     }
   ]
-}
+} 

@@ -162,10 +162,14 @@ const loadQuestions = () => {
     selectedLeft.map((item) => [item.id, question.answers[item.id]])
   );
 
-  const selectedRight = selectedLeft.map((item) => ({
-    id: answers[item.id],
-    text: question.right.find((r) => r.id === answers[item.id]).text,
-  }));
+  
+  const baseUrl = "http://localhost:5000";  // Change to your backend URL
+
+const selectedRight = selectedLeft.map((item) => {
+  const matchedRight = question.right.find((r) => r.id === answers[item.id]);
+  return { id: matchedRight.id, image: `${baseUrl}${matchedRight.image}` };
+});
+
 
   return { left: selectedLeft, right: shuffleArray(selectedRight), answers };
 };
@@ -203,6 +207,5 @@ router.post("/questions/validate", (req, res) => {
     message: `You got ${correctConnections.length} out of ${Object.keys(answers).length} correct!`,
   });
 });
-
 
 module.exports = router; 

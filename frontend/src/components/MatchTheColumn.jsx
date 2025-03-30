@@ -31,13 +31,21 @@ const WordNode = ({ data }) => (
     <Handle type="source" position="right" style={{ background: "#fff" }} />
   </div>
 );
+const ImageNode = ({ data }) => {
+  console.log("ImageNode Data:", data); // Debugging
 
-const ImageNode = ({ data }) => (
-  <div style={imageNodeStyle}>
-    {data.label}
-    <Handle type="target" position="left" style={{ background: "#fff" }} />
-  </div>
-);
+  return (
+    <div style={imageNodeStyle}>
+      <img 
+        src={data.label} 
+        alt="Hand sign" 
+        style={{ width: "100%", height: "100%" }} 
+        onError={(e) => console.error("Image failed to load:", e.target.src)}
+      />
+      <Handle type="target" position="left" style={{ background: "#fff" }} />
+    </div>
+  );
+};
 
 const nodeTypes = { wordNode: WordNode, imageNode: ImageNode };
 
@@ -60,6 +68,8 @@ const MatchTheColumn = () => {
           const nodeSpacing = Math.min(100, 600 / nodeCount);
           const startY = 150; 
   
+          console.log("API Response Right:", res.data.right);
+
           const leftNodes = res.data.left.map((item, index) => ({
             id:`${item.id}`,
             type: "wordNode",
@@ -71,9 +81,10 @@ const MatchTheColumn = () => {
             id: `${item.id}`,
             type: "imageNode",
             position: { x: 500, y: startY + index * nodeSpacing },
-            data: { label: item.text },
+            data: { label: item.image },
           }));
-  
+
+          console.log("Right Nodes:", rightNodes); 
           setNodes([...leftNodes, ...rightNodes]);
           localStorage.setItem("nodes", JSON.stringify([...leftNodes, ...rightNodes]));
           localStorage.setItem("answers", JSON.stringify(res.data.answers));

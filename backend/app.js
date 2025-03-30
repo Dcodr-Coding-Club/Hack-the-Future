@@ -22,6 +22,8 @@ app.get("/", (req, res) => {
 });
 app.use("/api", pythonRoute);
 app.use("/api/game", gameRoutes);
+app.use("/images", express.static("public/images"));
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
