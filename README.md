@@ -192,8 +192,11 @@ Go to http://127.0.0.1:8000/ and start learning ASL! 🎉
 
 ![image](https://github.com/user-attachments/assets/45187504-4106-4322-9883-3d9e198f899e)
 
-![image](https://github.com/user-attachments/assets/e3650560-7d50-4acd-9ed1-7d9031b7d752)
+![image](https://github.com/user-attachments/assets/e3650560-7d50-4acd-9ed1-7d9031b7d752) 
 
+![image](https://github.com/user-attachments/assets/48abfd45-e51f-4ae0-ad95-26249c33e9ca)
+
+![image](https://github.com/user-attachments/assets/0bf443e1-951c-437b-b831-ea3108cd6255)
 
 
 
