@@ -32,7 +32,8 @@ const MainContent = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/Aboutus" element={<Aboutus />} /> 
-        <Route path="/progress" element={<Progress />} />{/* Add Profile Route */}
+        <Route path="/progress" element={<Progress />} />
+        <Route path="/DashboardLayout" element={<DashboardLayout />} />{/* Add Profile Route */}
       </Routes>
     </main>
   );

@@ -71,29 +71,32 @@ const Navbar = () => {
   return (
     <header className="header flex items-center justify-between p-4 bg-gray-900 text-white">
       <NavLink to="/">
-        <img src={logo} alt="logo" className="w-18 h-18 object-contain" />
+        <img src={logo} alt="logo" className="w-40 h-40 max-sm:w-16 max-sm:h-16 object-contain" />
       </NavLink>
 
-      <div className="flex space-x-8 items-center">
+      <div className="flex space-x-6 max-sm:space-x-3 items-center">
         {isAuthenticated ? (
           <>
-            <Link to="/profile" className="w-12 h-12 rounded-full overflow-hidden border-2 border-white">
+            <Link to="/profile" className="w-12 h-12 max-sm:w-8 max-sm:h-8 rounded-full overflow-hidden border-2 border-white">
               {profileImage ? (
                 <img src={profileImage} alt="Profile" className="w-full h-full object-cover rounded-full" />
               ) : (
-                <div className="w-12 h-12 bg-white rounded-full"></div>
+                <div className="w-12 h-12 max-sm:w-8 max-sm:h-8 bg-white rounded-full"></div>
               )}
             </Link>
-            <button onClick={handleLogout} className="text-lg font-sans transition-transform transform hover:scale-110 hover:text-red-400">
+            <button
+              onClick={handleLogout}
+              className="text-lg max-sm:text-xs font-sans transition-transform transform hover:scale-110 hover:text-red-400"
+            >
               Logout
             </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="text-lg font-sans transition-transform transform hover:scale-110 hover:text-blue-400">
+            <Link to="/login" className="text-lg max-sm:text-xs font-sans transition-transform transform hover:scale-110 hover:text-blue-400">
               Login
             </Link>
-            <Link to="/signup" className="text-lg font-sans transition-transform transform hover:scale-110 hover:text-purple-400">
+            <Link to="/signup" className="text-lg max-sm:text-xs font-sans transition-transform transform hover:scale-110 hover:text-purple-400">
               Sign Up
             </Link>
           </>

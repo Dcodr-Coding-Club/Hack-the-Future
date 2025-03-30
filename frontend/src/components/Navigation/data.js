@@ -14,7 +14,7 @@ export const BtnList = [
   { label: "Contact", link: "/contact", image: contact, newTab: false },
   {
     label: "Games",
-    link: "/game",
+    link: "/DashboardLayout",
     image: github,
     newTab: true,
   },

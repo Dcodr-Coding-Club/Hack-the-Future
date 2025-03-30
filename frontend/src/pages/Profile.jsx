@@ -124,7 +124,7 @@ const Profile = () => {
 
   return (
     <div className="font-sans antialiased bg-gradient-to-br from-blue-300 to-pink-300 min-h-screen flex items-center justify-center p-8"
-      style={{ backgroundImage: "url('/sky.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
+      style={{ backgroundImage: "url('/ga.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
       <div className="w-[70%] flex flex-col md:flex-row bg-white shadow-2xl rounded-3xl overflow-hidden p-6">
         <div className="w-full md:w-1/3 flex flex-col items-center mt-16 relative"> 
           <div className="relative">
