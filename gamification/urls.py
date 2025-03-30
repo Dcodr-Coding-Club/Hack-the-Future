@@ -13,5 +13,8 @@ urlpatterns = [
     path("flashcards/", views.flashcard_game, name="flashcard-game"),
     path("save_flashcard_score/", views.save_flashcard_score, name="save_flashcard_score"),
     path("flashcard-leaderboard/", views.flashcard_leaderboard, name="flashcard_leaderboard"),
+    path("sign-typing-game/", views.sign_typing_game, name="sign_typing_game"),
+    path('get-new-question/', views.get_new_question, name='get_new_question'),
+    path("sign-typing-game-leaderboard/", views.sign_typing_game_leaderboard, name="sign-typing-game-leaderboard"),
 ]
 

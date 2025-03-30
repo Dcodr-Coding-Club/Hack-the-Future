@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views  
 from django.shortcuts import render
-from gamification.views import quiz,word_match_game,flashcard_game
+from gamification.views import quiz,word_match_game,flashcard_game,sign_typing_game
 from .views import basic_questions
 from .views import vocabulary_page
 
@@ -44,7 +44,8 @@ urlpatterns = [
     path('storytelling/', views.storytelling, name='storytelling'),
     path("quiz/", quiz, name="quiz"),
     path("word-match/", word_match_game, name="word-match"),
-    path("flashcards/",flashcard_game,name="flashcards")
+    path("flashcards/",flashcard_game,name="flashcards"),
+    path("sign-typing-game/",sign_typing_game,name="sign-typing-game"),
 ]
 
 if settings.DEBUG:

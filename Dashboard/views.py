@@ -10,6 +10,7 @@ def dashboard(request):
         "quiz_url": "/gamification/quiz/",
         "word_match_url": "/gamification/word-match/",
         "flashcards_url": "/gamification/flashcards/",
+        "typingGame_url": "/gamification/sign-typing-game/"
     })
 
 # def dashboard(request):
