@@ -70,7 +70,7 @@ app.use((req, res, next) => {
 const authRoutes = require("./routes/auth")(passport, client); // Login & Signup
 const pythonRoutes = require("./routes/python"); // Python Integration
 const gameRoutes = require("./routes/games")(client); // Game API
-const mcqRoutes = require("./routes/MCQ"); // MCQ Quiz API
+const mcqRoutes = require("./routes/MCQ")(client); // MCQ Quiz API
 
 app.get("/", (req, res) => {
   res.send("API is running. Navigate to /api for endpoints.");
