@@ -1576,3 +1576,64 @@ requests.exceptions.JSONDecodeError: Expecting value: line 3 column 1 (char 2)
 2025-03-30 23:27:45,211 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\views.py changed, reloading.
 2025-03-30 23:28:01,527 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\urls.py changed, reloading.
 2025-03-30 23:29:24,400 - WARNING - Bad Request: /speech/transcribe/
+2025-03-30 23:51:05,161 - WARNING - Forbidden (CSRF token from POST incorrect.): /admin/login/
+2025-03-30 23:51:48,471 - DEBUG - Importing BlpImagePlugin
+2025-03-30 23:51:48,505 - DEBUG - Importing BmpImagePlugin
+2025-03-30 23:51:48,505 - DEBUG - Importing BufrStubImagePlugin
+2025-03-30 23:51:48,524 - DEBUG - Importing CurImagePlugin
+2025-03-30 23:51:48,611 - DEBUG - Importing DcxImagePlugin
+2025-03-30 23:51:48,651 - DEBUG - Importing DdsImagePlugin
+2025-03-30 23:51:48,692 - DEBUG - Importing EpsImagePlugin
+2025-03-30 23:51:48,710 - DEBUG - Importing FitsImagePlugin
+2025-03-30 23:51:48,734 - DEBUG - Importing FliImagePlugin
+2025-03-30 23:51:48,750 - DEBUG - Importing FpxImagePlugin
+2025-03-30 23:51:48,775 - DEBUG - Image: failed to import FpxImagePlugin: No module named 'olefile'
+2025-03-30 23:51:48,775 - DEBUG - Importing FtexImagePlugin
+2025-03-30 23:51:48,799 - DEBUG - Importing GbrImagePlugin
+2025-03-30 23:51:48,816 - DEBUG - Importing GifImagePlugin
+2025-03-30 23:51:48,816 - DEBUG - Importing GribStubImagePlugin
+2025-03-30 23:51:48,833 - DEBUG - Importing Hdf5StubImagePlugin
+2025-03-30 23:51:48,858 - DEBUG - Importing IcnsImagePlugin
+2025-03-30 23:51:48,924 - DEBUG - Importing IcoImagePlugin
+2025-03-30 23:51:48,956 - DEBUG - Importing ImImagePlugin
+2025-03-30 23:51:48,974 - DEBUG - Importing ImtImagePlugin
+2025-03-30 23:51:48,999 - DEBUG - Importing IptcImagePlugin
+2025-03-30 23:51:49,028 - DEBUG - Importing JpegImagePlugin
+2025-03-30 23:51:49,028 - DEBUG - Importing Jpeg2KImagePlugin
+2025-03-30 23:51:49,031 - DEBUG - Importing McIdasImagePlugin
+2025-03-30 23:51:49,048 - DEBUG - Importing MicImagePlugin
+2025-03-30 23:51:49,073 - DEBUG - Image: failed to import MicImagePlugin: No module named 'olefile'
+2025-03-30 23:51:49,073 - DEBUG - Importing MpegImagePlugin
+2025-03-30 23:51:49,081 - DEBUG - Importing MpoImagePlugin
+2025-03-30 23:51:49,130 - DEBUG - Importing MspImagePlugin
+2025-03-30 23:51:49,155 - DEBUG - Importing PalmImagePlugin
+2025-03-30 23:51:49,189 - DEBUG - Importing PcdImagePlugin
+2025-03-30 23:51:49,205 - DEBUG - Importing PcxImagePlugin
+2025-03-30 23:51:49,205 - DEBUG - Importing PdfImagePlugin
+2025-03-30 23:51:49,263 - DEBUG - Importing PixarImagePlugin
+2025-03-30 23:51:49,288 - DEBUG - Importing PngImagePlugin
+2025-03-30 23:51:49,288 - DEBUG - Importing PpmImagePlugin
+2025-03-30 23:51:49,288 - DEBUG - Importing PsdImagePlugin
+2025-03-30 23:51:49,312 - DEBUG - Importing QoiImagePlugin
+2025-03-30 23:51:49,328 - DEBUG - Importing SgiImagePlugin
+2025-03-30 23:51:49,351 - DEBUG - Importing SpiderImagePlugin
+2025-03-30 23:51:49,370 - DEBUG - Importing SunImagePlugin
+2025-03-30 23:51:49,394 - DEBUG - Importing TgaImagePlugin
+2025-03-30 23:51:49,419 - DEBUG - Importing TiffImagePlugin
+2025-03-30 23:51:49,419 - DEBUG - Importing WebPImagePlugin
+2025-03-30 23:51:49,508 - DEBUG - Importing WmfImagePlugin
+2025-03-30 23:51:49,524 - DEBUG - Importing XbmImagePlugin
+2025-03-30 23:51:49,541 - DEBUG - Importing XpmImagePlugin
+2025-03-30 23:51:49,557 - DEBUG - Importing XVThumbImagePlugin
+2025-03-30 23:53:04,605 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-30 23:53:04,605 - DEBUG - STREAM b'PLTE' 41 354
+2025-03-30 23:53:04,605 - DEBUG - STREAM b'IDAT' 407 7478
+2025-03-30 23:53:13,715 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-30 23:53:13,715 - DEBUG - STREAM b'PLTE' 41 363
+2025-03-30 23:53:13,715 - DEBUG - STREAM b'IDAT' 416 8192
+2025-03-30 23:53:42,216 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-30 23:53:42,216 - DEBUG - STREAM b'PLTE' 41 354
+2025-03-30 23:53:42,216 - DEBUG - STREAM b'IDAT' 407 7478
+2025-03-30 23:54:08,645 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-30 23:54:08,645 - DEBUG - STREAM b'PLTE' 41 363
+2025-03-30 23:54:08,645 - DEBUG - STREAM b'IDAT' 416 8192
