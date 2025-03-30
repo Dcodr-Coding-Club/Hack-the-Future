@@ -3,7 +3,7 @@ require("dotenv").config();
 const cors = require("cors");
 const pythonRoute = require("./routes/python");
 const gameRoutes = require("./routes/games");
-
+const mcqRoutes = require("./routes/MCQ");
 const app = express();
 const PORT = 5000;
 
@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api", pythonRoute);
 app.use("/api/game", gameRoutes);
+app.use("/api/mcq",mcqRoutes);
 app.use("/images", express.static("public/images"));
 
 

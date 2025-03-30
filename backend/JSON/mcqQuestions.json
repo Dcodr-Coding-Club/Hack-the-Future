@@ -1,0 +1,56 @@
+[
+    {
+      "id": 1,
+      "question": "What is the capital of France?",
+      "options": ["Berlin", "Madrid", "Paris", "Rome"],
+      "correct_option": 2
+    },
+    {
+      "id": 2,
+      "question": "Which of these is a mammal?",
+      "options": [
+        "https://example.com/fish.jpg",
+        "https://example.com/bird.jpg",
+        "https://example.com/dog.jpg",
+        "https://example.com/lizard.jpg"
+      ],
+      "correct_option": 2
+    },
+    {
+      "id": 3,
+      "question": "Which planet is known as the Red Planet?",
+      "options": ["Earth", "Mars", "Jupiter", "Venus"],
+      "correct_option": 1
+    },
+    {
+      "id": 4,
+      "question": "Who wrote 'Hamlet'?",
+      "options": ["Charles Dickens", "William Shakespeare", "Leo Tolstoy", "Mark Twain"],
+      "correct_option": 1
+    },
+    {
+      "id": 5,
+      "question": "What is the largest ocean on Earth?",
+      "options": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+      "correct_option": 2
+    },
+    {
+      "id": 6,
+      "question": "What is the square root of 64?",
+      "options": ["6", "7", "8", "9"],
+      "correct_option": 2
+    },
+    {
+      "id": 7,
+      "question": "Which gas do plants primarily use for photosynthesis?",
+      "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+      "correct_option": 1
+    },
+    {
+      "id": 8,
+      "question": "What is the chemical symbol for gold?",
+      "options": ["Ag", "Au", "Pb", "Fe"],
+      "correct_option": 1
+    }
+  ]
+  
