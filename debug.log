@@ -1409,3 +1409,11 @@ NameError: name 'requests' is not defined
 2025-03-30 22:24:44,944 - WARNING - Not Found: /dashboard/{}
 2025-03-30 22:24:47,541 - WARNING - Not Found: /dashboard/{}
 2025-03-30 22:29:25,434 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\Dashboard\views.py changed, reloading.
+2025-03-30 22:29:53,698 - WARNING - Not Found: /dashboard/{}
+2025-03-30 22:34:03,267 - ERROR - HTTPError: 403, Details: error code: 1010
+2025-03-30 22:34:09,585 - ERROR - HTTPError: 403, Details: error code: 1010
+2025-03-30 22:34:21,390 - DEBUG - Trigger Block Response: {"data":{"study_plan":{"Week 1":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Introduction to Basic Communication","Common Greetings and Phrases","Understanding Daily Life Vocabulary"]}},"Week 2":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Basic Sentence Structure","Conversational Practice","Role-playing Daily Scenarios"]}},"Week 3":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Listening Comprehension Exercises","Simple Reading Tasks","Review and Practice of Previous Lessons"]}},"Week 4":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Interactive Speaking Activities","Basic Writing Exercises","Daily Life Conversations"]}},"Week 5":{"Course":"Basic Communication & Daily Life","Sunday":{"Hours":9,"Tasks":["Advanced Vocabulary Building","Complex Sentence Formation","Final Review and Assessment"]}}},"expected_completion_date":"End of Week 5"},"success":true}
+2025-03-30 22:34:22,180 - ERROR - HTTPError: 403, Details: error code: 1010
+2025-03-30 22:34:30,939 - ERROR - HTTPError: 403, Details: error code: 1010
+2025-03-30 22:34:39,997 - ERROR - HTTPError: 403, Details: error code: 1010
+2025-03-30 22:36:47,442 - INFO - C:\Users\ashal\OneDrive\Desktop\signmaster\Hack-the-Future\speech_to_text\urls.py changed, reloading.
