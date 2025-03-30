@@ -85,7 +85,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>Speech to Text</title>
     <style>
         body {
@@ -141,30 +141,54 @@
     
     <script>
         function getCSRFToken() {
-            return document.cookie.split('; ')
-                .find(row => row.startsWith('csrftoken='))
-                ?.split('=')[1];
+            return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         }
 
-        function transcribeSpeech() {
-            document.getElementById("result").innerText = "Listening...";
-            
-            fetch('/speech/transcribe/', {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': getCSRFToken(),
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("result").innerText = data.transcribed_text || data.error;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById("result").innerText = "Error transcribing speech.";
-            });
+function transcribeSpeech() {
+    document.getElementById("result").innerText = "Listening...";
+
+    fetch('/speech/transcribe/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCSRFToken(), // Ensure CSRF token is included
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({}) // Ensure a valid body is sent
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            document.getElementById("result").innerText = "Error: " + data.error;
+        } else {
+            document.getElementById("result").innerText = data.transcribed_text;
+            sendToInputAPI(data.transcribed_text);  // Send to /input/ API
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById("result").innerText = "Error transcribing speech.";
+    });
+    }
+
+    function sendToInputAPI(text) {
+        fetch('/input/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCSRFToken(),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: text })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Input API response:", data);
+        })
+        .catch(error => {
+            console.error('Error sending to input API:', error);
+        });
+    }
+
+
     </script>
 </body>
 </html>
