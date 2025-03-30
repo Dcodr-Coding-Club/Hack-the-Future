@@ -57,7 +57,9 @@ const Projects = () => {
 
   return (
     <Container>
-      <section className="max-container text-center mx-auto mb-12 lg:mb-20">
+
+      <section className="max-container text-center mx-auto mb-12 lg:mb-20"
+    >
         <h1 className="text-5xl font-bold text-center mb-6">
           Express &{" "}
           <span className="text-blue-500 drop-shadow-lg font-semibold">
