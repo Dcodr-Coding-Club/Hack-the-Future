@@ -1637,8 +1637,152 @@ requests.exceptions.JSONDecodeError: Expecting value: line 3 column 1 (char 2)
 2025-03-30 23:54:08,645 - DEBUG - STREAM b'IHDR' 16 13
 2025-03-30 23:54:08,645 - DEBUG - STREAM b'PLTE' 41 363
 2025-03-30 23:54:08,645 - DEBUG - STREAM b'IDAT' 416 8192
-2025-03-31 11:03:34,211 - WARNING - Bad Request: /speech/transcribe/
-2025-03-31 11:03:34,231 - WARNING - Bad Request: /speech/transcribe/
-2025-03-31 11:03:34,272 - WARNING - Bad Request: /speech/transcribe/
-2025-03-31 11:03:34,399 - WARNING - Bad Request: /speech/transcribe/
-2025-03-31 11:03:34,502 - WARNING - Bad Request: /speech/transcribe/
+2025-03-31 10:21:13,158 - WARNING - Not Found: /favicon.ico
+2025-03-31 10:22:38,317 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:22:38,317 - DEBUG - STREAM b'PLTE' 41 420
+2025-03-31 10:22:38,317 - DEBUG - STREAM b'IDAT' 473 8111
+2025-03-31 10:22:38,317 - DEBUG - Importing BlpImagePlugin
+2025-03-31 10:22:38,321 - DEBUG - Importing BmpImagePlugin
+2025-03-31 10:22:38,321 - DEBUG - Importing BufrStubImagePlugin
+2025-03-31 10:22:38,324 - DEBUG - Importing CurImagePlugin
+2025-03-31 10:22:38,326 - DEBUG - Importing DcxImagePlugin
+2025-03-31 10:22:38,328 - DEBUG - Importing DdsImagePlugin
+2025-03-31 10:22:38,336 - DEBUG - Importing EpsImagePlugin
+2025-03-31 10:22:38,338 - DEBUG - Importing FitsImagePlugin
+2025-03-31 10:22:38,340 - DEBUG - Importing FliImagePlugin
+2025-03-31 10:22:38,341 - DEBUG - Importing FpxImagePlugin
+2025-03-31 10:22:38,344 - DEBUG - Image: failed to import FpxImagePlugin: No module named 'olefile'
+2025-03-31 10:22:38,344 - DEBUG - Importing FtexImagePlugin
+2025-03-31 10:22:38,345 - DEBUG - Importing GbrImagePlugin
+2025-03-31 10:22:38,347 - DEBUG - Importing GifImagePlugin
+2025-03-31 10:22:38,347 - DEBUG - Importing GribStubImagePlugin
+2025-03-31 10:22:38,348 - DEBUG - Importing Hdf5StubImagePlugin
+2025-03-31 10:22:38,349 - DEBUG - Importing IcnsImagePlugin
+2025-03-31 10:22:38,353 - DEBUG - Importing IcoImagePlugin
+2025-03-31 10:22:38,356 - DEBUG - Importing ImImagePlugin
+2025-03-31 10:22:38,358 - DEBUG - Importing ImtImagePlugin
+2025-03-31 10:22:38,359 - DEBUG - Importing IptcImagePlugin
+2025-03-31 10:22:38,361 - DEBUG - Importing JpegImagePlugin
+2025-03-31 10:22:38,361 - DEBUG - Importing Jpeg2KImagePlugin
+2025-03-31 10:22:38,361 - DEBUG - Importing McIdasImagePlugin
+2025-03-31 10:22:38,362 - DEBUG - Importing MicImagePlugin
+2025-03-31 10:22:38,363 - DEBUG - Image: failed to import MicImagePlugin: No module named 'olefile'
+2025-03-31 10:22:38,363 - DEBUG - Importing MpegImagePlugin
+2025-03-31 10:22:38,364 - DEBUG - Importing MpoImagePlugin
+2025-03-31 10:22:38,369 - DEBUG - Importing MspImagePlugin
+2025-03-31 10:22:38,371 - DEBUG - Importing PalmImagePlugin
+2025-03-31 10:22:38,373 - DEBUG - Importing PcdImagePlugin
+2025-03-31 10:22:38,375 - DEBUG - Importing PcxImagePlugin
+2025-03-31 10:22:38,375 - DEBUG - Importing PdfImagePlugin
+2025-03-31 10:22:38,392 - DEBUG - Importing PixarImagePlugin
+2025-03-31 10:22:38,394 - DEBUG - Importing PngImagePlugin
+2025-03-31 10:22:38,394 - DEBUG - Importing PpmImagePlugin
+2025-03-31 10:22:38,394 - DEBUG - Importing PsdImagePlugin
+2025-03-31 10:22:38,396 - DEBUG - Importing QoiImagePlugin
+2025-03-31 10:22:38,397 - DEBUG - Importing SgiImagePlugin
+2025-03-31 10:22:38,398 - DEBUG - Importing SpiderImagePlugin
+2025-03-31 10:22:38,399 - DEBUG - Importing SunImagePlugin
+2025-03-31 10:22:38,401 - DEBUG - Importing TgaImagePlugin
+2025-03-31 10:22:38,403 - DEBUG - Importing TiffImagePlugin
+2025-03-31 10:22:38,403 - DEBUG - Importing WebPImagePlugin
+2025-03-31 10:22:38,472 - DEBUG - Importing WmfImagePlugin
+2025-03-31 10:22:38,475 - DEBUG - Importing XbmImagePlugin
+2025-03-31 10:22:38,478 - DEBUG - Importing XpmImagePlugin
+2025-03-31 10:22:38,480 - DEBUG - Importing XVThumbImagePlugin
+2025-03-31 10:23:09,389 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:23:09,390 - DEBUG - STREAM b'PLTE' 41 390
+2025-03-31 10:23:09,390 - DEBUG - STREAM b'IDAT' 443 8192
+2025-03-31 10:24:05,628 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:24:05,628 - DEBUG - STREAM b'PLTE' 41 405
+2025-03-31 10:24:05,628 - DEBUG - STREAM b'IDAT' 458 8175
+2025-03-31 10:24:17,093 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:24:17,093 - DEBUG - STREAM b'PLTE' 41 420
+2025-03-31 10:24:17,093 - DEBUG - STREAM b'IDAT' 473 8192
+2025-03-31 10:24:31,511 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:24:31,511 - DEBUG - STREAM b'PLTE' 41 393
+2025-03-31 10:24:31,511 - DEBUG - STREAM b'IDAT' 446 7579
+2025-03-31 10:24:45,248 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:24:45,248 - DEBUG - STREAM b'PLTE' 41 411
+2025-03-31 10:24:45,248 - DEBUG - STREAM b'IDAT' 464 7563
+2025-03-31 10:31:15,362 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:31:15,363 - DEBUG - STREAM b'PLTE' 41 420
+2025-03-31 10:31:15,363 - DEBUG - STREAM b'IDAT' 473 8111
+2025-03-31 10:44:01,895 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:44:01,895 - DEBUG - STREAM b'PLTE' 41 423
+2025-03-31 10:44:01,896 - DEBUG - STREAM b'IDAT' 476 7553
+2025-03-31 10:44:58,402 - DEBUG - STREAM b'IHDR' 16 13
+2025-03-31 10:44:58,402 - DEBUG - STREAM b'PLTE' 41 390
+2025-03-31 10:44:58,402 - DEBUG - STREAM b'IDAT' 443 7675
+2025-03-31 10:49:39,641 - ERROR - Internal Server Error: /speech/transcribe/
+Traceback (most recent call last):
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 103, in get_pyaudio
+    import pyaudio
+ModuleNotFoundError: No module named 'pyaudio'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\speech_to_text\views.py", line 14, in record_and_transcribe
+    with sr.Microphone() as source:
+         ~~~~~~~~~~~~~^^
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 75, in __init__
+    self.pyaudio_module = self.get_pyaudio()
+                          ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 105, in get_pyaudio
+    raise AttributeError("Could not find PyAudio; check installation")
+AttributeError: Could not find PyAudio; check installation
+2025-03-31 10:49:42,512 - ERROR - Internal Server Error: /speech/transcribe/
+Traceback (most recent call last):
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 103, in get_pyaudio
+    import pyaudio
+ModuleNotFoundError: No module named 'pyaudio'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\speech_to_text\views.py", line 14, in record_and_transcribe
+    with sr.Microphone() as source:
+         ~~~~~~~~~~~~~^^
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 75, in __init__
+    self.pyaudio_module = self.get_pyaudio()
+                          ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 105, in get_pyaudio
+    raise AttributeError("Could not find PyAudio; check installation")
+AttributeError: Could not find PyAudio; check installation
+2025-03-31 10:49:55,910 - ERROR - Internal Server Error: /speech/transcribe/
+Traceback (most recent call last):
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 103, in get_pyaudio
+    import pyaudio
+ModuleNotFoundError: No module named 'pyaudio'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\speech_to_text\views.py", line 14, in record_and_transcribe
+    with sr.Microphone() as source:
+         ~~~~~~~~~~~~~^^
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 75, in __init__
+    self.pyaudio_module = self.get_pyaudio()
+                          ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\lotiy\Desktop\projects\SignMaster\Hack-the-Future\.venv\Lib\site-packages\speech_recognition\__init__.py", line 105, in get_pyaudio
+    raise AttributeError("Could not find PyAudio; check installation")
+AttributeError: Could not find PyAudio; check installation
+2025-03-31 10:50:58,185 - WARNING - Bad Request: /speech/transcribe/

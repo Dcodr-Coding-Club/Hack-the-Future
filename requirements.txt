@@ -8,6 +8,6 @@ gradio
 torch
 transformers
 gdown
-mediapipe
+# mediapipe
 keras.models
 cv2
