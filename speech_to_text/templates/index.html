@@ -1,78 +1,113 @@
+{% csrf_token %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>Speech to Text</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            flex-direction: column;
         }
         .container {
             background: white;
-            max-width: 400px;
-            margin: auto;
             padding: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
         }
         h2 {
-            color: #333;
+            margin-bottom: 20px;
         }
         button {
-            background-color: #28a745;
+            background-color: #4CAF50;
             color: white;
             border: none;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
-            margin-top: 10px;
+            transition: 0.3s;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #45a049;
         }
         #result {
-            margin-top: 15px;
-            font-size: 18px;
-            color: #555;
-            min-height: 20px;
+            margin-top: 20px;
+            padding: 10px;
+            background: #e8f5e9;
+            border-radius: 5px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    {% csrf_token %}
     <div class="container">
-        <h2>Speech to Text</h2>
-        <button onclick="transcribeSpeech()">Start Recording</button>
-        <p id="result"></p>
+        <h2>Click to Record and Transcribe</h2>
+        <button onclick="transcribeSpeech()">🎤 Start Recording</button>
+        <p id="result">Your transcribed text will appear here...</p>
     </div>
-
+    
     <script>
         function getCSRFToken() {
-            return document.cookie.split('; ')
-                .find(row => row.startsWith('csrftoken='))
-                ?.split('=')[1];
+            return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         }
 
-        function transcribeSpeech() {
-            fetch('/speech/transcribe/', {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': getCSRFToken(),
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("result").innerText = data.transcribed_text || data.error;
-            })
-            .catch(error => console.error('Error:', error));
+function transcribeSpeech() {
+    document.getElementById("result").innerText = "Listening...";
+
+    fetch('/speech/transcribe/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCSRFToken(), // Ensure CSRF token is included
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({}) // Ensure a valid body is sent
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            document.getElementById("result").innerText = "Error: " + data.error;
+        } else {
+            document.getElementById("result").innerText = data.transcribed_text;
+            sendToInputAPI(data.transcribed_text);  // Send to /input/ API
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById("result").innerText = "Error transcribing speech.";
+    });
+    }
+
+    function sendToInputAPI(text) {
+        fetch('/input/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCSRFToken(),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: text })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Input API response:", data);
+        })
+        .catch(error => {
+            console.error('Error sending to input API:', error);
+        });
+    }
+
+
     </script>
 </body>
 </html>
