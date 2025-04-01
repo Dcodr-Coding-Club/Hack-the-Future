@@ -1,7 +1,6 @@
 import os
 import cv2
-import sqlite3
-import threading  
+import sqlite3 
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
@@ -40,7 +39,7 @@ def display_images_one_by_one(image_paths):
 
     print(f"🖼️ Displaying {len(image_paths)} images one by one...")
 
-    cv2.namedWindow("ASL Sign", cv2.WINDOW_NORMAL)  # ✅ Prevent empty black screen
+    cv2.namedWindow("ASL Sign", cv2.WINDOW_NORMAL)
     for img_path in image_paths:
         frame = cv2.imread(img_path)
         if frame is None:
@@ -48,7 +47,7 @@ def display_images_one_by_one(image_paths):
             continue  # Skip corrupted frames
 
         cv2.imshow("ASL Sign", frame)  # Show image
-        cv2.waitKey(1500)  # ✅ Display each image for 1.5 seconds
+        cv2.waitKey(1500)  
 
     cv2.destroyAllWindows()
 

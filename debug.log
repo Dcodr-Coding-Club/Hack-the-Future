@@ -1786,3 +1786,13 @@ Traceback (most recent call last):
     raise AttributeError("Could not find PyAudio; check installation")
 AttributeError: Could not find PyAudio; check installation
 2025-03-31 10:50:58,185 - WARNING - Bad Request: /speech/transcribe/
+2025-03-31 16:08:59,790 - WARNING - Not Found: /favicon.ico
+2025-03-31 16:12:16,972 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture\Hack-the-Future\asl_sign\views.py changed, reloading.
+2025-03-31 16:12:20,369 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture\Hack-the-Future\asl_sign\views.py changed, reloading.
+2025-03-31 16:12:31,763 - INFO - C:\Users\YASHVI KHATRI\OneDrive\Documents\Work Folder\HackTheFuture\Hack-the-Future\asl_sign\views.py changed, reloading.
+2025-03-31 17:10:54,693 - WARNING - Not Found: /favicon.ico
+2025-03-31 17:38:43,436 - WARNING - Not Found: /favicon.ico
+2025-04-01 09:59:37,303 - WARNING - Not Found: /favicon.ico
+2025-04-01 09:59:45,151 - WARNING - Not Found: /dashboard/input/
+2025-04-01 09:59:46,758 - WARNING - Not Found: /dashboard/input/
+2025-04-01 09:59:50,641 - WARNING - Not Found: /dashboard/input/
