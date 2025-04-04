@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Questions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-5xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Basic Questions</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for question, description in questions.items %}
+            <div class="bg-white rounded-lg shadow-lg p-6 transform transition duration-300 hover:scale-105">
+                <img src="{% static 'images/qus/' %}{{ question|capfirst }}.png" 
+                     alt="{{ question }}" 
+                     class="w-24 h-24 mx-auto mb-4">
+                <h2 class="text-xl font-semibold text-gray-700 text-center">{{ question }}?</h2>
+                <p class="text-gray-600 text-sm text-center mt-2">{{ description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+{% comment %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Sign Display</title>
+    <div id="asl-container">
+        <h2>ASL Sign Display</h2>
+        <h3 id="user-input">{{ input_text }}</h3>  <!-- ✅ Display input text -->
+        <img id="asl-image" src="" alt="ASL Sign">
+    </div>
+    
+    <!-- Embed JSON data safely -->
+    {{ image_urls|json_script:"asl_images" }}
+    
+    <script>
+        const images = JSON.parse(document.getElementById('asl_images').textContent);
+        let index = 0;
+        const imgElement = document.getElementById('asl-image');
+    
+        function showNextImage() {
+            if (index < images.length) {
+                imgElement.src = images[index];
+                imgElement.style.display = "block";
+                index++;
+                setTimeout(showNextImage, 1500);
+            }
+        }
+    
+        window.onload = showNextImage;
+    </script>
+    
+    <style>
+        #asl-container {
+            text-align: center;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            display: none;
+        }
+    </style>
+    
+
+</body>
+</html> {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Sign Display</title>
+    <div id="asl-container">
+        <h2>ASL Sign Display</h2>
+        <h3 id="user-input">{{ input_text }}</h3>  <!-- ✅ Display input text -->
+        <img id="asl-image" src="" alt="ASL Sign">
+    </div>
+    
+    <!-- Embed JSON data safely -->
+    {{ image_urls|json_script:"asl_images" }}
+    
+    <script>
+        const images = JSON.parse(document.getElementById('asl_images').textContent);
+        let index = 0;
+        const imgElement = document.getElementById('asl-image');
+    
+        function showNextImage() {
+            if (index < images.length) {
+                imgElement.src = images[index];
+                imgElement.style.display = "block";
+                index++;
+                setTimeout(showNextImage, 1500);
+            }
+        }
+    
+        window.onload = showNextImage;
+    </script>
+    
+    <style>
+        #asl-container {
+            text-align: center;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            display: none;
+        }
+    </style>
+</body>
+</html>

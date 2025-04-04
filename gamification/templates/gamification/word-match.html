@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Matching Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .game-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 20px;
+        }
+        .words, .images {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .word {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: grab;
+            width: 120px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            margin-bottom: 95px; 
+        }
+        .word:hover {
+            transform: scale(1.1);
+        }
+        .dropzone {
+            border: 2px dashed #007bff;
+            padding: 10px;
+            text-align: center;
+            width: 150px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .dropzone img {
+            width: 100px;
+        }
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+        #score-display {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #007bff;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h2>Match the Words with Their Signs</h2>
+
+    <div class="game-container">
+        <div class="words">
+            {% for question in questions %}
+                <p draggable="true" class="word" id="word{{ forloop.counter }}">{{ question.word }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="images">
+            {% for question in questions %}
+                <div class="dropzone" data-word="word{{ forloop.counter }}">
+                    <img src="{{ question.image.url }}" alt="{{ question.word }} Sign">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <p id="score-display">Score: 0</p>
+    <button onclick="window.location.href='/gamification/word-match-leaderboard/'">View Leaderboard</button>
+    <button id="save-score-btn">Save Score</button>
+    <p id="result"></p>
+
+    <script>
+        let score=0;
+        document.addEventListener("DOMContentLoaded", () => {
+            const words = document.querySelectorAll(".word");
+            const dropzones = document.querySelectorAll(".dropzone");
+            const result = document.getElementById("result");
+
+            words.forEach(word => {
+                word.addEventListener("dragstart", (event) => {
+                    event.dataTransfer.setData("text", event.target.id);
+                });
+            });
+
+            dropzones.forEach(zone => {
+                zone.addEventListener("dragover", (event) => {
+                    event.preventDefault();
+                });
+
+                zone.addEventListener("drop", (event) => {
+                    event.preventDefault();
+                    const wordId = event.dataTransfer.getData("text");
+                    const draggedWord = document.getElementById(wordId);
+
+                    if (zone.dataset.word === wordId) {
+                        zone.appendChild(draggedWord);
+                        draggedWord.style.backgroundColor = "green";
+                        result.innerText = "✅ Correct! Keep going!";
+                        score++;
+                        document.getElementById("score-display").innerText=`Score:${score}`;
+                    } else {
+                        result.innerText = "❌ Try Again!";
+                    }
+                });
+            });
+        });
+
+// Save the score when the game ends
+        document.getElementById("save-score-btn").addEventListener("click", () => {
+            const username = prompt("Enter your name for the leaderboard:", "Guest");
+            saveWordMatchScore(username, score);
+        });
+   
+
+    function saveWordMatchScore(username, score) {
+        fetch("http://127.0.0.1:8000/gamification/save_score/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: username, score: score, game_type: "word_match" })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            alert("Score saved successfully!");
+        })
+        .catch(error => console.error("Error saving score:", error));
+    }
+    </script>
+</body>
+</html>

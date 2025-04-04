@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignMaster Quiz</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #quiz-container { max-width: 500px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 10px; }
+        img { max-width: 100%; height: auto; margin: 10px 0; }
+        .option { display: block; margin: 10px 0; padding: 10px; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; }
+        .option:hover { background-color: #f0f0f0; }
+        .level-btn, .next-btn, .leaderboard-btn { margin: 10px; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; }
+        .beginner { background-color: #4CAF50; color: white; }
+        .intermediate { background-color: #FF9800; color: white; }
+        .high-level { background-color: #F44336; color: white; }
+        .next-btn { background-color: #007BFF; color: white; display: none; }
+        .leaderboard-btn { background-color: #007bff; color: white; font-weight: bold; }
+        .leaderboard-btn:hover { background-color: #4B47CC; }
+        #score { font-size: 18px; font-weight: bold; margin-top: 10px; }
+        #feedback { margin-top: 10px; font-weight: bold; }
+        #timer { font-size: 18px; font-weight: bold; color: #FF0000; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1>SignMaster Quiz</h1>
+
+    <div>
+        <button class="level-btn beginner" onclick="startQuiz('Beginner')">Beginner</button>
+        <button class="level-btn intermediate" onclick="startQuiz('Intermediate')">Intermediate</button>
+        <button class="level-btn high-level" onclick="startQuiz('High')">High Talented</button>
+        <button class="leaderboard-btn" onclick="viewLeaderboard()">View Leaderboard</button>
+    </div>
+
+    <div id="quiz-container">
+        <p id="timer">Time Left: 15s</p>
+        <h2 id="question-text">Select a level to start the quiz</h2>
+        <img id="question-image" style="display: none;">
+        <div id="options"></div>
+        <p id="feedback"></p>
+        <button class="next-btn" onclick="nextQuestion()">Next Question</button>
+    </div>
+
+    <div id="quiz-complete" style="display: none;">
+        <h2>🎉 Quiz Completed! 🎉</h2>
+        <p>Your final score: <span id="final-score"></span></p>
+        <button onclick="restartQuiz()">Restart Quiz</button>
+        <button class="leaderboard-btn" onclick="viewLeaderboard()">View Leaderboard</button>
+    </div>
+
+    <p id="score">Score: 0</p>
+
+    <script>
+        let currentLevel = "";
+        let score = 0;
+        let currentQuizIndex = 0;
+        let quizzes = [];
+        let timer;
+        let timeLeft = 15;
+
+        function startQuiz(level) {
+            currentLevel = level;
+            score = 0;
+            currentQuizIndex = 0;
+            document.getElementById("score").innerText = "Score: 0";
+            fetchQuiz(level);
+        }
+
+        function startTimer() {
+    clearInterval(timer);
+    timeLeft = 15;
+    document.getElementById("timer").innerText = `Time Left: ${timeLeft}s`;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        const timerElement = document.getElementById("timer");
+        timerElement.innerText = `Time Left: ${timeLeft}s`;
+
+        if (timeLeft <= 5) {
+            timerElement.style.color = "red";
+        } else {
+            timerElement.style.color = "black";
+        }
+
+        if (timeLeft === 0) {
+            clearInterval(timer);
+            document.getElementById("feedback").innerText = "⏳ Time’s up!";
+            document.querySelector(".next-btn").style.display = "block";
+            disableOptions();
+        }
+    }, 1000);
+}
+
+
+        function disableOptions() {
+            let allOptions = document.querySelectorAll(".option");
+            allOptions.forEach(btn => btn.disabled = true);
+        }
+
+        function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+        async function fetchQuiz(level) {
+            try {
+                let response = await fetch(`http://127.0.0.1:8000/gamification/get_quiz/${level}/`);
+                if (!response.ok) throw new Error("Failed to fetch quiz.");
+
+                let data = await response.json();
+                if (data.error) {
+                    document.getElementById("quiz-container").innerHTML = "<p>No quiz available.</p>";
+                    return;
+                }
+
+                quizzes = data.quizzes;
+                shuffleArray(quizzes);
+                loadQuiz();
+            } catch (error) {
+                console.error("Error fetching quiz:", error);
+            }
+        }
+
+        function loadQuiz() {
+            if (currentQuizIndex >= quizzes.length) {
+                endQuiz();
+                return;
+            }
+
+            let quiz = quizzes[currentQuizIndex];
+            document.getElementById("question-text").innerText = quiz.question;
+            let questionImage = document.getElementById("question-image");
+
+            if (quiz.question_image) {
+                questionImage.src = quiz.question_image;
+                questionImage.style.display = "block";
+            } else {
+                questionImage.style.display = "none";
+            }
+
+            let optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+
+            quiz.options.forEach(option => {
+                let btn = document.createElement("button");
+                btn.className = "option";
+                btn.innerText = option.text;
+
+                if (option.image) {
+                    let img = document.createElement("img");
+                    img.src = option.image;
+                    img.style.maxWidth = "50px";
+                    img.style.marginLeft = "10px";
+                    btn.appendChild(img);
+                }
+
+                btn.onclick = () => checkAnswer(option.text, btn, quiz.correct_answer);
+                optionsDiv.appendChild(btn);
+            });
+
+            document.getElementById("feedback").innerText = "";
+            document.querySelector(".next-btn").style.display = "none";
+
+            startTimer();
+        }
+
+        function checkAnswer(selectedText, button, correctAnswer) {
+            let allOptions = document.querySelectorAll(".option");
+            allOptions.forEach(btn => btn.disabled = true);
+
+            if (selectedText === correctAnswer) {
+                button.style.backgroundColor = "green";
+                document.getElementById("feedback").innerText = "✅ Correct!";
+                score += 1;
+            } else {
+        button.style.backgroundColor = "red";
+        document.getElementById("feedback").innerText = `❌ Wrong! The correct answer is: ${correctAnswer}`;
+        // Highlight the correct answer
+        allOptions.forEach(btn => {
+            if (btn.innerText === correctAnswer) {
+                btn.style.backgroundColor = "green";
+            }
+        });
+    }
+
+            document.getElementById("score").innerText = "Score: " + score;
+            document.querySelector(".next-btn").style.display = "block";
+            clearInterval(timer);
+        }
+
+        function nextQuestion() {
+            currentQuizIndex++;
+            loadQuiz();
+        }
+
+        function endQuiz() {
+            document.getElementById("quiz-container").style.display = "none";
+            document.getElementById("quiz-complete").style.display = "block";
+            document.getElementById("final-score").innerText = score;
+
+            let username = prompt("Enter your name for the leaderboard:", "Guest");
+            fetch("http://127.0.0.1:8000/gamification/save_score/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username: username, score: score })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data.message))
+            .catch(error => console.error("Error saving score:", error));
+        }
+
+        function restartQuiz() {
+            score = 0;
+            currentQuizIndex = 0;
+            document.getElementById("score").innerText = "Score: 0";
+            document.getElementById("quiz-container").style.display = "block";
+            document.getElementById("quiz-complete").style.display = "none";
+            fetchQuiz(currentLevel);
+        }
+
+        function viewLeaderboard() {
+            window.location.href = "/gamification/leaderboard/";  // Redirect to the leaderboard page
+        }
+    </script>
+
+</body>
+</html>

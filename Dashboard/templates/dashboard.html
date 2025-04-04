@@ -1,0 +1,391 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    /* Basic body setup */
+    body {
+      background-color: #f5f5f5; /* Light Gray */
+      background-image: linear-gradient(#e0e0e0 1px, transparent 1px),
+                        linear-gradient(to right, #e0e0e0 1px, transparent 1px);
+      background-size: 40px 40px; /* Grid spacing */
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      min-height: 100vh;
+    }
+    
+    
+    .learning-container {
+      width: 80%;
+      max-width: 600px;
+      margin: auto;
+      background: #f0f4ff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+  }
+  
+  /* Buttons */
+  .learning-header {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 15px;
+  }
+  
+  .level-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+      color: white;
+  }
+  
+  /* Button Colors */
+  .beginner { background: #4CAF50; }
+  .intermediate { background: #FFA500; }
+  .advanced { background: #FF5733; }
+  
+  .level-btn:hover {
+      filter: brightness(1.2);
+  }
+  
+  /* Content Sections */
+  .learning-content {
+      display: none;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .learning-content h3 {
+      margin-bottom: 8px;
+      color: #333;
+  }
+  
+  .learning-content ul {
+      list-style: none;
+      padding: 0;
+  }
+  
+  .learning-content ul li {
+      margin: 8px 0;
+  }
+  
+  .learning-content ul li a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+  }
+  
+  .learning-content ul li a:hover {
+      color: #0056b3;
+  }
+    /* Full screen watermark container */
+    .watermark {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #ffffff 0%, #2e2e2e 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 0;
+      opacity: 0.05;  /* Adjust opacity as needed */
+      pointer-events: none;  /* Allow clicks to pass through */
+    }
+    .watermark img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%; /* Round logo */
+      margin-bottom: 1rem;
+      border: 3px solid #fff;
+    }
+    .watermark .title {
+      font-size: 4rem;
+      font-weight: 700;
+      color: #091224;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    .watermark .subtitle {
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #34105b;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    .watermark .tagline {
+      font-size: 2rem;
+      font-weight: 400;
+      color: #2f184c;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    /* Navbar styling (unchanged) */
+    .navbar {
+      background-color: #fff; /* White background */
+      border-bottom: 2px solidrgb(227, 227, 227);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 20;
+    }
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1e3c72 !important;
+    }
+    .navbar-brand img {
+      margin-right: 10px;
+      border: 2px solid #1e3c72;
+      border-radius: 50%;
+    }
+    .nav-link {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1e3c72 !important;
+      margin-left: 15px;
+    }
+    .nav-link:hover {
+      color: #0d1a33 !important;
+    }
+
+    /* Modal Box for Course Details */
+    .course-detail {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 100;
+    }
+    
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #666;
+    }
+
+  /* Menu Section */
+  .menu-container {
+    display: flex;
+   
+    justify-content: center;  /* Centers the items */
+    align-items: center;
+    gap: 20px;  /* Adds space between menu items */
+    flex-wrap: nowrap;  /* Ensures all items stay in one line */
+    overflow-x: auto;  /* Allows scrolling if items exceed screen width */
+    padding: 20px;
+  }
+
+  .menu-box {
+    width: 180px;
+    height: 220px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+     /* Slightly transparent background */
+  }
+
+  .menu-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .menu-box img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background-color: #ddd;  /* Placeholder background */
+  }
+
+  .menu-box span {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="{% static 'images/logo_signMaster.png' %}" alt="Logo" style="height: 40px; width: 40px;">
+        SignMaster
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link"href="{% url 'AIPlanner:process_user_input' %}">AIPlanner</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+  <!-- Full-screen Watermark -->
+  {% comment %} <div class="watermark">
+    <img src="{% static 'images\logo_signMaster.png' %}" alt="Logo">
+    <div class="title">SignMaster</div>
+    <div class="subtitle">Bridging Silence, Empowering Learning</div>
+   
+  </div> {% endcomment %}
+  
+
+  <div class="container text-center mt-4">
+    <h2 class="mb-3">Select your learning level to begin your journey.</h2>
+  </div>
+
+ 
+
+ <div class="learning-container">
+  <!-- Buttons for Levels -->
+  <div class="learning-header">
+      <button class="level-btn beginner" onclick="showLevel('beginner')">Beginner</button>
+      <button class="level-btn intermediate" onclick="showLevel('intermediate')">Intermediate</button>
+      <button class="level-btn advanced" onclick="showLevel('advanced')">Advanced</button>
+  </div>
+
+  <!-- Content Boxes -->
+  <div id="beginner" class="learning-content">
+      <h3>Beginner Level</h3>
+      <p>"Basic Communication & Daily Life"</p>
+      <ul>
+          <li><a href="{% url 'alphabets' %}">ASL Alphabet</a></li>
+          <li><a href="{% url 'numbers' %}">Numbers</a></li>
+          <li><a href="{% url 'common_greetings' %}">Common Greetings</a></li>
+          <li><a href="{% url 'basic_questions' %}">Basic Questions</a></li>
+      </ul>
+  </div>
+
+  <div id="intermediate" class="learning-content">
+      <h3>Intermediate Level</h3>
+      <p>"Expressive ASL & Social Conversations"</p>
+      <ul>
+          <li><a href="{% url 'vocabulary' %}">Everyday Vocabulary</a></li>
+          <li><a href="{% url 'sentence_structure' %}">Basic Sentence Structure</a></li>
+          <li><a href="{% url 'expressing_feelings' %}">Expressing Yes/No & Feelings</a></li>
+      </ul>
+  </div>
+
+  <div id="advanced" class="learning-content">
+      <h3>Advanced Level</h3>
+      <p>"Storytelling & Conversation Fluency"</p>
+      <ul>
+          <li><a href="{% url 'advanced_grammar' %}">Advanced Grammar</a></li>
+          
+      </ul>
+  </div>
+</div>
+
+  <!-- Menu Section -->
+  <div class="container text-center mt-4">
+  <h2 class="mb-3">Fun & Learn Zone!</h2>
+</div>
+  <div class="menu-container">
+    
+ <a href="{{ quiz_url }}" class="menu-box">
+      <img src="https://signconverter.com/assets/quiz.webp" alt="Quiz">
+      <span>Quiz</span>
+    </a>
+
+    <a href="{{ word_match_url }}" class="menu-box">
+      <img src="{% static 'images/matchwords.png' %}" alt="Match Word">
+      <span>Match Word</span>
+    </a>
+
+    <a href="{{ flashcards_url }}" class="menu-box">
+      <img src="data:image/png;base64,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" alt="Flashcards">
+      <span>Flashcards</span>
+    </a>
+
+    <a href="{{ typingGame_url }}" class="menu-box">
+      <img src="{% static 'images/typingGame.png' %}" alt="Type The Sign">
+      <span>Type The Sign</span>
+    </a>
+    
+  </div>
+  <div class="container text-center mt-4">
+    <h2 class="mb-3">ASL Converter</h2>
+
+    <div class="menu-container">
+        <!-- Speech to Text Button -->
+        <a href="{{ speech_to_text_url }}" class="menu-box">
+            <img src="{% static 'images/Speech.png' %}" alt="Speech to Text">
+            <span>Speech to Text</span>
+        </a>
+
+        <a href="{% url 'input_text' %}" class="menu-box">
+          <img src="{% static 'images/Text.png' %}" alt="Text to Sign">
+          <span>Text to Sign</span>
+      </a>
+    </div>
+</div>
+
+  <script>
+     
+
+
+    function showDetails(title, description) {
+      document.getElementById("courseTitle").innerText = title;
+      document.getElementById("courseDescription").innerText = description;
+      document.getElementById("courseDetail").style.display = "block";
+    }
+
+    function hideDetails() {
+      document.getElementById("courseDetail").style.display = "none";
+    }
+
+    function showLevel(level) {
+      // Hide all sections
+      document.querySelectorAll('.learning-content').forEach((content) => {
+          content.style.display = 'none';
+      });
+  
+      // Show selected section
+      document.getElementById(level).style.display = 'block';
+  }
+  
+  </script>
+
+</body>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

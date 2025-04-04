@@ -1,0 +1,13 @@
+SpeechRecognition
+pyaudio
+opencv-python
+numpy
+Pillow
+django-cors-headers
+gradio
+torch
+transformers
+gdown
+# mediapipe
+keras.models
+cv2

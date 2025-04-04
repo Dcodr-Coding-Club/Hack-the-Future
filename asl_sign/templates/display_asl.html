@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Sign Display</title>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            color: #007BFF;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 22px;
+            color: #444;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .asl-frame {
+            width: 320px;
+            height: 320px;
+            background-color: #e8f0fe;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        img {
+            max-width: 80%;
+            height: auto;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ddd;
+            border-top: 5px solid #007BFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+            .asl-frame {
+                width: 260px;
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>ASL Sign Display</h2>
+        <h3 id="user-input">{{ input_text }}</h3>
+        
+        <div class="asl-frame">
+            <div class="loader" id="loader"></div>
+            <img id="asl-image" src="" alt="ASL Sign">
+        </div>
+    </div>
+
+    <!-- Embed JSON data safely -->
+    {{ image_urls|json_script:"asl_images" }}
+    
+    <script>
+        const images = JSON.parse(document.getElementById('asl_images').textContent);
+        let index = 0;
+        const imgElement = document.getElementById('asl-image');
+        const loader = document.getElementById('loader');
+
+        function showNextImage() {
+            if (index < images.length) {
+                loader.style.display = "block";
+                imgElement.style.display = "none";
+                setTimeout(() => {
+                    loader.style.display = "none";
+                    imgElement.src = images[index];
+                    imgElement.style.display = "block";
+                    index++;
+                    setTimeout(showNextImage, 1500);
+                }, 500);
+            }
+        }
+
+        window.onload = showNextImage;
+    </script>
+
+</body>
+</html>
